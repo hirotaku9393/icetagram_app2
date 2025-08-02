@@ -1,0 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Poller+One&display=swap");
+@import "tailwindcss";
+
+@theme {
+    --font-poller: 'Poller One', sans-serif;
+}
