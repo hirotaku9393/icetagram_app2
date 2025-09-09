@@ -1,6 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Poller+One&display=swap");
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Poller+One&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-    --font-poller: 'Poller One', sans-serif;
+
+@layer components{
+    nav.pagination {
+        @apply flex gap-2 items-center justify-center mt-4;
+    }
+
+    nav.pagination .page > a,
+    nav.pagination .next > a,
+    nav.pagination .prev > a,
+    nav.pagination .first > a,
+    nav.pagination .last  > a {
+        @apply text-gray-600 px-3 py-2 rounded hover:bg-gray-200 ;
+    }
+
+    nav.pagination .page.current {
+        @apply bg-gray-700 text-white px-3 py-2 rounded;
+    }
 }

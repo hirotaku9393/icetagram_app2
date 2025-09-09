@@ -1,0 +1,33 @@
+<div class="pt-10 font-kiwi text-4xl text-black-600 text-center">
+    あなたにピッタリなアイスは…
+</div>
+<div class="mx-auto bg-amber-50 shadow-md rounded-lg p-6 max-w-5xl mt-6 text-center">
+    <%= turbo_frame_tag "ajigraf_result" do %>
+        <div class="grid grid-cols-2 gap-8">
+            <div class="pl-4">
+                <div class="flex flex-col items-center mt-6">
+                    <h1 class="text-4xl font-kiwi"> <%= @closest_ice.name %> </h1>
+                    <h2 class="text-3xl font-kiwi"> <%= @closest_ice.comment %> </h2>
+                    <% if @closest_ice.image.attached? %>
+                        <h3 class="pt-10"><%= image_tag @closest_ice.image, class: 'h-40 w-auto' %></h3>
+                    <% else %>
+                        <h3 class="pt-10"><%= image_tag 'Icecream.png', class: 'h-40 w-auto' %></h3>
+                    <% end %>    
+                </div>
+            </div>
+            <div class="pl-4">
+                <div data-controller="ice-cream-chart"
+                data-ice-cream-chart-chart-data-value="<%= @closest_chart.to_vector.to_json %>"
+                data-ice-cream-chart-labels-value="<%= ['甘さ', '爽やかさ', '濃厚さ', 'カロリー', '具材の充実感'].to_json %>">
+                <canvas data-ice-cream-chart-target="canvas" width="400" height="200"></canvas>
+            </div>
+        </div>
+    <% end %>
+</div>
+<div class="twitter pt-5 flex justify-center font-kiwi gap-4 mt-1">
+    <%= link_to "https://twitter.com/intent/tweet?text=あなたにピッタリなあいすは#{@closest_ice.name}!%0a%0aをたべてみよう！%0a%0ahttps://icetagramapp2.herokuapp.com/todayice/result",  class: "bg-blue-400 hover:bg-blue-500 text-white font-kiwi py-4 px-8 text-xl rounded-lg flex items-center gap-2 twitter-share-button", target: "_blank", rel: "noopener" do %>
+        <iconify-icon icon="simple-icons:x" width="24" height="24"></iconify-icon>
+        <span>結果をツイートする</span>
+    <% end %>
+</div>
+

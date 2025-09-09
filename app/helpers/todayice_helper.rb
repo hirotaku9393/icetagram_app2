@@ -1,0 +1,2 @@
+module TodayiceHelper
+end

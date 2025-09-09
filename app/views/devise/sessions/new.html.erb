@@ -1,0 +1,31 @@
+<h2 class="flex justify-center pt-30 font-kiwi text-4xl text-black-60 text-center">ログイン</h2>
+
+<div class="mx-auto bg-amber-50 shadow-md rounded-lg p-6 max-w-md mt-6 mb-6">
+  
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field flex flex-col items-center mt-4">
+    <%= f.label :email, class: "flex w-64 flex-col text-center font-kiwi text-gray-700" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: "flex items-center px-10 py-2 border border-gray-300 rounded-md " %>
+  </div>
+
+  <div class="field flex flex-col items-center mt-4">
+    <%= f.label :password, class: "flex w-64 flex-col text-center font-kiwi text-gray-700" %><br />
+    <%= f.password_field :password, autocomplete: "current-password",  class: "px-10 py-2 border border-gray-300 rounded-md " %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field flex items-center justify-center mt-4">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, class: "font-kiwi text-gray-700" %>
+    </div>
+  <% end %>
+
+  <div class="actions flex  flex-col items-center mt-4 bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi py-2 px-4 rounded w-64 mx-auto"">
+    <%= f.submit "ログイン", class: "w-64 text-center font-kiwi text-gray-700" %>
+  </div>
+<% end %>
+
+<div class="mt-4 flex items-center font-kiwi text-gray-700">
+    <%= render "devise/shared/links" %> 
+</div>
+</div>

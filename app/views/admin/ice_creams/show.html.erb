@@ -1,0 +1,36 @@
+<p class="text-3xl font-kiwi pt-4 text-center">管理画面アイス詳細</p>
+<div class="pt-1">  
+    <div class="mx-auto bg-amber-50 shadow-md rounded-lg p-6 max-w-4xl mt-6 text-center">
+    <%= turbo_frame_tag "ice_cream_show" do %>
+            <div class="grid grid-cols-2 gap-2">
+                <div class="pl-4">
+                    <h1 class="text-4xl font-kiwi"> <%= @ice_cream.name %> </h1>
+                    <h2 class="text-3xl font-kiwi pt-5"> <%= @ice_cream.comment %> </h2>
+                    <h2 class="text-2xl font-kiwi pt-5"> <%= @ice_cream.arrange %> </h2>
+                    <h2 class="text-2xl font-kiwi pt-5"> <%= "カロリー値: " + @ice_cream.calorie_value.to_s + "kcal" %> </h2>
+                    <% if @ice_cream.image.attached? %>
+                        <h3 class="pt-10  flex justify-center"><%= image_tag @ice_cream.image, class: 'h-40 w-auto' %></h3>
+                    <% else %>
+                        <h3 class="pt-10 flex justify-center"><%= image_tag 'Icecream.png', class: 'h-40 w-auto' %></h3>
+                    <% end %>    
+                </div>
+                <% if @chart.present? %>
+                <div class="pl-4">
+                    <div data-controller="ice-cream-chart"
+                    data-ice-cream-chart-chart-data-value="<%= @chart.to_vector.to_json %>"
+                    data-ice-cream-chart-labels-value="<%= ['甘さ', '爽やかさ', '濃厚さ', 'カロリー', '具材の充実感'].to_json %>">
+                    <canvas data-ice-cream-chart-target="canvas" width="400" height="200"></canvas>
+                </div>
+                <% else %>
+                    <p class="text-gray-500">チャートはまだ登録されていません</p>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>
+
+<div class="flex justify-center gap-4 mt-6">
+    <%= link_to 'アイスを編集', edit_admin_ice_cream_path(@ice_cream), class: 'bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-lg' %>  
+    <%= button_to 'アイスを削除', admin_ice_cream_path(@ice_cream), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-lg' %>
+    <%= link_to 'アイス一覧に戻る', admin_ice_creams_path, class: 'bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-lg' %>  
+</div>

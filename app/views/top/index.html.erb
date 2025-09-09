@@ -1,7 +1,39 @@
-<h1 class="pt-40 font-poller text-4xl text-black-600 text-center" >
+<h1 class="pt-10 font-poller text-4xl text-black-600 text-center" >
     icetagram
 </h1>
 
 <div class="flex justify-center space-x-4 mt-6 ">
     <%= image_tag 'icetagram.png', class: 'h-40 w-auto' %>
 </div>
+
+<h2 class="text-center font-kiwi text-2xl mt-6">
+    あなたにピッタリなアイス見つけませんか？
+</h2>
+
+<h3 class="text-center font-kiwi text-lg mt-4">
+    あじぐらふでピッタリなアイスを3秒診断🍧
+</h3>
+
+<h3 class="text-center font-kiwi text-lg mt-4">
+    みんなの推しあいすでみんなの推しを探してみよう🍦
+</h3>
+
+<h3 class="text-center font-kiwi text-lg mt-4">
+    きょうのあいすで新たなアイスに出会ってみよう🍨
+</h3>
+
+<div class="pt-4 flex justify-center font-kiwi gap-10 mt-6">
+        <%= link_to new_ajigraf_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-4 px-4 rounded-lg flex items-center gap-2  justify-center text-xl w-64 h-24" do %>
+            <iconify-icon icon="tdesign:chart-radar" width="24" height="24"></iconify-icon>
+            <span>あじぐらふ</span>
+        <% end %>
+        <%= link_to ice_creams_index_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-4 px-4 rounded-lg flex items-center gap-2  justify-center text-xl w-64 h-24" do %>
+            <iconify-icon icon="mdi:ice-cream" width="24" height="24"></iconify-icon>
+            <span>みんなの推しあいす</span>
+        <% end %>
+        <%= link_to todayice_index_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-4 px-4 rounded-lg flex items-center gap-2 justify-center text-xl w-64 h-24" do %>
+            <iconify-icon icon="game-icons:perspective-dice-six-faces-random" width="24" height="24"></iconify-icon>
+            <span>きょうのあいす</span>
+        <% end %>
+</div>
+

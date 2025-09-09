@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  get "ice_creams/index"
   root "top#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,4 +15,35 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  namespace :admin do
+    root "dashboard#index"
+    resources :dashboard, only: [:index] 
+    resources :ice_creams
+  end
+  resources :ices, only: [:index, :show, :new, :create]
+
+  resources :ajigraf, only: [:index, :new, :create] do
+    collection do
+      get 'result', to: 'ajigraf#result'
+    end
+  end
+
+  resources :ice_creams,  only: [:index, :show, :new, :create, :edit, :update, :destroy] 
+
+  resources :todayice, only: [:index] do
+    collection do
+      get 'result'
+    end
+  end
+
+
+
+  devise_for :admins, 
+    controllers: { sessions: 'admin/sessions' },
+    path: 'admin',
+    skip: [:registrations, :passwords]
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

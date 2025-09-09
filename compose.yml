@@ -6,7 +6,7 @@ services:
       TZ: Asia/Tokyo
       POSTGRES_PASSWORD: password
     volumes:
-      - postgresql_data:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     healthcheck:
@@ -18,6 +18,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    env_file:
+      - .env
     command: bash -c "bundle install && bundle exec rails db:prepare && rm -f tmp/pids/server.pid && ./bin/dev"
     tty: true
     stdin_open: true

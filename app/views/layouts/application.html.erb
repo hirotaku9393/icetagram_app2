@@ -7,7 +7,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= include_gon %>
     <%= yield :head %>
 
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
@@ -19,14 +19,50 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poller+One&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Poller+One&display=swap" rel="stylesheet">
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :application, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
   </head>
 
-  <body class="bg-yellow-50">
+  <body class="bg-yellow-100">
+    <header class="navbar bg-yellow-200 px-4 shadow-md flex justify-between items-center h-16">
+    <div> <%= link_to "icetagram", root_path, class: "text-3xl font-poller text-black-600" %> </div>
+    <div class="flex flex-col items-end gap-2">
+      <% if user_signed_in? %>
+      <div class="flex items-center gap-2">
+        <p class="text-1xl font-kiwi text-black-600">
+          <iconify-icon icon="line-md:account"></iconify-icon>
+          <%= current_user.name  %> さん
+        </p>
+      </div>
+    
+        <div class="flex items-center gap-2">
+          <iconify-icon icon="material-symbols:logout" width="20" height="20"></iconify-icon>
+          <%= link_to "ログアウト", destroy_user_session_path, data:{"turbo-method": :delete}, class: "text-black-500 hover:underline font-kiwi" if user_signed_in? %>
+        </div>
+    
+        <% else %>
+        <div class="flex items-center gap-2">  
+          <iconify-icon icon="material-symbols:login" width="24" height="24"></iconify-icon>
+          <%= link_to "ログイン", new_user_session_path, class: "text-black-500 hover:underline font-kiwi" %>
+        </div>
+        <div class="flex items-center gap-2">  
+          <iconify-icon icon="mdi:account-plus" width="24" height="24 "></iconify-icon>
+          <%= link_to "新規登録", new_user_registration_path, class: "text-black-500 hover:underline font-kiwi" %>
+        </div>
+      <% end %>
+    </div>
+    </header>
+    <% if notice %>
+      <p class="bg-green-100 text-green-800 p-2 text-center font-kiwi"><%= notice %></p>
+    <% end %>
+
+    <% if alert %>
+      <p class="bg-red-100 text-red-800 p-2 text-center font-kiwi"><%= alert %></p>
+    <% end %>
     <%= yield %>
   </body>
 </html>

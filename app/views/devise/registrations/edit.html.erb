@@ -1,0 +1,45 @@
+<h2 class="pt-30 font-kiwi text-4xl text-black-60 text-center">ユーザー編集</h2>
+
+<div class="mx-auto bg-amber-50 shadow-md rounded-lg p-6 max-w-md mt-6 text-center">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email, class: "w-64 text-left font-kiwi text-gray-700" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: "px-10 py-2  border border-gray-300 rounded-md " %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field my-4">
+    <%= f.label :password, class: "w-64 text-left font-kiwi text-gray-700" %> <br />
+    <%= f.password_field :password, autocomplete: "new-password",  class: "px-10 py-2 border border-gray-300 rounded-md " %>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, class: "w-64 text-left font-kiwi text-gray-700"  %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",  class: "px-10 py-2 border border-gray-300 rounded-md " %>
+  </div>
+
+  <div class="field my-4">
+    <%= f.label :current_password, class: "w-64 text-left font-kiwi text-gray-700" %> 
+    <br />
+    <%= f.password_field :current_password, autocomplete: "current-password",  class: "px-10 py-2 border border-gray-300 rounded-md " %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新", class: "w-50 bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-2 px-4 rounded" %>
+  </div>
+<% end %>
+
+
+
+<div class="text-center font-kiwi text-gray-700 my-4"> アイスが嫌いですか? <%= button_to "アカウントの削除", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete,
+class: "w-50 bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-2 px-4 rounded" %>
+</div>
+
+<%= link_to "戻る", :back, class: "inline-block w-50 mt-4 bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-2 px-4 rounded" %>
+</div>

@@ -3,6 +3,8 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+import IceCreamChartController from "./ice_cream_chart_controller"
+application.register("ice-cream-chart", IceCreamChartController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

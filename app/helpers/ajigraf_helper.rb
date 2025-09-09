@@ -1,0 +1,2 @@
+module AjigrafHelper
+end
