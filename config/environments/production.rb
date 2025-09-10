@@ -2,7 +2,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.hosts << "icetagram-app2.onrender.com"
+  config.hosts << ".onrender.com"
   # Code is not reloaded between requests.
   config.enable_reloading = false
 
@@ -81,6 +82,7 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
+  config.session_store :cookie_store, key: '_icetagram_session', same_site: :lax, secure: true, domain: '.onrender.com'
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
