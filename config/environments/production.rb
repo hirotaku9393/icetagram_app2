@@ -26,10 +26,10 @@ Rails.application.configure do
 
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
-  config.assume_ssl = true
+  #config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  #config.force_ssl = true
 
   config.active_storage.service = :cloudinary
 
@@ -82,7 +82,7 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
-  config.session_store :cookie_store, key: '_icetagram_session', same_site: :lax, secure: false, domain: '.onrender.com'
+  config.session_store :cookie_store, key: '_icetagram_session', same_site: :lax, secure: false
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
