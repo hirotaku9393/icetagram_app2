@@ -82,7 +82,7 @@ config.action_mailer.perform_caching = false
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
-  config.session_store :cookie_store, key: '_icetagram_session', same_site: :lax, secure: true, domain: '.onrender.com'
+  config.session_store :cookie_store, key: '_icetagram_session', same_site: :lax, secure: Rails.env.production? , httponly: true
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
