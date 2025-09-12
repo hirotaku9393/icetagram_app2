@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: icetagram-app2
+    env: ruby
+    region: singapore
+    plan: free
+    buildCommand: |
+      bundle install
+      bundle exec rake assets:precompile
+      bundle exec rake db:migrate RAILS_ENV=production
+      bundle exec rake db:seed RAILS_ENV=production
+    startCommand: bundle exec puma -C config/puma.rb
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: icetagram-db
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
