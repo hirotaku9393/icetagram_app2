@@ -7,6 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+puts "🌱 Seeds開始: #{Rails.env}環境"
+
 user = User.create!(
     name: "Kazuta",
     email: "kazuta@example.com",
