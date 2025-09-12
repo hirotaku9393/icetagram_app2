@@ -32,19 +32,30 @@
     <div> <%= link_to "icetagram", root_path, class: "text-3xl font-poller text-black-600" %> </div>
     <div class="flex flex-col items-end gap-2">
       <% if user_signed_in? %>
-      <div class="flex items-center gap-2">
-        <p class="text-1xl font-kiwi text-black-600">
-          <iconify-icon icon="line-md:account"></iconify-icon>
-          <%= current_user.name  %> さん
-        </p>
-      </div>
-    
+        <div class="flex items-center gap-2">
+          <p class="text-1xl font-kiwi text-black-600">
+            <iconify-icon icon="line-md:account"></iconify-icon>
+            <%= current_user.name  %> さん
+          </p>
+        </div>
         <div class="flex items-center gap-2">
           <iconify-icon icon="material-symbols:logout" width="20" height="20"></iconify-icon>
           <%= link_to "ログアウト", destroy_user_session_path, data:{"turbo-method": :delete}, class: "text-black-500 hover:underline font-kiwi" if user_signed_in? %>
         </div>
+      
+      <% elsif admin_signed_in? %>
+        <div class="flex items-center gap-2">
+          <p class="text-1xl font-kiwi text-black-600">
+            <iconify-icon icon="line-md:account"></iconify-icon>
+            管理者 <%= current_admin.email %>
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <iconify-icon icon="material-symbols:logout" width="20" height="20"></iconify-icon>
+          <%= link_to "管理者ログアウト", destroy_admin_session_path, data: { turbo_method: :delete }, class: "text-black-500 hover:underline font-kiwi" %>
+        </div>
     
-        <% else %>
+      <% else %>
         <div class="flex items-center gap-2">  
           <iconify-icon icon="material-symbols:login" width="24" height="24"></iconify-icon>
           <%= link_to "ログイン", new_user_session_path, class: "text-black-500 hover:underline font-kiwi" %>
