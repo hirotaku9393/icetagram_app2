@@ -13,3 +13,8 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+databases:
+  - name: icetagram-db
+    databaseName: icetagram_production
+    user: icetagram_user
+    plan: free
