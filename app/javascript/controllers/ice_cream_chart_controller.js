@@ -10,15 +10,6 @@ export default class extends Controller {
 
     connect() {
         this.drawChart()
-
-        console.log('Chart controller connected');
-        console.log('Chart.js available:', typeof Chart);
-        
-        if (typeof Chart !== 'undefined') {
-            this.drawChart();
-        } else {
-            console.error('Chart.js is not available');
-        }
     }
 
     chartDataValueChanged() {
