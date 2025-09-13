@@ -9,16 +9,13 @@
 #   end
 puts "🌱 Seeds開始: #{Rails.env}環境"
 
-user = User.create!(
-    name: "Kazuta",
-    email: "kazuta@example.com",
-    password: "password123",
-    password_confirmation: "password123"
-)
+user = User.find_or_create_by(email: "kazuta@example.com") do |u|
+    u.name = "Kazuta"
+    u.password = "password123"
+    u.password_confirmation = "password123"
+end
 
-
-admin = Admin.create!(
-    email: "admin@example.com",
-    password: "password123",
-    password_confirmation: "password123"
-)
+admin = Admin.find_or_create_by(email: "admin@example.com") do |a|
+    a.password = "password123"
+    a.password_confirmation = "password123"
+end
