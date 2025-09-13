@@ -5,3 +5,7 @@ import Chart from 'chart.js/auto';
 window.Chart = Chart; 
 import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()
+
+console.log('Application.js loaded')
+console.log('Chart.js available:', typeof Chart !== 'undefined')
+console.log('Chart.js global:', typeof window.Chart !== 'undefined')
