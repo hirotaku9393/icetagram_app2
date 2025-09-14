@@ -1,7 +1,5 @@
 set -o errexit
 
-echo "ビルド開始"
-
 yarn install
 yarn build
 bundle install
