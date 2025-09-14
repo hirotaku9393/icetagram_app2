@@ -9,14 +9,26 @@ export default class extends Controller {
     static targets = ["canvas"]
 
     connect() {
+        console.log('=== Ice Cream Chart Controller Debug ===')
+        console.log('Ice cream chart controller connected')
+        console.log('Chart.js available:', typeof Chart !== 'undefined')
+        console.log('Controller element:', this.element)
+        console.log('Canvas target available:', this.hasCanvasTarget)
+        console.log('Canvas target element:', this.canvasTarget)
+        console.log('Chart data value:', this.chartDataValue)
+        console.log('Labels value:', this.labelsValue)
         this.drawChart()
     }
 
     chartDataValueChanged() {
+        console.log('Chart data value changed:', this.chartDataValue)
         this.drawChart()
     }
 
     drawChart() {
+        console.log('=== Drawing Chart ===')
+        console.log('Has canvas target:', this.hasCanvasTarget)
+        console.log('Chart data length:', this.chartDataValue?.length)       
         if (!this.hasCanvasTarget || !this.chartDataValue?.length) return
 
         this.destroyChart()
