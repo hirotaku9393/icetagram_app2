@@ -1,5 +1,23 @@
 import {Controller} from "@hotwired/stimulus"
-import Chart from 'chart.js/auto';  
+import {
+    Chart as ChartJS,
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend,
+} from "chart.js";
+
+
+ChartJS.register(
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend
+);
 
 export default class extends Controller {
     static values = { 
