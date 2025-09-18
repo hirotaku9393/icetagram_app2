@@ -10,6 +10,6 @@ class Admin::SessionsController < Devise::SessionsController
       self.resource = warden.authenticate!(auth_options)
     end
     def after_sign_out_path_for(resource)
-      admin_login_path
+      new_admin_session_path
     end
 end

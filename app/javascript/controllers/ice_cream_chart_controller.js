@@ -51,7 +51,7 @@ export default class extends Controller {
 
         this.destroyChart()
         
-        const labels = this.labelsValue || ["甘さ", "爽やかさ", "濃厚さ", "カロリー", "具材の充実感"]
+        const labels = this.labelsValue || ["甘さ", "爽やかさ", "濃厚さ", "カロリー", "具材のリッチさ"]
         
         this.chart = new Chart(this.canvasTarget, {
         type: "radar",
