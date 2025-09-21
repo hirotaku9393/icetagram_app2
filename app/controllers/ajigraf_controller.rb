@@ -24,6 +24,7 @@ class AjigrafController < ApplicationController
     closest_chart = charts_for_ice.min_by { |c| euclidean_distance(user_vec, c.to_vector) }
     @closest_chart = closest_chart
     @closest_ice   = closest_chart&.ice_cream
+    @ogp_image_url = generate_ogp_image if @closest_ice&.image&.attached?
   end
 
   private
@@ -36,4 +37,8 @@ class AjigrafController < ApplicationController
     Math.sqrt(vector1.zip(vector2).map { |a, b| (a - b) ** 2 }.sum)
   end
 
+  def generate_ogp_image
+    generator = OgpImageGenerator.new(ice_cream: @closest_ice)
+    generator.generate
+  end
 end

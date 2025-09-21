@@ -11,4 +11,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
+  def serve_ogp_image
+    file_path = Rails.root.join('tmp', 'ogp_ajigraf_images', params[:path])
+    
+    if File.exist?(file_path)
+      send_file file_path, type: 'image/png', disposition: 'inline'
+    else
+      head :not_found
+    end
+  end
+
 end

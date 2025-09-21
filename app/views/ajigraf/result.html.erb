@@ -1,6 +1,25 @@
 <div class="pt-10 font-kiwi text-4xl text-black-600 text-center">
     あなたにピッタリなアイスは…
 </div>
+
+<% content_for :meta_tags do %>
+    <% if @ogp_image_url %>
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="あなたにピッタリなアイスは<%= @closest_ice.name %>!">
+        <meta property="og:description" content="<%= @closest_ice.name %>があなたにおすすめのアイスです！">
+        <meta property="og:image" content="<%= request.base_url + @ogp_image_url %>">
+        <meta property="og:url" content="<%= request.original_url %>">
+        
+        <!-- Twitter Card用タグ -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="あなたにピッタリなアイスは<%= @closest_ice.name %>!">
+        <meta name="twitter:description" content="<%= @closest_ice.name %>があなたにおすすめのアイスです！">
+        <meta name="twitter:image" content="<%= request.base_url + @ogp_image_url %>">
+    
+    <% end %>
+<% end %>
+        
+
 <div class="mx-auto bg-amber-50 shadow-md rounded-lg p-6 max-w-5xl mt-6 text-center">
     <%= turbo_frame_tag "ajigraf_result" do %>
         <div class="grid grid-cols-2 gap-8">
@@ -24,8 +43,9 @@
         </div>
     <% end %>
 </div>
+
 <div class="twitter pt-5 flex justify-center font-kiwi gap-4 mt-1">
-    <%= link_to "https://twitter.com/intent/tweet?text=あなたにピッタリなあいすは#{@closest_ice.name}!%0a%0a%0a%0ahttps://icetagramapp2.herokuapp.com/todayice/result",  class: "bg-blue-400 hover:bg-blue-500 text-white font-kiwi py-4 px-8 text-xl rounded-lg flex items-center gap-2 twitter-share-button", target: "_blank", rel: "noopener" do %>
+    <%= link_to "https://twitter.com/intent/tweet?text=あなたにピッタリなあいすは#{@closest_ice.name}!&url=#{request.original_url}",  class: "bg-blue-400 hover:bg-blue-500 text-white font-kiwi py-4 px-8 text-xl rounded-lg flex items-center gap-2 twitter-share-button", target: "_blank", rel: "noopener" do %>
         <iconify-icon icon="simple-icons:x" width="24" height="24"></iconify-icon>
         <span>結果をツイートする</span>
     <% end %>
