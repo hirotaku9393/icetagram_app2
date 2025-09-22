@@ -1,9 +1,9 @@
 <div class="pt-10 font-kiwi text-4xl text-black-600 text-center">
     あなたにピッタリなアイスは…
 </div>
+Rails.logger.info "OgpImage URL: #{@ogp_image_url.inspect}"
 
 <% content_for :meta_tags do %>
-    <% if @ogp_image_url %>
         <meta property="og:type" content="website">
         <meta property="og:title" content="あなたにピッタリなアイスは<%= @closest_ice.name %>!">
         <meta property="og:description" content="<%= @closest_ice.name %>があなたにおすすめのアイスです！">
@@ -15,8 +15,6 @@
         <meta name="twitter:title" content="あなたにピッタリなアイスは<%= @closest_ice.name %>!">
         <meta name="twitter:description" content="<%= @closest_ice.name %>があなたにおすすめのアイスです！">
         <meta name="twitter:image" content="<%= request.base_url + @ogp_image_url %>">
-    
-    <% end %>
 <% end %>
         
 
