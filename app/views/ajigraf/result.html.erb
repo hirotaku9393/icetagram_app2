@@ -1,7 +1,9 @@
 <div class="pt-10 font-kiwi text-4xl text-black-600 text-center">
     あなたにピッタリなアイスは…
 </div>
-Rails.logger.info "OgpImage URL: #{@ogp_image_url.inspect}"
+
+<p>Debug OGP: <%= request.base_url + @ogp_image_url if @ogp_image_url %></p>
+
 
 <% content_for :meta_tags do %>
         <meta property="og:type" content="website">
