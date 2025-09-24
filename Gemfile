@@ -29,7 +29,7 @@ gem 'rails-i18n', '~> 8.0.0'
 
 gem "cloudinary"
 
-
+gem "meta-tags"
 
 gem "image_processing", "~> 1.2"
 

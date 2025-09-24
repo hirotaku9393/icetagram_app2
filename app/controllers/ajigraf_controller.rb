@@ -25,6 +25,12 @@ class AjigrafController < ApplicationController
     @closest_chart = closest_chart
     @closest_ice   = closest_chart&.ice_cream
     @ogp_image_url = generate_ogp_image
+
+    set_ogp_tags(
+    title: "あなたにピッタリなアイスは#{@closest_ice.name}!",
+    description: "#{@closest_ice.name}があなたにおすすめのアイスです！",
+    image_url: request.base_url + @ogp_image_url
+    )
   end
 
   private
@@ -38,7 +44,8 @@ class AjigrafController < ApplicationController
   end
 
   def generate_ogp_image
-    generator = OgpImageGenerator.new(ice_cream: @closest_ice)
+    generator = AjigrafOgpGenerator.new(ice_cream: @closest_ice)
     generator.generate
   end
+
 end

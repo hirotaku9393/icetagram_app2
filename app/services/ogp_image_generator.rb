@@ -1,5 +1,5 @@
 class OgpImageGenerator
-    BASE_IMAGE_PATH = Rails.root.join("app/assets/images/ogpあじぐらふ用.png")
+
     OUTPUT_DIR = Rails.root.join("public/ogp_images")
     
     def initialize(ice_cream:)
@@ -12,7 +12,7 @@ class OgpImageGenerator
         begin
             make_directory
 
-            base_image = MiniMagick::Image.open(BASE_IMAGE_PATH)
+            base_image = MiniMagick::Image.open(base_image_path)
             base_image = add_ice_image(base_image)
             add_ice_name(base_image)
 
@@ -24,12 +24,16 @@ class OgpImageGenerator
 
             "/ogp_images/#{filename}"
         rescue => e
-            Rails.logger.error "OgpImage作製 Error: #{e.message}"
+            Rails.logger.error "ogp作製 Error: #{e.message}"
             nil 
         end
     end
 
     private
+
+    def base_image_path     
+        raise NotImplementedError, "Subclasses must implement the base_image_path method"
+    end
 
     def add_ice_name(image)
         font_path = Rails.root.join("app/assets/fonts/Kiwi_Maru/KiwiMaru-Regular.ttf")
