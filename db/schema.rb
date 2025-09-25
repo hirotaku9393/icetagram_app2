@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_07_020515) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_25_091750) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -85,6 +85,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_020515) do
     t.index ["user_id"], name: "index_ice_creams_on_user_id"
   end
 
+  create_table "today_ices", force: :cascade do |t|
+    t.bigint "ice_cream_id", null: false
+    t.string "uuid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ice_cream_id"], name: "index_today_ices_on_ice_cream_id"
+    t.index ["uuid"], name: "index_today_ices_on_uuid", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -102,4 +111,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_020515) do
   add_foreign_key "charts", "ice_creams", on_delete: :cascade
   add_foreign_key "ice_creams", "admins"
   add_foreign_key "ice_creams", "users"
+  add_foreign_key "today_ices", "ice_creams"
 end
