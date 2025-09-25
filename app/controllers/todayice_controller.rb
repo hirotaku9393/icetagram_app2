@@ -6,6 +6,7 @@ class TodayiceController < ApplicationController
     @today_ice = IceCream.order("RANDOM()").first
     @chart = @today_ice.chart
     @ogp_image_url = generate_ogp_image
+    @today_ice_uuid = SecureRandom.uuid
 
     set_ogp_tags(
     title: "きょうのあいすは#{@today_ice.name}!",
