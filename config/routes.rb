@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "images/ogp"
   devise_for :users
 
   get "ice_creams/index"
@@ -33,6 +34,13 @@ Rails.application.routes.draw do
   resources :todayice, only: [:index] do
     collection do
       get 'result'
+    end
+  end
+
+  resources :images, only: [] do
+    collection do
+      get :ajigraf
+      get :todayice
     end
   end
 

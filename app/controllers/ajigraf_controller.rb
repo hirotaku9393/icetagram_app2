@@ -1,4 +1,5 @@
 class AjigrafController < ApplicationController
+  skip_before_action :authenticate_user!, raise: false
   def index
   end
   def new
@@ -24,13 +25,8 @@ class AjigrafController < ApplicationController
     closest_chart = charts_for_ice.min_by { |c| euclidean_distance(user_vec, c.to_vector) }
     @closest_chart = closest_chart
     @closest_ice   = closest_chart&.ice_cream
-    @ogp_image_url = generate_ogp_image
-
-    set_ogp_tags(
-    title: "あなたにピッタリなアイスは#{@closest_ice.name}!",
-    description: "#{@closest_ice.name}があなたにおすすめのアイスです！",
-    image_url: request.base_url + @ogp_image_url
-    )
+  
+    prepare_meta_tags
   end
 
   private
@@ -42,10 +38,22 @@ class AjigrafController < ApplicationController
   def euclidean_distance(vector1, vector2)
     Math.sqrt(vector1.zip(vector2).map { |a, b| (a - b) ** 2 }.sum)
   end
-
-  def generate_ogp_image
-    generator = AjigrafOgpGenerator.new(ice_cream: @closest_ice)
-    generator.generate
+  
+  
+  def prepare_meta_tags
+    image_url = "#{request.base_url}/images/ajigraf?text=#{CGI.escape(@closest_ice.name)}"
+    set_meta_tags og: {
+                    title: "あなたにピッタリなアイスは#{@closest_ice.name}!",
+                    description: "#{@closest_ice.name}があなたにおすすめのアイスです！",
+                    type: 'website',
+                    url: request.original_url,
+                    image: image_url
+                  },
+                  twitter: {
+                    card: 'summary_large_image',
+                    title: "あなたにピッタリなアイスは#{@closest_ice.name}!",
+                    description: "#{@closest_ice.name}があなたにおすすめのアイスです！",
+                    image: image_url
+                  }   
   end
-
 end

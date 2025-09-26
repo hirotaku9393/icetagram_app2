@@ -36,7 +36,7 @@ class OgpImageGenerator
     end
 
     def add_ice_name(image)
-        font_path = Rails.root.join("app/assets/fonts/Kiwi_Maru/KiwiMaru-Regular.ttf")
+        font_path = Rails.root.join("")
         font_size = @ice_cream.name.length > 10 ? 48 : 64
         text = @ice_cream.name.to_s
 
