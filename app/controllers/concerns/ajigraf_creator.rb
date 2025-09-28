@@ -4,12 +4,12 @@ class AjigrafCreator
     GRAVITY = 'center'
     TEXT_POSITION = '0,0'
     FONT = 'app/assets/fonts/Kiwi_Maru/KiwiMaru-Regular.ttf'
-    FONT_SIZE = 65
-    INDENTION_COUNT = 16
+    FONT_SIZE = 80
+    INDENTION_COUNT = 10
     ROW_LIMIT = 8
 
     def self.build(text)
-        text = prepare_text(text)
+        text = prepare_text(text) + "!"
         image = MiniMagick::Image.open(BASE_IMAGE_PATH)
         image.combine_options do |config|        
         config.font FONT
