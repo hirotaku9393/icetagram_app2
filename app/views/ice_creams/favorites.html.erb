@@ -1,0 +1,27 @@
+<% content_for(:title, "食べてみたい‼一覧") %>
+
+<div class="mx-auto max-w-7xl px-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 mt-6">
+        <% @favorite_ice_creams.each do |ice_cream| %>
+            <div class="bg-white shadow-md rounded-lg p-4 ">
+                <%= link_to ice_cream.name, ice_cream_path(ice_cream), class: 'font-kiwi' %>
+                <p class="text-gray-700 font-kiwi mt-2"><%= ice_cream.comment %></p>
+                <div class="w-40 aspect-[16/9] flex items-center justify-center">
+                    <%= image_tag ice_cream.image, class: 'max-h-full max-w-full object-contain' %>
+                </div> 
+                <% if !current_user.own?(ice_cream) %>
+                    <div class="mt-auto flex justify-center ">
+                        <%= render 'favorite_button', ice_cream: ice_cream %>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+</div>
+<div class="flex justify-center gap-4 mt-6">
+    <%= link_to 'アイス一覧に戻る', ice_creams_path, class: 'bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-lg' %>  
+</div>
+
+<div class="flex flex-wrap gap-2 justify-center mt-6">
+    <%= paginate @favorite_ice_creams %>
+</div>

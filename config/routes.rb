@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "favorites/create"
+  get "favorites/destroy"
   get "images/ogp"
   devise_for :users
 
@@ -29,7 +31,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :ice_creams,  only: [:index, :show, :new, :create, :edit, :update, :destroy] 
+  resources :ice_creams,  only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    collection do
+      get :favorites
+    end
+  end
+
+  resources :favorites, only: [:create, :destroy, :index]
 
   resources :todayice, only: [:index] do
     collection do
@@ -43,8 +51,6 @@ Rails.application.routes.draw do
       get :todayice
     end
   end
-
-
 
 
 

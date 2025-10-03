@@ -1,0 +1,4 @@
+<% if current_user.own?(ice_cream) %>
+    <%= render 'bookmark_button', ice_cream: ice_cream%>
+<% else %>   
+<% end %>

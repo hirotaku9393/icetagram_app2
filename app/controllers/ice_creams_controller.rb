@@ -51,6 +51,13 @@ class IceCreamsController < ApplicationController
     @chart = @ice_cream.chart
   end
 
+  def favorites
+    @favorite_ice_creams = current_user.favorite_ice_creams.page(params[:page]).per(10).includes(:chart, :user).order(created_at: :desc)
+  end
+
+  def favorites
+    @favorite_ice_creams = current_user.favorite_ice_creams.page(params[:page]).per(10).includes(:chart, :user).order(created_at: :desc)
+  end
 
   private
   def ice_cream_params
