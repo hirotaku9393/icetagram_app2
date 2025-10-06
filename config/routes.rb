@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   resources :ice_creams,  only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
       get :favorites
+      get :tags
     end
   end
 

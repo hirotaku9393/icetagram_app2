@@ -3,9 +3,15 @@ class IceCreamsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_ice_cream, only: %i[show edit update destroy]
   before_action :authorize_user!, only: %i[edit update destroy]
-  def index
-    @ice_creams = IceCream.all.page(params[:page]).per(10)
+def index
+  if params[:tag_id].present?
+    @ice_creams = Tag.find(params[:tag_id]).ice_creams.page(params[:page]).per(10).order(created_at: :desc)
+  else
+    @ice_creams = IceCream.all.page(params[:page]).per(10).order(created_at: :desc)
   end
+end
+
+
 
   def new
     @ice_cream = IceCream.new
@@ -15,6 +21,7 @@ class IceCreamsController < ApplicationController
     # Ensure the current user is set before creating the ice cream
     @ice_cream = IceCream.new(ice_cream_params)
     @ice_cream.user = current_user
+    tag_list = params[:ice_cream][:tag_ids].split(",")
     if @ice_cream.save
       Chart.create!(
         ice_cream: @ice_cream,
@@ -25,6 +32,7 @@ class IceCreamsController < ApplicationController
         ingredient_richness: @ice_cream.ingredient_richness,
         chart_type: "user_post"
         )
+      @ice_cream.save_tags(tag_list) if tag_list.present?
       redirect_to ice_creams_index_path, notice: "アイスクリームを登録しました。"
     else
       render :new
@@ -57,6 +65,10 @@ class IceCreamsController < ApplicationController
 
   def favorites
     @favorite_ice_creams = current_user.favorite_ice_creams.page(params[:page]).per(10).includes(:chart, :user).order(created_at: :desc)
+  end
+
+  def tags
+    @tags = Tag.all
   end
 
   private

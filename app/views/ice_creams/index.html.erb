@@ -6,8 +6,9 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 mt-6">
         <% @ice_creams.each do |ice_cream| %>
             <div class="bg-white shadow-md rounded-lg p-4 ">
-                <%= link_to ice_cream.name, ice_cream_path(ice_cream), class: 'font-kiwi' %>
+                <%= link_to ice_cream.name, ice_cream_path(ice_cream), class: 'font-kiwi hover:bg-stone-400' %>
                 <p class="text-gray-700 font-kiwi mt-2"><%= ice_cream.comment %></p>
+                <p class="text-gray-500 font-kiwi mt-2">タグ: <%= render 'tag', ice_cream: ice_cream %></p>
                 <div class="mt-2 flex justify-center">
                     <% if ice_cream.image.attached? %>
                         <div class="w-40 aspect-[16/9] flex items-center justify-center">
