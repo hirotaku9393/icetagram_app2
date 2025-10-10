@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get "favorites/create"
   get "favorites/destroy"
   get "images/ogp"
-  devise_for :users
+  
 
   get "ice_creams/index"
   root "top#index"
@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  
+  devise_for :users, class_name: "User",controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
   namespace :admin do
     root "dashboard#index"
     resources :dashboard, only: [:index] 
@@ -60,6 +64,8 @@ Rails.application.routes.draw do
     path: 'admin',
     skip: [:registrations, :passwords]
 
+  post '/callback' => 'linebot#callback'
+  
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end

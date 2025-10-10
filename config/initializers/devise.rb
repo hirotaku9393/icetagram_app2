@@ -31,6 +31,8 @@ Devise.setup do |config|
   
   config.clean_up_csrf_token_on_authentication = true
 
+  config.omniauth :line, ENV['LINE_KEY'], ENV['LINE_SECRET']
+
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
 
