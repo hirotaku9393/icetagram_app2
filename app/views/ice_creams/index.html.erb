@@ -2,6 +2,13 @@
     みんなの推しあいす
 </h1>
 
+<div class="pt-10 flex justify-center  mt-4">
+    <% @tags.each do |tag| %>
+        <%= link_to tag.name, ice_creams_path(tag_id: tag.id), class: 'bg-amber-200 hover:bg-amber-300 text-amber-800 text-sm font-kiwi py-1 px-3 rounded-full mr-2' %>
+    <% end %>
+</div>
+
+
 <div class="mx-auto max-w-7xl px-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 mt-6">
         <% @ice_creams.each do |ice_cream| %>

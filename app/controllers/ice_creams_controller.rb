@@ -9,6 +9,7 @@ def index
   else
     @ice_creams = IceCream.all.page(params[:page]).per(10).order(created_at: :desc)
   end
+  @tags = Tag.limit(5)
 end
 
 
