@@ -4,6 +4,12 @@
             <div class="grid grid-cols-2 gap-2">
                 <div class="pl-4">
                     <h1 class="text-4xl font-kiwi"> <%= @ice_cream.name %> </h1>
+                    <% if @user.present? %>
+                        <div class="flex items-center justify-center gap-2 pt-5">
+                            <iconify-icon icon="mdi:user" width="24" height="24"></iconify-icon>
+                            <h2 class="text-xl font-kiwi "> <%= @user.name %> </h2>
+                        </div>
+                    <% end %>
                     <h2 class="text-xl font-kiwi pt-5"> <%= "コメント: " + @ice_cream.comment %> </h2>
                     <h2 class="text-2 pt-3"xl font-kiwi pt-5"> <%= "アレンジ: " + @ice_cream.arrange %> </h2>
                     <h2 class="text-2 pt-3"xl font-kiwi pt-5"> <%= "カロリー値: " + @ice_cream.calorie_value.to_s + "kcal" %> </h2>
