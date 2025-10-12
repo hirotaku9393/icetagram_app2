@@ -13,7 +13,7 @@
                     <% else %>
                         <h3 class="pt-10 flex justify-center"><%= image_tag 'Icecream.png', class: 'h-40 w-auto' %></h3>
                     <% end %>    
-                </div>
+                </div> 
                 <div class="pl-4">
                     <div data-controller="ice-cream-chart"
                     data-ice-cream-chart-chart-data-value="<%= @chart.to_vector.to_json %>"
@@ -23,6 +23,25 @@
             </div>
         <% end %>
     </div>
+</div>
+
+<div class="flex flex-col items-center mt-6 w-full">
+    <h2 class="text-center text-2xl font-kiwi pt-5">楽天市場での検索結果</h2>
+            <% if @goods.any? %>
+                <div class="flex flex-row items-center text-center max-w-4xl gap-8">
+                    <% @goods.first(2).each do |item| %>
+                        <div class="goods-img">
+                            <img src="<%= item['mediumImageUrls'][0]%>" class="max-h-32 max-w-32 object-contain mx-auto">
+                        </div>
+                        <div class="goods-name">
+                            <a href="<%= item['itemUrl'] %>" target="_blank" class= 'font-kiwi hover:text-gray-500'><%= item['itemName']  %></a>
+                        </div>
+                    <% end %>
+                </div>
+            <% else %>
+                <p class="text-gray-500 font-kiwi">楽天市場での検索結果がありません</p>
+            <% end %>
+        </div>
 </div>
 <div class="pt-4 flex justify-center ">
     <%= render 'favorite_button', ice_cream: @ice_cream %>

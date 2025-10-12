@@ -58,6 +58,7 @@ end
 
   def show
     @chart = @ice_cream.chart
+    @goods = RakutenWebService::Ichiba::Item.search(keyword: @ice_cream.name)
   end
 
   def favorites

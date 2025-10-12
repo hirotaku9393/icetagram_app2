@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'rakuten_search' => 'ice_creams#search'
 
 
   devise_for :admins, 
@@ -65,7 +66,7 @@ Rails.application.routes.draw do
     skip: [:registrations, :passwords]
 
   post '/callback' => 'linebot#callback'
-  
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
