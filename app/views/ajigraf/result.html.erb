@@ -27,9 +27,6 @@
     <% end %>
 </div>
 
-<div class="pt-4 flex justify-center ">
-    <%= render 'favorite_button', ice_cream: @closest_ice %>
-</div>
 
 <div class="twitter pt-5 flex justify-center font-kiwi gap-4 mt-1">
     <%= link_to "https://twitter.com/intent/tweet?" +"text=あなたにピッタリなあいすは#{@closest_ice.name}!" + "&url=#{request.original_url}",  class: "bg-blue-400 hover:bg-blue-500 text-white font-kiwi py-4 px-8 text-xl rounded-lg flex items-center gap-2 twitter-share-button", target: "_blank", rel: "noopener" do %>
