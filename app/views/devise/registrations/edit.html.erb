@@ -4,6 +4,10 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+  <div class="field my-4">
+    <%= f.label :name, class: "w-64 text-left font-kiwi text-gray-700" %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name",  class: "px-10 py-2 border border-gray-300 rounded-md " %>
+  </div>
   <div class="field">
     <%= f.label :email, class: "w-64 text-left font-kiwi text-gray-700" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: "px-10 py-2  border border-gray-300 rounded-md " %>

@@ -29,7 +29,7 @@
   </head>
 
   <body class="bg-yellow-100">
-    <header class="navbar bg-yellow-200 px-4 shadow-md flex justify-between items-center h-16">
+    <header class="navbar bg-yellow-200 px-4 shadow-md flex justify-between items-center h-24">
     <div> <%= link_to "icetagram", root_path, class: "text-3xl font-poller text-black-600" %> </div>
     <div class="flex flex-col items-end gap-2">
       <% if user_signed_in? %>
@@ -39,11 +39,17 @@
             <%= current_user.name  %> さん
           </p>
         </div>
-        <div class="flex items-center gap-2">
-          <iconify-icon icon="material-symbols:logout" width="20" height="20"></iconify-icon>
-          <%= link_to "ログアウト", destroy_user_session_path, data:{"turbo-method": :delete}, class: "text-black-500 hover:underline font-kiwi" if user_signed_in? %>
-        </div>
-      
+
+    
+          <div class="flex items-center gap-2">
+            <iconify-icon icon="material-symbols:logout" width="20" height="20"></iconify-icon>
+            <%= link_to "ログアウト", destroy_user_session_path, data:{"turbo-method": :delete}, class: "text-black-500 hover:underline font-kiwi" if user_signed_in? %>
+          </div>
+          <div class="flex items-center gap-2">
+            <iconify-icon icon="mdi:account-cog-outline" width="24" height="24 "></iconify-icon>
+            <%= link_to "アカウント編集", edit_user_registration_path, class: "text-black-500 hover:underline font-kiwi" %>
+          </div>
+        
       <% elsif admin_signed_in? %>
         <div class="flex items-center gap-2">
           <p class="text-1xl font-kiwi text-black-600">

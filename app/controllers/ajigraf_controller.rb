@@ -8,7 +8,8 @@ class AjigrafController < ApplicationController
   end
 
   def create
-    @chart = Chart.new(chart_params.merge(chart_type: 'user', user_id: current_user.id))
+    user_id = user_signed_in? ? current_user.id : nil
+    @chart = Chart.new(chart_params.merge(chart_type: 'user', user_id: user_id))
     if @chart.save
       redirect_to result_ajigraf_index_path(chart_id: @chart.id)
     else 
