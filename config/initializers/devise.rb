@@ -35,7 +35,10 @@ Devise.setup do |config|
   ENV['LINE_CLIENT_ID'],
   ENV['LINE_CLIENT_SECRET'],
   callback_url: ENV['LINE_REDIRECT_URI']
-
+  
+  config.omniauth:google_oauth2, 
+    ENV['GOOGLE_CLIENT_ID'], 
+    ENV['GOOGLE_CLIENT_SECRET']
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
 

@@ -1,6 +1,6 @@
 class IceCreamsController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :gotouchi]
   before_action :set_ice_cream, only: %i[show edit update destroy]
   before_action :authorize_user!, only: %i[edit update destroy]
 def index
@@ -74,6 +74,11 @@ end
     @tags = Tag.all
   end
 
+  def gotouchi
+    @ice_creams = IceCream.joins(:tags).where(tags: { name: "ご当地" }).page(params[:page]).per(10).order(created_at: :desc)
+    @tags = Tag.limit(5)
+    render :gotouchi
+  end
   private
   def ice_cream_params
     params.require(:ice_cream).permit(:name, :image, :sweetness, :freshness, :richness, :calorie, :ingredient_richness, :comment, :arrange, :calorie_value) 

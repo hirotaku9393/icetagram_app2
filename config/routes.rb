@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     collection do
       get :favorites
       get :tags
+      get :gotouchi
     end
   end
 
