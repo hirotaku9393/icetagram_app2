@@ -5,7 +5,7 @@ document.addEventListener('turbo:load', () => {
                 const imageElement = document.getElementById('new-image'); //ビューで指定したnew-imageのdiv要素を代入
                 const blobImage = document.createElement('img'); //img要素を作成
                 blobImage.setAttribute('src', blob); //imgのsrc属性にblob
-                blobImage.classList.add('h-full', 'w-auto', 'block', 'mx-auto'); 
+                blobImage.classList.add('h-full', 'w-auto', 'block', 'mx-auto', 'mt-2'); //画像のスタイル調整（Tailwind CSS）
                 imageElement.appendChild(blobImage); //div要素にimg要素
             };
             document.getElementById('ice_cream_image').addEventListener('change', (e) =>{
