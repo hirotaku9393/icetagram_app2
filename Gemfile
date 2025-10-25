@@ -28,6 +28,8 @@ gem 'line-bot-api', '~> 1.17.0'
 
 gem 'rakuten_web_service'
 
+gem 'rack-attack'
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 

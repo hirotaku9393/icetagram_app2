@@ -22,7 +22,8 @@ Rails.application.configure do
   # config.asset_host = "http://assets.example.com"
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-
+  config.hosts << "icetagram-app2.onrender.com"
+  config hosts << "icetagram.com"
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   config.assume_ssl = true
@@ -31,6 +32,8 @@ Rails.application.configure do
   config.force_ssl = true
 
   config.active_storage.service = :cloudinary
+
+  config.middleware.use Rack::Attack
 
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
