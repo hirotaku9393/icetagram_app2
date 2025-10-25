@@ -107,10 +107,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_22_075431) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "today_ices", force: :cascade do |t|
