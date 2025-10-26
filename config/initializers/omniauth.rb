@@ -7,3 +7,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
                 scope: 'email,profile'
             }
 end
+
+OmniAuth.config.full_host = Rails.env.production? ? 'https://icetagram.com' : 'http://localhost:3000'
