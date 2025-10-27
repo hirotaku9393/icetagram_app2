@@ -1,5 +1,7 @@
-<% if current_user.favorite?(ice_cream) %>
-    <%= render 'unfavorite', {ice_cream: ice_cream} %>
-<% else %>
-    <%= render 'favorite', {ice_cream: ice_cream} %>    
+<if current_user %>    
+    <% if current_user.favorite?(ice_cream) %>
+        <%= render 'unfavorite', {ice_cream: ice_cream} %>
+    <% else %>
+        <%= render 'favorite', {ice_cream: ice_cream} %>    
+    <% end %>
 <% end %>
