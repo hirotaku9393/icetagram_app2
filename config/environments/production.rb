@@ -31,6 +31,7 @@ Rails.application.configure do
   config.force_ssl = true
   config.hosts << "icetagram.com"
   config.hosts << "www.icetagram.com"
+  config.hosts << "icetagram-app2.onrender.com"
 
   config.active_storage.service = :cloudinary
 
