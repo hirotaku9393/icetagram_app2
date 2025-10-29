@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   
-  devise_for :users, class_name: "User",controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, class_name: "User",controllers: { 
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations'
+  }
 
   namespace :admin do
     root "dashboard#index"

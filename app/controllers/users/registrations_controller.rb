@@ -5,8 +5,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     def update_resource(resource, params)
-        return super if params['password'].present?
-    
-        resource.update_without_password(params.except('current_password'))
+        if resource.provider.present? #グーグル、ラインログインはパスワード不要
+            resource.update_without_password(params)
+        elsif params['password'].present?
+            super
+        else
+            resource.update_without_password(params.except('current_password'))
+        end
     end
 end
