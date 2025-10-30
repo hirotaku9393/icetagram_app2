@@ -44,10 +44,17 @@ end
   end
 
   def update 
+  tag_names = params[:ice_cream][:tag_ids]
+
     if @ice_cream.update(ice_cream_params)
-      redirect_to ice_cream_path(@ice_cream), notice: "アイスクリームを更新しました。"
+      if tag_names.present?
+        tag_list = tag_names.split(",").map(&:strip)
+        tags = tag_list.map { |name| Tag.find_or_create_by(name: name) }
+        @ice_cream.tags = tags
+      end
+      redirect_to @ice_cream, notice: "アイスを更新しました！"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -81,7 +88,7 @@ end
   end
   private
   def ice_cream_params
-    params.require(:ice_cream).permit(:name, :image, :sweetness, :freshness, :richness, :calorie, :ingredient_richness, :comment, :arrange, :calorie_value, tag_ids: []) 
+    params.require(:ice_cream).permit(:name, :image, :sweetness, :freshness, :richness, :calorie, :ingredient_richness, :comment, :arrange, :calorie_value)
   end
 
   def set_ice_cream
