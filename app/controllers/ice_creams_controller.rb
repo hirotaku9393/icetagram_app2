@@ -5,7 +5,7 @@ class IceCreamsController < ApplicationController
   before_action :authorize_user!, only: %i[edit update destroy]
 def index
   if params[:tag_id].present?
-    @ice_creams = Tag.find(params[:tag_id]).ice_creams.page(params[:page]).per(10).order(created_at: :desc)
+    @ice_creams = Tag.find_by(params[:tag_id]).ice_creams.includes(:tags).page(params[:page]).per(10).order(created_at: :desc)
   else
     @ice_creams = IceCream.all.page(params[:page]).per(10).order(created_at: :desc)
   end
