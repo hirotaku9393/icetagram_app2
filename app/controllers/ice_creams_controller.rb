@@ -49,7 +49,7 @@ end
     if @ice_cream.update(ice_cream_params)
       if tag_names.present?
         tag_list = tag_names.split(",").map(&:strip)
-        tags = tag_list.map { |name| Tag.find_or_create_by(name: name) }
+        tags = tag_list.map { |name| Tag.find_or_create_by(name: name) } #tag_namesを配列にし、タグを見つけるか作成
         @ice_cream.tags = tags
       end
       redirect_to @ice_cream, notice: "アイスを更新しました！"
