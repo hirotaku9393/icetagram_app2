@@ -81,7 +81,7 @@ end
   end
   private
   def ice_cream_params
-    params.require(:ice_cream).permit(:name, :image, :sweetness, :freshness, :richness, :calorie, :ingredient_richness, :comment, :arrange, :calorie_value) 
+    params.require(:ice_cream).permit(:name, :image, :sweetness, :freshness, :richness, :calorie, :ingredient_richness, :comment, :arrange, :calorie_value, tag_ids: []) 
   end
 
   def set_ice_cream
