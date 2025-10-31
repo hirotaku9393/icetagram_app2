@@ -9,7 +9,7 @@ def index
   else
     @ice_creams = IceCream.all.page(params[:page]).per(10).order(created_at: :desc)
   end
-  @tags = Tag.limit(5)
+  @tags = Tag.limit(5).order(created_at: :desc)
 end
 
 
@@ -82,7 +82,7 @@ end
   end
 
   def gotouchi
-    @ice_creams = IceCream.joins(:tags).where(tags: { name: "ご当地" }).page(params[:page]).per(10).order(created_at: :desc)
+    @ice_creams = IceCream.joins(:tags).where(tags: { name: "ご当地" }).includes(:tags).page(params[:page]).per(10).order(created_at: :desc)
     @tags = Tag.limit(5)
     render :gotouchi
   end
