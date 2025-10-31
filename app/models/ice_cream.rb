@@ -16,4 +16,13 @@ class IceCream < ApplicationRecord
             self.tags << ice_cream_tag
         end
     end
+
+    def self.ransackable_attributes(auth_object = nil)
+        %w[name comment]
+    end
+
+    def self.ransackable_associations(auth_object = nil)
+        %w[tags user]
+    end
+
 end
