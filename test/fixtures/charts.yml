@@ -7,8 +7,8 @@ one:
   calorie: 3
   ingredient_richness: 4  
   chart_type: "user"     
-  ice_cream: one
-  user: one
+  ice_creamm_id: 1
+  userr_id: 1
 
 two:
   sweetness: 2
@@ -17,5 +17,6 @@ two:
   calorie: 2
   ingredient_richness: 3 
   chart_type: "user"
-  ice_cream: two
-  user: two
+  ice_creamm_id: 2
+  userr_id: 2
+  
