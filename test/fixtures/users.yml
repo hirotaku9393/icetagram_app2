@@ -8,4 +8,4 @@ one:
 two:
   name: MyString
   email: MyString
-  encrypted_passwordpassword: MyString
+  encrypted_password: MyString
