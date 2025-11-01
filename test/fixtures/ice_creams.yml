@@ -3,9 +3,9 @@
 one:
   name: MyString
   comment: MyText
-  image_url: MyString
+
 
 two:
   name: MyString
   comment: MyText
-  image_url: MyString
+  
