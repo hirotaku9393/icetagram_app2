@@ -6,6 +6,6 @@ class CreateArticleRelationships < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    add_index :ice_cream_relationships, [:ice_cream_id, :tag_id], unique: true
+    add_index :ice_cream_relationships, [ :ice_cream_id, :tag_id ], unique: true
   end
 end

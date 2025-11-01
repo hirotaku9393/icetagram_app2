@@ -19,22 +19,21 @@ class TodayiceController < ApplicationController
   end
 
   private
-  
+
   def prepare_meta_tags
     image_url = "#{request.base_url}/images/ajigraf?text=#{CGI.escape(@today_ice.name)}"
     set_meta_tags og: {
                     title: "きょうのあいすは#{@today_ice.name}!",
                     description: "#{@today_ice.name}があなたにおすすめのアイスです！",
-                    type: 'website',
+                    type: "website",
                     url: request.original_url,
                     image: image_url
                   },
                   twitter: {
-                    card: 'summary_large_image',
+                    card: "summary_large_image",
                     title: "きょうのあいすは#{@today_ice.name}!",
                     description: "#{@today_ice.name}があなたにおすすめのアイスです！",
                     image: image_url
-                  }   
+                  }
   end
-
 end

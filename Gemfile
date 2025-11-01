@@ -19,26 +19,26 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem 'omniauth-line'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection'
-gem 'dotenv-rails'
+gem "omniauth-line"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
+gem "dotenv-rails"
 
-gem 'line-bot-api', '~> 1.17.0'
+gem "line-bot-api", "~> 1.17.0"
 
-gem 'rakuten_web_service'
+gem "rakuten_web_service"
 
-gem 'rack-attack'
+gem "rack-attack"
 
-gem 'ransack'
+gem "ransack"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 
 gem "devise", "~> 4.9"
 
-gem 'devise-i18n'
-gem 'rails-i18n', '~> 8.0.0'
+gem "devise-i18n"
+gem "rails-i18n", "~> 8.0.0"
 
 gem "cloudinary"
 

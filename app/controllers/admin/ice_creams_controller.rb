@@ -21,7 +21,7 @@ class Admin::IceCreamsController < Admin::BaseController
 
         if @ice_cream.save
         Chart.create!(
-            ice_cream: @ice_cream,  
+            ice_cream: @ice_cream,
             sweetness: @ice_cream.sweetness,
             freshness: @ice_cream.freshness,
             richness: @ice_cream.richness,
@@ -29,7 +29,7 @@ class Admin::IceCreamsController < Admin::BaseController
             ingredient_richness: @ice_cream.ingredient_richness,
             chart_type: "official"
         )
-        redirect_to admin_ice_cream_path(@ice_cream), notice: 'アイスクリームを作成しました'
+        redirect_to admin_ice_cream_path(@ice_cream), notice: "アイスクリームを作成しました"
         else
         render :new, status: :unprocessable_entity
         end
@@ -37,7 +37,7 @@ class Admin::IceCreamsController < Admin::BaseController
 
     def update
         if @ice_cream.update(ice_cream_params)
-        redirect_to admin_ice_cream_path(@ice_cream), notice: 'アイスクリームを更新しました'
+        redirect_to admin_ice_cream_path(@ice_cream), notice: "アイスクリームを更新しました"
         else
         puts @ice_cream.errors.full_messages
         render :edit, status: :unprocessable_entity
@@ -46,7 +46,7 @@ class Admin::IceCreamsController < Admin::BaseController
 
     def destroy
         @ice_cream.destroy
-        redirect_to admin_ice_creams_path, notice: 'アイスクリームを削除しました'
+        redirect_to admin_ice_creams_path, notice: "アイスクリームを削除しました"
     end
 
     private

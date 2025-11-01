@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     protect_from_forgery with: :exception
-    
+
     # Configure additional parameters for Devise
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-        devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [ :name ])
+        devise_parameter_sanitizer.permit(:account_update, keys: [ :name ])
     end
 
     def set_ogp_tags(title:, description:, image_url:)
@@ -19,12 +19,12 @@ class ApplicationController < ActionController::Base
             og: {
                 title: title,
                 description: description,
-                type: 'website',
+                type: "website",
                 url: request.original_url,
                 image: image_url
             },
             twitter: {
-                card: 'summary_large_image',
+                card: "summary_large_image",
                 title: title,
                 description: description,
                 image: image_url

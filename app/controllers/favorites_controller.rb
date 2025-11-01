@@ -10,5 +10,4 @@ class FavoritesController < ApplicationController
     current_user.unfavorite(ice_cream)
     redirect_to ice_cream_path(ice_cream), notice: "#{ice_cream.name}を食べてみたい!から削除しました"
   end
-
 end

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get "favorites/create"
   get "favorites/destroy"
   get "images/ogp"
-  
+
 
   get "ice_creams/index"
   root "top#index"
@@ -19,26 +19,26 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  
-  devise_for :users, class_name: "User",controllers: { 
-    omniauth_callbacks: 'users/omniauth_callbacks',
-    registrations: 'users/registrations'
+
+  devise_for :users, class_name: "User", controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks",
+    registrations: "users/registrations"
   }
 
   namespace :admin do
     root "dashboard#index"
-    resources :dashboard, only: [:index] 
+    resources :dashboard, only: [ :index ]
     resources :ice_creams
   end
-  resources :ices, only: [:index, :show, :new, :create]
+  resources :ices, only: [ :index, :show, :new, :create ]
 
-  resources :ajigraf, only: [:index, :new, :create] do
+  resources :ajigraf, only: [ :index, :new, :create ] do
     collection do
-      get 'result', to: 'ajigraf#result'
+      get "result", to: "ajigraf#result"
     end
   end
 
-  resources :ice_creams,  only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+  resources :ice_creams,  only: [ :index, :show, :new, :create, :edit, :update, :destroy ] do
     collection do
       get :favorites
       get :tags
@@ -46,11 +46,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :favorites, only: [:create, :destroy, :index]
+  resources :favorites, only: [ :create, :destroy, :index ]
 
-  resources :todayice, only: [:index] do
+  resources :todayice, only: [ :index ] do
     collection do
-      get 'result'
+      get "result"
     end
   end
 
@@ -61,15 +61,15 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'rakuten_search' => 'ice_creams#search'
+  get "rakuten_search" => "ice_creams#search"
 
 
-  devise_for :admins, 
-    controllers: { sessions: 'admin/sessions' },
-    path: 'admin',
-    skip: [:registrations, :passwords]
+  devise_for :admins,
+    controllers: { sessions: "admin/sessions" },
+    path: "admin",
+    skip: [ :registrations, :passwords ]
 
-  post '/callback' => 'linebot#callback'
+  post "/callback" => "linebot#callback"
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

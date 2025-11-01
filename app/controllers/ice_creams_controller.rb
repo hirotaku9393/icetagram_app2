@@ -1,6 +1,6 @@
 class IceCreamsController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [:index, :show, :gotouchi]
+  skip_before_action :authenticate_user!, only: [ :index, :show, :gotouchi ]
   before_action :set_ice_cream, only: %i[show edit update destroy]
   before_action :authorize_user!, only: %i[edit update destroy]
 
@@ -26,7 +26,7 @@ end
 
   def new
     @ice_cream = IceCream.new
-  end 
+  end
 
   def create
     # Ensure the current user is set before creating the ice cream
@@ -38,7 +38,7 @@ end
         ice_cream: @ice_cream,
         sweetness: @ice_cream.sweetness,
         freshness: @ice_cream.freshness,
-        richness: @ice_cream.richness, 
+        richness: @ice_cream.richness,
         calorie: @ice_cream.calorie,
         ingredient_richness: @ice_cream.ingredient_richness,
         chart_type: "user_post"
@@ -53,13 +53,13 @@ end
   def edit
   end
 
-  def update 
+  def update
   tag_names = params[:ice_cream][:tag_ids]
 
     if @ice_cream.update(ice_cream_params)
       if tag_names.present?
         tag_list = tag_names.split(",").map(&:strip)
-        tags = tag_list.map { |name| Tag.find_or_create_by(name: name) } #tag_namesを配列にし、タグを見つけるか作成
+        tags = tag_list.map { |name| Tag.find_or_create_by(name: name) } # tag_namesを配列にし、タグを見つけるか作成
         @ice_cream.tags = tags
       end
       redirect_to @ice_cream, notice: "アイスを更新しました！"

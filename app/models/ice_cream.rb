@@ -7,7 +7,7 @@ class IceCream < ApplicationRecord
     has_many :ice_cream_relationships, dependent: :destroy
     has_many :tags, through: :ice_cream_relationships
     def to_vector
-        [sweetness, freshness, richness, texture, ingredient_richness].map(&:to_i)
+        [ sweetness, freshness, richness, texture, ingredient_richness ].map(&:to_i)
     end
 
     def save_tags(saveice_cream_tags)
@@ -24,5 +24,4 @@ class IceCream < ApplicationRecord
     def self.ransackable_associations(auth_object = nil)
         %w[tags user]
     end
-
 end
