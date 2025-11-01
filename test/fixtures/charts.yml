@@ -1,17 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  sweetness: 1
-  freshness: 1
-  Richness: 1
-  Texture: 1
-  Ingredient_richness: 1
+  sweetness: 4
+  freshness: 3
+  richness: 5       
+  calorie: 3
+  ingredient_richness: 4  
+  chart_type: "user"     
   ice_cream: one
+  user: one
 
 two:
-  sweetness: 1
-  freshness: 1
-  Richness: 1
-  Texture: 1
-  Ingredient_richness: 1
+  sweetness: 2
+  freshness: 4
+  richness: 3        
+  calorie: 2
+  ingredient_richness: 3 
+  chart_type: "user"
   ice_cream: two
+  user: two
