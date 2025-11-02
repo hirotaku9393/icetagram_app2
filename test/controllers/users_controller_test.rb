@@ -1,13 +1,18 @@
 require "test_helper"
+#deviseのユーザコントローラのテスト(通常ログインではなく)
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  test "should get show" do
-    get users_show_url
+  setup do
+    @user = create(:user)
+  end
+
+  test "should get sinup" do
+    get new_user_registration_path
     assert_response :success
   end
 
-  test "should get new" do
-    get users_new_url
+  test "should get signin" do
+    get new_user_session_path
     assert_response :success
   end
 end

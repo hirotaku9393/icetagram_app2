@@ -1,8 +1,8 @@
 require "test_helper"
 
 class ImagesControllerTest < ActionDispatch::IntegrationTest
-  test "should get ogp" do
-    get images_ogp_url
+  test "should get ajigraf" do
+    get new_ajigraf_path(text: "Test ")
     assert_response :success
   end
 end

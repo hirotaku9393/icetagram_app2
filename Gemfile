@@ -83,6 +83,8 @@ group :development, :test do
 
   gem "dotenv-rails"
 
+  gem "factory_bot_rails"
+
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end

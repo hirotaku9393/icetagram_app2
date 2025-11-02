@@ -132,6 +132,11 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
+    factory_bot (6.5.6)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.5.1)
+      factory_bot (~> 6.5)
+      railties (>= 6.1.0)
     faraday (2.13.4)
       faraday-net_http (>= 2.0, < 3.5)
       json
@@ -521,6 +526,7 @@ DEPENDENCIES
   devise (~> 4.9)
   devise-i18n
   dotenv-rails
+  factory_bot_rails
   gon
   image_processing (~> 1.2)
   jbuilder

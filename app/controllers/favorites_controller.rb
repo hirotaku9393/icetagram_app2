@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!
   def create
     ice_cream = IceCream.find(params[:ice_cream_id])
     current_user.favorite(ice_cream)

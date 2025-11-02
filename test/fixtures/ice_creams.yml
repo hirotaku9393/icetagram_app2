@@ -1,11 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  comment: MyText
-
+  name: "バニラアイス"
+  comment: "定番のバニラ。"
 
 two:
-  name: MyString
-  comment: MyText
+  name: "チョコレートアイス"
+  comment: "濃厚なチョコレートの味わい。"
   
