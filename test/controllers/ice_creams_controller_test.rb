@@ -2,7 +2,7 @@ require "test_helper"
 
 class IceCreamsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get minnano_osi_index_url
+    get ice_creams_index_path
     assert_response :success
   end
 end
