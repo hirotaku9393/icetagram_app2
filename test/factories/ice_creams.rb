@@ -4,7 +4,7 @@ FactoryBot.define do
         comment { "This is a test ice cream." }
         sweetness { 3 }
         freshness { 3 }
-        richness { 3 }  
+        richness { 3 }
         calorie { 3 }
         ingredient_richness { 3 }
     end

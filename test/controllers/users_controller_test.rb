@@ -1,5 +1,5 @@
 require "test_helper"
-#deviseのユーザコントローラのテスト(通常ログインではなく)
+# deviseのユーザコントローラのテスト(通常ログインではなく)
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do

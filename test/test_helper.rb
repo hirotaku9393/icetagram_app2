@@ -8,7 +8,6 @@ require "factory_bot_rails"
 class ActiveSupport::TestCase
     include FactoryBot::Syntax::Methods  # facory_botを使う
     parallelize(workers: :number_of_processors)
-    
 end
 
 class ActionDispatch::IntegrationTest
