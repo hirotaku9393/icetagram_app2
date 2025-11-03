@@ -7,7 +7,7 @@
             <div class="pl-4">
                 <div class="flex flex-col items-center mt-6">
                     <h1 class="text-4xl font-kiwi"> <%= @today_ice.name %> </h1>
-                    <%= link_to '🔎このあいすの詳細', ice_cream_path(@today_ice), class: ' hover:underline mt-2' %>
+                    <%= link_to '🔎このあいすの詳細', ice_cream_path(@today_ice), data: {turbo: false}, class: ' hover:underline mt-2' %>
                     <h2 class="text-3xl font-kiwi"> <%= @today_ice.comment %> </h2>
                     <% if @today_ice.image.attached? %>
                         <h3 class="pt-10"><%= image_tag @today_ice.image, class: 'h-40 w-auto' %></h3>
