@@ -1,8 +1,8 @@
 
-<h1 class="pt-30 font-kiwi text-4xl text-black-600 text-center mt-6">あなたの推しあいすを追加🍧🍦🍨</h1>
+<h1 class="pt-30 font-kiwi text-xl sm:text-4xl text-black-600 text-center mt-6 py-4">あなたの推しあいすを追加🍧🍦🍨</h1>
 <div class="pt-4 mx-auto bg-amber-50 shadow-md rounded-lg p-6 max-w-6xl mt-6 mb-12 text-center">
     <%= form_with model: @ice_cream, local: true, data: { turbo: false }, class: "mt-10" do |form| %>
-        <div class="grid grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div class="pl-4">
                 <div class="flex flex-col mt-4">
                     <%= form.label :name, "アイスの名前", class: "font-kiwi text-lg" %>
