@@ -6,6 +6,8 @@ class IceCream < ApplicationRecord
     has_many :favorites, dependent: :destroy
     has_many :ice_cream_relationships, dependent: :destroy
     has_many :tags, through: :ice_cream_relationships
+    has_many :today_ices, dependent: :destroy
+    validates :name, presence: true
     def to_vector
         [ sweetness, freshness, richness, texture, ingredient_richness ].map(&:to_i)
     end

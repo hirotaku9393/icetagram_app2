@@ -1,7 +1,7 @@
 <div class="pt-4">  
     <div class="pt-4 mx-auto bg-amber-50 shadow-md rounded-lg p-6 max-w-4xl mt-6 text-center">
         <%= turbo_frame_tag "ice_cream_show" do %>
-            <div class="grid grid-cols-2 gap-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <div class="pl-4">
                     <h1 class="text-4xl font-kiwi"> <%= @ice_cream.name %> </h1>
                     <% if @user.present? %>
@@ -32,9 +32,9 @@
 </div>
 
 <div class="flex flex-col items-center mt-6 w-full">
-    <h2 class="text-center text-2xl font-kiwi pt-5">楽天市場での検索結果</h2>
+    <h2 class="text-center text-2xl font-kiwi pt-5 py-4">楽天市場での検索結果</h2>
             <% if @goods.any? %>
-                <div class="flex flex-row items-center text-center max-w-4xl gap-8">
+                <div class="flex flex-row items-center text-center grid grid-cols-1 sm:grid-cols-2 max-w-4xl gap-8">
                     <% @goods.first(2).each do |item| %>
                         <div class="goods-img">
                             <img src="<%= item['mediumImageUrls'][0]%>" class="max-h-32 max-w-32 object-contain mx-auto">
@@ -52,10 +52,13 @@
 <div class="pt-4 flex justify-center ">
     <%= render 'favorite_button', ice_cream: @ice_cream %>
 </div>
-<div class="flex justify-center gap-4 mt-6">
-    <% if current_user == @ice_cream.user %>
-        <%= link_to 'アイスを編集', edit_ice_cream_path(@ice_cream), class: 'bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-lg' %>  
-        <%= button_to 'アイスを削除', ice_cream_path(@ice_cream), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-lg' %>
-    <% end %>
-        <%= link_to 'アイス一覧に戻る', ice_creams_path, class: 'bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-lg' %>  
+
+<div class="flex justify-center mt-6">
+    <div class="grid gap-4 lg:gap-6 place-items-center <%= current_user == @ice_cream.user ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1' %>">
+        <% if current_user == @ice_cream.user %>
+            <%= link_to 'アイスを編集', edit_ice_cream_path(@ice_cream), class: 'bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-lg text-center whitespace-nowrap' %>  
+            <%= button_to 'アイスを削除', ice_cream_path(@ice_cream), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-lg text-center whitespace-nowrap' %>
+        <% end %>
+        <%= link_to 'アイス一覧に戻る', ice_creams_path, class: 'bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-lg text-center whitespace-nowrap' %> 
+    </div>
 </div>
