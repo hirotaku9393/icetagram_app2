@@ -82,7 +82,11 @@ end
     if search_word.empty?
       @goods = []
     else
-      @goods = RakutenWebService::Ichiba::Item.search(keyword: search_word)
+      begin
+        @goods = RakutenWebService::Ichiba::Item.search(keyword: search_word)
+      rescue => e
+        Rails.logger.error "楽天APIエラー: #{e.message}"
+        @goods = []
     end
   end
 
