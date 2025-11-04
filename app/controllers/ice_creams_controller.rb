@@ -51,10 +51,11 @@ class IceCreamsController < ApplicationController
   end
 
   def edit
+    @tag_names = @ice_cream.tags.pluck(:name).join(", ")
   end
 
   def update
-  tag_names = params[:ice_cream][:tag_ids]
+  tag_names = params[:ice_cream][:tag_names]
 
     if @ice_cream.update(ice_cream_params)
       if tag_names.present?
