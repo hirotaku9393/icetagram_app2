@@ -4,23 +4,23 @@ class IceCreamsController < ApplicationController
   before_action :set_ice_cream, only: %i[show edit update destroy]
   before_action :authorize_user!, only: %i[edit update destroy]
 
-def index
-  @q = IceCream.ransack(params[:q])
+  def index
+    @q = IceCream.ransack(params[:q])
 
-  if params[:q].present?
-    # 検索時はタグ絞り込みをなし
-    @ice_creams = @q.result(distinct: true).includes(:tags)
-  elsif params[:tag_id].present?
-    # タグでの絞り込み
-    tag = Tag.find_by(id: params[:tag_id])
-    @ice_creams = tag.ice_creams.includes(:tags)
-  else
-    @ice_creams = IceCream.all.includes(:tags)
+    if params[:q].present?
+      # 検索時はタグ絞り込みをなし
+      @ice_creams = @q.result(distinct: true).includes(:tags)
+    elsif params[:tag_id].present?
+      # タグでの絞り込み
+      tag = Tag.find_by(id: params[:tag_id])
+      @ice_creams = tag.ice_creams.includes(:tags)
+    else
+      @ice_creams = IceCream.all.includes(:tags)
+    end
+
+    @ice_creams = @ice_creams.order(created_at: :desc).page(params[:page]).per(10)
+    @tags = Tag.limit(5).order(created_at: :desc)
   end
-
-  @ice_creams = @ice_creams.order(created_at: :desc).page(params[:page]).per(10)
-  @tags = Tag.limit(5).order(created_at: :desc)
-end
 
 
 
@@ -87,6 +87,7 @@ end
       rescue => e
         Rails.logger.error "楽天APIエラー: #{e.message}"
         @goods = []
+      end
     end
   end
 
