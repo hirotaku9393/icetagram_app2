@@ -121,10 +121,10 @@ end
   def fix_word(word)
     return "" if word.nil?
       word.to_s
-      .strip                          
-      .gsub(/[^\w\sぁ-んァ-ヶー一-龯]/, '')  
-      .gsub(/[！？＆＃＄％＾＊（）＋＝｜￥]/, '')
-      .gsub(/\s+/, ' ')                       
+      .strip
+      .gsub(/[^\w\sぁ-んァ-ヶー一-龯]/, "")
+      .gsub(/[！？＆＃＄％＾＊（）＋＝｜￥]/, "")
+      .gsub(/\s+/, " ")
       .strip
   end
 end
