@@ -75,8 +75,15 @@ end
 
   def show
     @chart = @ice_cream.chart
-    @goods = RakutenWebService::Ichiba::Item.search(keyword: @ice_cream.name)
     @user = @ice_cream.user
+    original_name = @ice_cream.name
+    search_word = fix_word(@ice_cream.name)
+
+    if search_word.empty?
+      @goods = []
+    else
+      @goods = RakutenWebService::Ichiba::Item.search(keyword: search_word)
+    end
   end
 
   def favorites
@@ -109,5 +116,15 @@ end
     unless @ice_cream.user == current_user
       redirect_to ice_creams_index_path, alert: "他のユーザーのアイスクリームは編集できません。"
     end
+  end
+
+  def fix_word(word)
+    return "" if word.nil?
+      word.to_s
+      .strip                          
+      .gsub(/[^\w\sぁ-んァ-ヶー一-龯]/, '')  
+      .gsub(/[！？＆＃＄％＾＊（）＋＝｜￥]/, '')
+      .gsub(/\s+/, ' ')                       
+      .strip
   end
 end
