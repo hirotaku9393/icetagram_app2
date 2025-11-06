@@ -11,6 +11,5 @@ RSpec.describe IceCream, type: :model do
       ice_cream = FactoryBot.build(:ice_cream, name: nil)
       expect(ice_cream).to be_invalid
     end
-
   end
 end

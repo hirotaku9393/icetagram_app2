@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Favorite, type: :model do
   let(:user) { create(:user) }
   let(:ice_cream) { create(:ice_cream) }
-  
+
   describe 'バリデーション' do
     it 'user_id,ice_cream_idがある場合バリデーションが通る' do
       favorite = FactoryBot.build(:favorite, user: user, ice_cream: ice_cream)

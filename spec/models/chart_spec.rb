@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Chart, type: :model do
   let(:user) { create(:user) }
   let(:ice_cream) { create(:ice_cream) }
-  
+
 
   describe 'バリデーション' do
     it 'sweetness, freshness, richness, calorie, ingredient_richness, chart_type, ice_cream_idがある場合バリデーションが通る' do
