@@ -3,10 +3,12 @@ class User < ApplicationRecord
             :recoverable, :rememberable, :validatable,
             :omniauthable, omniauth_providers: %i[line google_oauth2]
     has_many :ice_creams, dependent: :destroy
+    has_many :charts, dependent: :destroy
     has_many :favorites, dependent: :destroy
     has_many :favorite_ice_creams, through: :favorites, source: :ice_cream
     validates :name, presence: true, length: { minimum: 2 }
     validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? }
+
 
 
     def self.create_unique_string

@@ -1,7 +1,7 @@
 FactoryBot.define do
     factory :ice_cream do
-        sequence(:name) { |n| "Ice Cream #{n}" }
-        comment { "This is a test ice cream." }
+        sequence(:name) { |n| "アイスの名前 #{n}" }
+        comment { "IceCreamモデルテスト" }
         sweetness { 3 }
         freshness { 3 }
         richness { 3 }

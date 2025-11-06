@@ -1,5 +1,7 @@
 class Chart < ApplicationRecord
   belongs_to :ice_cream, optional: true
+  belongs_to :user, optional: true
+  validates :sweetness, :freshness, :richness, :calorie, :ingredient_richness, :chart_type, presence: true
 
   enum :chart_type, {
       official: "official",

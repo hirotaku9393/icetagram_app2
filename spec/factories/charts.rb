@@ -5,8 +5,12 @@ FactoryBot.define do
         richness { 3 }
         calorie { 3 }
         ingredient_richness { 3 }
-        chart_type { "user" }
+        chart_type { "official" }
         association :ice_cream           # ← 自動でice_creamを作成
-        association :user               # ← 自動でuserを作成
+        association :user        # ← 自動でuserを作成
+
+        trait :user_chart do
+            chart_type { "user" }
+        end
     end
 end
