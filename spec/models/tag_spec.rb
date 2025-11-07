@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Tag", type: :request do
-
     describe "バリデーションの検証" do
         it "nameがある場合バリデーションが通る" do
             tag = FactoryBot.build(:tag)

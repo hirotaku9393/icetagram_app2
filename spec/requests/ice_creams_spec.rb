@@ -18,7 +18,7 @@ RSpec.describe "ice_creamsコントローラーのテスト", type: :request do
             expect(response).to have_http_status(:ok)
         end
         it "ice_creamsの検索結果ページにアクセスできること" do
-            get ice_creams_path, params: { q: {name_cont: "アイス"} }
+            get ice_creams_path, params: { q: { name_cont: "アイス" } }
             expect(response).to have_http_status(:ok)
         end
         it "投稿ページにアクセスするとログインページにリダイレクトされること" do
@@ -33,7 +33,6 @@ RSpec.describe "ice_creamsコントローラーのテスト", type: :request do
             delete ice_cream_path(ice_cream)
             expect(response).to redirect_to new_user_session_path
         end
-
     end
     describe "ログイン時のice_creamsアクセス" do
         before do
@@ -49,7 +48,7 @@ RSpec.describe "ice_creamsコントローラーのテスト", type: :request do
             expect(response).to have_http_status(:ok)
         end
         it "ice_creamsの検索結果ページにアクセスできること" do
-            get ice_creams_path, params: { q: {name_cont: "アイス"} }
+            get ice_creams_path, params: { q: { name_cont: "アイス" } }
             expect(response).to have_http_status(:ok)
         end
         it "投稿ページにアクセスできること" do
@@ -58,10 +57,10 @@ RSpec.describe "ice_creamsコントローラーのテスト", type: :request do
         end
         it "投稿時、アイスの登録ができること" do
             expect {
-                post ice_creams_path, params: { 
-                ice_cream: { 
-                        name: "新しいアイス", 
-                        comment: "テストアイス",           
+                post ice_creams_path, params: {
+                ice_cream: {
+                        name: "新しいアイス",
+                        comment: "テストアイス",
                         sweetness: 3,
                         freshness: 4,
                         richness: 5,
@@ -73,7 +72,7 @@ RSpec.describe "ice_creamsコントローラーのテスト", type: :request do
         end
         it "投稿時、アイスの名前がないと登録ができないこと" do
             expect {
-                post ice_creams_path, params: { 
+                post ice_creams_path, params: {
                 ice_cream: {
                         name: "",
                         comment: "テストアイス",
@@ -118,13 +117,13 @@ RSpec.describe "ice_creamsコントローラーのテスト", type: :request do
             expect(response).to have_http_status(:unprocessable_entity)
         end
         it "削除時、アイスの削除ができ、アイスの件数がへること" do
-            expect {delete ice_cream_path(ice_cream) }.to change(IceCream, :count).by(-1)
-        end   
+            expect { delete ice_cream_path(ice_cream) }.to change(IceCream, :count).by(-1)
+        end
         it "削除を実行するとアイスクリーム一覧ページにリダイレクトされること" do
             delete ice_cream_path(ice_cream)
             expect(response).to redirect_to ice_creams_index_path
         end
-        
+
         it "他人のアイス編集ページにアクセスすると一覧ページにリダイレクトされること" do
             other_user = FactoryBot.create(:user)
             other_ice_cream = FactoryBot.create(:ice_cream, user: other_user)
@@ -141,7 +140,6 @@ RSpec.describe "ice_creamsコントローラーのテスト", type: :request do
             tag = FactoryBot.create(:tag)
             get ice_creams_path, params: { tag_id: tag.id }
             expect(response).to have_http_status(:ok)
-        end 
-
+        end
     end
 end
