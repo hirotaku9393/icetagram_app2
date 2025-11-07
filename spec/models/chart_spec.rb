@@ -5,7 +5,7 @@ RSpec.describe Chart, type: :model do
   let(:ice_cream) { create(:ice_cream) }
 
 
-  describe 'バリデーション' do
+  describe 'バリデーションの検証' do
     it 'sweetness, freshness, richness, calorie, ingredient_richness, chart_type, ice_cream_idがある場合バリデーションが通る' do
       chart = FactoryBot.build(:chart, user: user, ice_cream: ice_cream)
       expect(chart).to be_valid

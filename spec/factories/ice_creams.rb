@@ -7,5 +7,6 @@ FactoryBot.define do
         richness { 3 }
         calorie { 3 }
         ingredient_richness { 3 }
+        arrange { "おすすめの食べ方" }
     end
 end

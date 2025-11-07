@@ -4,7 +4,7 @@ RSpec.describe Favorite, type: :model do
   let(:user) { create(:user) }
   let(:ice_cream) { create(:ice_cream) }
 
-  describe 'バリデーション' do
+  describe 'バリデーションの検証' do
     it 'user_id,ice_cream_idがある場合バリデーションが通る' do
       favorite = FactoryBot.build(:favorite, user: user, ice_cream: ice_cream)
       expect(favorite).to be_valid
