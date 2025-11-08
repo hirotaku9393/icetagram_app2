@@ -26,6 +26,13 @@
     <%= stylesheet_link_tag :application, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M2WZMB0V2Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-M2WZMB0V2Q');
+    </script>
   </head>
 
   <body class="bg-yellow-100">
@@ -83,7 +90,7 @@
     <% end %>
     <%= yield %>
   </body>
-  </footer>
+  <footer>
     <div class="bg-yellow-200 text-center p-4 mt-10 shadow-inner">
       <div class="flex justify-center grid grid-cols-1 ">
         <%= link_to "利用規約", "https://www.kiyac.app/termsOfService/ri6ZOLS05llljnE0Lqjp", class: "font-kiwi text-black-600 hover:underline text-center" %>
