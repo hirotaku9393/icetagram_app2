@@ -1,0 +1,41 @@
+name: Generate & Deploy Sitemap
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # 毎朝6時（日本時間15時）に実行
+  workflow_dispatch:
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Generate sitemap
+        run: bundle exec rake sitemap:refresh
+
+      - name: Commit sitemap
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add public/sitemap.xml.gz || echo "No sitemap found"
+          git commit -m "Auto update sitemap [skip ci]" || echo "No changes to commit"
+          git push origin main
+
+      - name: Trigger Render deploy
+        run: |
+          curl -X POST "$RENDER_DEPLOY_HOOK_URL"
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}

@@ -29,6 +29,7 @@
 
 /public/assets
 
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
@@ -40,3 +41,4 @@
 /public/ogp_images/
 
 /coverage/
+/public/sitemap.xml.gz

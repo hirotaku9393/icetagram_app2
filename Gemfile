@@ -71,6 +71,8 @@ gem "kaminari"
 
 gem "mini_magick"
 
+gem "sitemap_generator"
+
 
 
 
