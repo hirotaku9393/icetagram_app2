@@ -4,6 +4,11 @@
   <div class="mt-4 flex items-center font-kiwi text-gray-700">
     <%= render "devise/shared/links" %> 
   </div>
+  <div class="flex items-center w-full py-1 mt-6">
+    <div class="flex-grow border-t border-stone-300"></div>
+    <span class="mx-4 text-stone-400 text-sm">または</span>
+    <div class="flex-grow border-t border-stone-300"></div>
+  </div>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field flex flex-col items-center mt-4">
       <%= f.label :email, class: "flex w-64 flex-col text-center font-kiwi text-gray-700" %><br />
