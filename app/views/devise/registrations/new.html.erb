@@ -2,14 +2,16 @@
 
 <div class="mx-auto bg-amber-50 shadow-md rounded-lg p-6 max-w-md mt-6">
   
+  <div class="mt-4 text-center font-kiwi">
+    <div class="flex flex-col items-center space-y-2 mt-4">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false } }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="mt-4 text-center font-kiwi">
-      <div class="flex flex-col items-center space-y-2 mt-4">
-        <%= render "devise/shared/links" %>
-      </div>
-    </div>
+
 
     <div class="flex items-center w-full py-1 mt-6">
         <div class="flex-grow border-t border-stone-300"></div>

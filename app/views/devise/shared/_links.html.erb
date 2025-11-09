@@ -10,20 +10,36 @@
 
   <%- if devise_mapping.omniauthable? %>
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <% if provider == :line %>
+
+      <div style="background: #f0f0f0; padding: 10px; margin: 10px; border: 1px solid #ccc;">
+        <strong>🔍 詳細DEBUG INFO:</strong><br>
+        <strong>現在のページ:</strong> <%= controller_name %>#<%= action_name %><br>
+        <strong>resource_name:</strong> <%= resource_name %><br>
+        <strong>resource_class:</strong> <%= resource_class %><br>
+        <strong>devise_mapping:</strong> <%= devise_mapping.name %><br>
+        <strong>providers:</strong> <%= resource_class.omniauth_providers %><br>
+        <br>
+        <strong>📍 各プロバイダーのパス:</strong><br>
+        <% resource_class.omniauth_providers.each do |provider| %>
+          <strong><%= provider %>:</strong> <%= omniauth_authorize_path(resource_name, provider) %><br>
+        <% end %>
+      </div>
+
+
+      <% if provider == :google_oauth2 %>
         <%= button_to omniauth_authorize_path(resource_name, provider), 
+                      data: { turbo: false },
                       method: :post,
+                      class: "bg-blue-500 hover:bg-blue-600 text-white font-kiwi py-2 px-20 rounded-lg flex items-center justify-center gap-2 border-none cursor-pointer w-96" do %>
+          <iconify-icon icon="material-icon-theme:google" width="16" height="16"></iconify-icon>
+          <span>Googleでログイン</span>
+        <% end %>
+      <% else %>
+        <%= button_to omniauth_authorize_path(resource_name, provider), 
                       data: { turbo: false },
                       class: "bg-green-500 hover:bg-green-600 text-white font-kiwi py-2 px-20 rounded-lg flex items-center justify-center gap-2 border-none cursor-pointer w-96" do %>
           <iconify-icon icon="simple-icons:line" width="24" height="24"></iconify-icon>
           <span>LINEでログイン</span>
-        <% end %>
-      <% elsif provider == :google_oauth2 %>
-        <%= button_to omniauth_authorize_path(resource_name, provider), 
-                      data: { turbo: false },
-                      class: "bg-blue-500 hover:bg-blue-600 text-white font-kiwi py-2 px-20 rounded-lg flex items-center justify-center gap-2 border-none cursor-pointer w-96" do %>
-          <iconify-icon icon="material-icon-theme:google" width="16" height="16"></iconify-icon>
-          <span>Googleでログイン</span>
         <% end %>
       <% end %>
     <% end %>
