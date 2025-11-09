@@ -34,7 +34,11 @@ Devise.setup do |config|
   config.omniauth :line,
   ENV["LINE_CLIENT_ID"],
   ENV["LINE_CLIENT_SECRET"],
-  callback_url: ENV["LINE_REDIRECT_URI"]
+  callback_url: ENV["LINE_REDIRECT_URI"],
+  { scope: "profile openid email",
+    provider_ignores_state: true
+  }
+
 
   config.omniauth :google_oauth2,
     ENV["GOOGLE_CLIENT_ID"],
