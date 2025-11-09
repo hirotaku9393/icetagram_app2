@@ -10,8 +10,7 @@
 
   <%- if devise_mapping.omniauthable? %>
       <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= button_to "#{provider == :google_oauth2 ? 'Google' : OmniAuth::Utils.camelize(provider)}でログイン", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "bg-green-500 hover:bg-green-600 text-black font-kiwi py-2 px-20 rounded-lg w-full text-center" %>
-
+    <%= button_to "#{OmniAuth::Utils.camelize(provider)}でログイン", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "bg-green-500 hover:bg-green-600 text-black font-kiwi py-2 px-20 rounded-lg w-full text-center" %>
   <% end %>
   <% end %>
 </div>
