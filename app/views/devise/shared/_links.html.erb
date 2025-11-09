@@ -1,31 +1,29 @@
 <div class="w-full flex flex-col items-center space-y-4">
 
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "w-64 text-center font-kiwi text-gray-700" %>
-<% end %>
+  <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+    <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "w-64 text-center font-kiwi text-gray-700" %>
+  <% end %>
 
-<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: "w-64 text-center font-kiwi text-gray-700" %>
-<% end %>
+  <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+    <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: "w-64 text-center font-kiwi text-gray-700" %>
+  <% end %>
 
-<%- if devise_mapping.omniauthable? %>
-  <div class="space-y-3 max-w-sm mx-auto">
-    <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= button_to omniauth_authorize_path(resource_name, provider), 
-          data: { turbo: false }, 
-          class: "#{provider == :google_oauth2 ? 'bg-white hover:bg-gray-50 text-gray-700 border border-gray-300' : 'bg-green-500 hover:bg-green-600 text-white border border-green-500'} font-kiwi py-2 px-20 rounded-lg w-full text-center flex items-center justify-center gap-2 shadow-sm mb-2" do %>
-        <% case provider %>
-        <% when :google_oauth2 %>
-          <iconify-icon icon="material-icon-theme:google" width="20" height="20"></iconify-icon>
-          <span>Googleでログイン</span>
-        <% when :line %>
-          <iconify-icon icon="simple-icons:line" width="24" height="24"></iconify-icon>
-          <span>LINEでログイン</span>
-        <% else %>
-          <span><%= OmniAuth::Utils.camelize(provider) %>でログイン</span>
+  <%- if devise_mapping.omniauthable? %>
+    <div class="space-y-3 max-w-sm mx-auto">
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <%= link_to omniauth_authorize_path(resource_name, provider), 
+            data: { turbo: false },
+            class: "#{provider == :google_oauth2 ? 'bg-white hover:bg-gray-50 text-gray-700 border border-gray-300' : 'bg-green-500 hover:bg-green-600 text-white border border-green-500'} font-kiwi py-2 px-20 rounded-lg w-full text-center flex items-center justify-center gap-2 shadow-sm mb-2 block text-decoration-none" do %>
+          <% case provider %>
+          <% when :google_oauth2 %>
+            <iconify-icon icon="material-icon-theme:google" width="20" height="20"></iconify-icon>
+            <span>Googleでログイン</span>
+          <% else %>
+            <iconify-icon icon="simple-icons:line" width="24" height="24"></iconify-icon>
+            <span><%= OmniAuth::Utils.camelize(provider) %>でログイン</span>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   <% end %>
-  </div>
 </div>
