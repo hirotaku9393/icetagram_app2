@@ -18,9 +18,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     protected
 
+
     def oauth_request?
-        request.path.include?('/auth/') || 
-        params[:authenticity_token].blank? ||  
-        request.referrer&.include?('/auth/')  
+        # OAuthプロバイダーへのリクエストかどうかを判定
+        Rails.logger.debug "=== OAuth Request Check ==="
+        Rails.logger.debug "Request path: #{request.path}"
+        Rails.logger.debug "Request method: #{request.method}"
+        Rails.logger.debug "Parameters: #{params.inspect}"
+        Rails.logger.debug "Referrer: #{request.referrer}"
+        
+        # 1. リクエストパスがOmniauthのものかチェック
+        omniauth_path = request.path.include?('/auth/')
+        
+        # 2. パラメータにプロバイダー情報があるかチェック  
+        provider_param = params[:provider].present?
+        
+        # 3. リファラーがOAuthページからのものかチェック
+        referrer_oauth = request.referrer&.include?('/auth/')
+        
+        # 4. パラメータが空（OAuthリクエストの特徴）
+        empty_params = params.keys.size <= 3 # controller, action, authenticity_token のみ
+        
+        result = omniauth_path || provider_param || referrer_oauth || empty_params
+        
+        Rails.logger.debug "OAuth request result: #{result}"
+        Rails.logger.debug "=========================="
+        
+        result
     end
 end
