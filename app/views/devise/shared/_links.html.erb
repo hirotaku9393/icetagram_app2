@@ -11,21 +11,6 @@
   <%- if devise_mapping.omniauthable? %>
     <%- resource_class.omniauth_providers.each do |provider| %>
 
-      <div style="background: #f0f0f0; padding: 10px; margin: 10px; border: 1px solid #ccc;">
-        <strong>🔍 詳細DEBUG INFO:</strong><br>
-        <strong>現在のページ:</strong> <%= controller_name %>#<%= action_name %><br>
-        <strong>resource_name:</strong> <%= resource_name %><br>
-        <strong>resource_class:</strong> <%= resource_class %><br>
-        <strong>devise_mapping:</strong> <%= devise_mapping.name %><br>
-        <strong>providers:</strong> <%= resource_class.omniauth_providers %><br>
-        <br>
-        <strong>📍 各プロバイダーのパス:</strong><br>
-        <% resource_class.omniauth_providers.each do |provider| %>
-          <strong><%= provider %>:</strong> <%= omniauth_authorize_path(resource_name, provider) %><br>
-        <% end %>
-      </div>
-
-
       <% if provider == :google_oauth2 %>
         <%= button_to omniauth_authorize_path(resource_name, provider), 
                       data: { turbo: false },
