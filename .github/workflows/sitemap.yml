@@ -9,6 +9,22 @@ jobs:
   sitemap:
     runs-on: ubuntu-latest
 
+
+    services:
+      postgres:
+        image: postgres:17  
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: postgres:password@localhost:5432/sitemap_db
+          POSTGRES_DB: sitemap_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,7 +33,14 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
-          
+
+      - name: Set up database
+        env:
+          DATABASE_URL: postgres://postgres:password@localhost:5432/sitemap_db
+        run: |
+          bundle exec rails db:create
+          bundle exec rails db:migrate
+
       - name: Install dependencies
         run: |
           gem install bundler
