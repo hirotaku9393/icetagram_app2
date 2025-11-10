@@ -82,7 +82,7 @@ class Admin::IceCreamsController < Admin::BaseController
     def ice_cream_params
         params.require(:ice_cream).permit(:name, :image, :sweetness, :freshness, :richness, :calorie, :ingredient_richness, :user_id, :comment, :arrange, :calorie_value)
     end
-    
+
     def fix_word(word)
         return "" if word.nil?
         word.to_s
