@@ -1,8 +1,8 @@
 <%= search_form_for @q, url: ice_creams_path, method: :get do |f| %>
-    <div class="flex  max-w-sm sm:max-w-lg gap-2">
+    <div class="flex  max-w-xs sm:max-w-lg gap-2">
         <%= f.search_field :name_cont, 
-            class: 'flex-1 px-4 py-2 text-base border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent', 
-            placeholder: '🍦 お気に入りのアイスを探そう' %>
+            class: 'flex-1 w-48 px-4 py-2 text-base border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent', 
+            placeholder: '🍦アイスを検索🍧' %>
         <%= f.submit '検索', 
             class: 'px-6 py-2 text-base font-medium text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500' %>
     </div>
