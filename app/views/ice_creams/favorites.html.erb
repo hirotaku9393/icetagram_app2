@@ -9,7 +9,11 @@
                 <%= link_to ice_cream.name, ice_cream_path(ice_cream), class: 'font-kiwi' %>
                 <p class="text-gray-700 font-kiwi mt-2"><%= ice_cream.comment %></p>
                 <div class="w-40 aspect-[16/9] flex items-center justify-center">
-                    <%= image_tag ice_cream.image, class: 'max-h-full max-w-full object-contain' %>
+                    <% if ice_cream.image.attached? %>
+                        <%= image_tag ice_cream.image, class: 'max-h-full max-w-full object-contain' %>
+                    <% else %>  
+                        <p class="text-gray-500">画像がまだありません</p>
+                    <% end %>
                 </div> 
                 <% if !current_user.own?(ice_cream) %>
                     <div class="mt-auto flex justify-center ">
