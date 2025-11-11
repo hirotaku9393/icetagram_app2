@@ -96,9 +96,7 @@ class IceCreamsController < ApplicationController
     @favorite_ice_creams = current_user.favorite_ice_creams.page(params[:page]).per(10).includes(:chart, :user).order(created_at: :desc)
   end
 
-  def favorites
-    @favorite_ice_creams = current_user.favorite_ice_creams.page(params[:page]).per(10).includes(:chart, :user).order(created_at: :desc)
-  end
+
 
   def tags
     @tags = Tag.all
