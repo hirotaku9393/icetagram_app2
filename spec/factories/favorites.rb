@@ -1,4 +1,6 @@
 FactoryBot.define do
-  factory :favorite do
-  end
+    factory :favorite do
+        association :user
+        association :ice_cream
+    end
 end

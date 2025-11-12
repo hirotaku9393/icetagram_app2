@@ -18,39 +18,42 @@
             </div>
             <div class="pl-4">
                 <div data-controller="ice-cream-chart"
-                data-ice-cream-chart-chart-data-value="<%= @chart.to_vector.to_json %>"
-                data-ice-cream-chart-labels-value="<%= ['甘さ', '爽やかさ', '濃厚さ', 'カロリー', '具材の充実感'].to_json %>">
-                <canvas data-ice-cream-chart-target="canvas" width="400" height="200"></canvas>
+                    data-ice-cream-chart-chart-data-value="<%= @chart.to_vector.to_json %>"
+                    data-ice-cream-chart-labels-value="<%= ['甘さ', '爽やかさ', '濃厚さ', 'カロリー', '具材の充実感'].to_json %>">
+                    <canvas data-ice-cream-chart-target="canvas" width="400" height="200"></canvas>
+                </div>
             </div>
         </div>
     <% end %>
-</div>
+    
+    <div class="pt-4 flex justify-center mt-auto">
+        <%= render 'favorite_button', ice_cream: @today_ice %>
+    </div>
 
-
-<div class="pt-5 flex justify-center font-kiwi gap-4 mt-1">
-    <%= link_to  result_todayice_index_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-4 px-8 text-xl rounded-lg flex items-center gap-2", data: { turbo: false} do %>
-        <iconify-icon icon="game-icons:perspective-dice-six-faces-random" width="24" height="24"></iconify-icon>
-        <span>🍧もう一度🍨</span>
-    <% end %>
-</div>
-
-<div class="twitter pt-5 flex justify-center font-kiwi gap-4 mt-1">
-    <%= link_to "https://twitter.com/intent/tweet?" + "text=きょうのあいすは#{@today_ice.name}!\n次はどのあいすが出るか試してみよう" + "&url=#{request.base_url}#{request.path}?uuid=#{@today_ice_uuid}", class: "bg-blue-400 hover:bg-blue-500 text-white font-kiwi py-4 px-8 text-xl rounded-lg flex items-center gap-2 twitter-share-button", target: "_blank", rel: "noopener" do %>
-        <iconify-icon icon="simple-icons:x" width="24" height="24"></iconify-icon>
-        <span>結果をツイートする</span>
-    <% end %>
-</div>
-
-<div class="pt-10 flex justify-center font-kiwi gap-10 mt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-2 py-4 gap-4 lg:gap-6 w-full max-w-2xl">
-        <%= link_to new_ajigraf_path,  data: { turbo: false },class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-2 px-8 rounded flex items-center justify-center gap-2 " do %>
-            <iconify-icon icon="twemoji:ice-cream" width="36" height="36"></iconify-icon>
-            <span>あじぐらふへ</span>
-        <% end %>
-        <%= link_to ice_creams_path, data: { turbo: false }, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-2 px-8 rounded flex items-center justify-center gap-2 " do %>
-            <iconify-icon icon="twemoji:ice-cream" width="36" height="36"></iconify-icon>
-            <span>みんなの推しあいすへ</span>
+    <div class="pt-5 flex justify-center font-kiwi gap-4 mt-1">
+        <%= link_to  result_todayice_index_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-4 px-8 text-xl rounded-lg flex items-center gap-2", data: { turbo: false} do %>
+            <iconify-icon icon="game-icons:perspective-dice-six-faces-random" width="24" height="24"></iconify-icon>
+            <span>🍧もう一度🍨</span>
         <% end %>
     </div>
-</div>
 
+    <div class="twitter pt-5 flex justify-center font-kiwi gap-4 mt-1">
+        <%= link_to "https://twitter.com/intent/tweet?" + "text=きょうのあいすは#{@today_ice.name}!\n次はどのあいすが出るか試してみよう" + "&url=#{request.base_url}#{request.path}?uuid=#{@today_ice_uuid}", class: "bg-blue-400 hover:bg-blue-500 text-white font-kiwi py-4 px-8 text-xl rounded-lg flex items-center gap-2 twitter-share-button", target: "_blank", rel: "noopener" do %>
+            <iconify-icon icon="simple-icons:x" width="24" height="24"></iconify-icon>
+            <span>結果をツイートする</span>
+        <% end %>
+    </div>
+
+    <div class="pt-10 flex justify-center font-kiwi gap-10 mt-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 py-4 gap-4 lg:gap-6 w-full max-w-2xl">
+            <%= link_to new_ajigraf_path,  data: { turbo: false },class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-2 px-8 rounded flex items-center justify-center gap-2 " do %>
+                <iconify-icon icon="twemoji:ice-cream" width="36" height="36"></iconify-icon>
+                <span>あじぐらふへ</span>
+            <% end %>
+            <%= link_to ice_creams_path, data: { turbo: false }, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-2 px-8 rounded flex items-center justify-center gap-2 " do %>
+                <iconify-icon icon="twemoji:ice-cream" width="36" height="36"></iconify-icon>
+                <span>みんなの推しあいすへ</span>
+            <% end %>
+        </div>
+    </div>
+</div>
