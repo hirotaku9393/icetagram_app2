@@ -19,7 +19,7 @@ class IceCreamsController < ApplicationController
     end
 
     @ice_creams = @ice_creams.order(created_at: :desc).page(params[:page]).per(10)
-    @tags = Tag.joins(:ice_creams).group('tags.id').order('COUNT(ice_cream_relationships.id) DESC').limit(5)
+    @tags = Tag.joins(:ice_creams).group("tags.id").order("COUNT(ice_cream_relationships.id) DESC").limit(5)
   end
 
 
