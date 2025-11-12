@@ -73,11 +73,25 @@
                         <% end %>
                     </div>
                 </div>
-            <% end %>
+            <% end %>   
         <% end %>
     </div>
 </div>
 
+<% 
+    set_meta_tags(
+            title: "icetagram",
+            description: "あじぐらふであなたにピッタリなあいすを診断したり、みんなの推しあいすで他のユーザーのおすすめあいすを探したり、きょうのあいすで新たなあいすに出会ったり、ご当地あいすで全国の珍しいあいすを楽しんだりできます!",
+            og: {
+                title: "icetagram",
+                description: "あじぐらふであなたにピッタリなあいすを診断したり、みんなの推しあいすで他のユーザーのおすすめあいすを探したり、きょうのあいすで新たなあいすに出会ったり、ご当地あいすで全国の珍しいあいすを楽しんだりできます。",
+                type: 'website',
+                url: request.original_url,
+                image: view_context.asset_url('azukibare.png')
+
+            }
+    )
+%>
 
 
 
