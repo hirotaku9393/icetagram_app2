@@ -54,9 +54,6 @@
             </div>
         </div>
 
-
-    
-
       <% elsif admin_signed_in? %>
         <div class="flex items-center gap-2">
           <p class="text-1xl font-kiwi text-black-600">
@@ -70,13 +67,24 @@
         </div>
     
       <% else %>
-        <div class="flex items-center gap-2">  
-          <iconify-icon icon="material-symbols:login" width="24" height="24"></iconify-icon>
-          <%= link_to "ログイン", new_user_session_path, class: "text-black-500 hover:underline font-kiwi" %>
-        </div>
-        <div class="flex items-center gap-2">  
-          <iconify-icon icon="mdi:account-plus" width="24" height="24 "></iconify-icon>
-          <%= link_to "新規登録", new_user_registration_path, class: "text-black-500 hover:underline font-kiwi" %>
+        <div class="flex items-center gap-2">
+          <p class="text-1xl font-kiwi text-black-600">
+          <div class="relative">
+            <button id="user-menu-button" class="flex items-center gap-2">
+              <p class="text-1xl font-kiwi text-black-600">ログインはこちら</p>
+              <span>▾</span>
+            </button>
+            <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-yellow-100 border border-yellow-300 rounded-md shadow-lg">
+              <div class="flex items-center gap- ml-4 mt-2">  
+                <iconify-icon icon="material-symbols:login" width="24" height="24"></iconify-icon>
+                <%= link_to "ログイン", new_user_session_path, class: "text-black-500 hover:underline font-kiwi" %>
+              </div>
+              <div class="flex items-center gap-2 ml-4 mt-2">  
+                <iconify-icon icon="mdi:account-plus" width="24" height="24 "></iconify-icon>
+                <%= link_to "新規登録", new_user_registration_path, class: "text-black-500 hover:underline font-kiwi" %>
+              </div>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>
