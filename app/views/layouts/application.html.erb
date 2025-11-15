@@ -90,7 +90,7 @@
         <nav class="space-y-2">
           <p class="font-kiwi text-md text-center mb-4 text-gray-700">🍧Menu🍦</p>
           <%= link_to ice_creams_path, class: "flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
-            <span class="text-xs leading-tight">みんなの推しあいす</span>
+            <span class="text-xs leading-tight">あいす一覧</span>
           <% end %>
           <%= link_to new_ice_cream_path, class: "flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
             <span class="text-xs leading-tight">推しあいすを追加</span>
@@ -110,32 +110,6 @@
         </nav>
       </div>
     </aside>
-    <!-- スマホ用 -->
-    <aside class="lg:hidden fixed top-28 left-0 right-0 bg-yellow-50 shadow-inner z-50 border-t border-yellow-300 flex items-center justify-center">
-      <div class="p-3">
-        <p class="font-kiwi text-md text-center mb-4 text-gray-700">🍧Menu🍦</p>
-        <nav class="flex flex-wrap gap-2 justify-center">
-          <%= link_to ice_creams_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
-            <span class="text-xs leading-tight">みんなの推しあいす</span>
-          <% end %>
-          <%= link_to new_ice_cream_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
-            <span class="text-xs leading-tight">推しあいすを追加</span>
-          <% end %>
-          <%= link_to new_ajigraf_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
-            <span class="text-xs leading-tight">あじぐらふ</span><br>
-          <% end %>
-          <%= link_to favorites_ice_creams_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
-            <span class="text-xs leading-tight">お気に入り</span>
-          <% end %>
-          <%= link_to todayice_index_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
-            <span class="text-xs leading-tight">きょうのあいす</span>
-          <% end %>
-          <%= link_to gotouchi_ice_creams_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
-            <span class="text-xs leading-tight">ご当地あいす</span>
-          <% end %>
-        </nav>
-      </div>     
-    </aside>
     <% if notice %>
       <p class="bg-green-100 text-green-800 p-2 text-center font-kiwi"><%= notice %></p>
     <% end %>
@@ -143,13 +117,41 @@
     <% if alert %>
       <p class="bg-red-100 text-red-800 p-2 text-center font-kiwi"><%= alert %></p>
     <% end %>
-    <main class="lg:ml-40 min-h-screen pt-48 lg:pt-5 lg:mt-28">
+    <main class="lg:ml-40 min-h-screen  mt-20 lg:pt-5 lg:mt-28">
       <div class="p-6">
         <%= yield %>
       </div>
     </main>
+    <nav class="fixed bottom-0 left-0 right-0 bg-stone-100 border-t border-stone-300 z-50 
+                flex justify-around items-center h-16 lg:hidden">
 
-    
+      <%= link_to ice_creams_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="mdi:ice-cream" width="24" height="24"></iconify-icon>
+        <span>あいす一覧</span>
+      <% end %>
+
+      <%= link_to new_ajigraf_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="tdesign:chart-radar" width="24" height="24"></iconify-icon>
+        <span>あじぐらふ</span>
+      <% end %>
+
+      <%= link_to favorites_ice_creams_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="mdi:heart" width="24" height="24"></iconify-icon>
+        <span>お気に入り</span>
+      <% end %>
+
+      <%= link_to todayice_index_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="game-icons:perspective-dice-six-faces-random" width="24" height="24"></iconify-icon>
+        <span>きょうのあいす</span>
+      <% end %>
+
+      <%= link_to gotouchi_ice_creams_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="mdi:map-marker-radius" width="24" height="24"></iconify-icon>
+        <span>ご当地あいす</span>
+      <% end %>
+
+    </nav>
+
   </body>
   <footer>
     <div class="bg-yellow-200 text-center p-4 mt-10 lg:ml-40 shadow-inner">
@@ -160,4 +162,6 @@
       <p class="font-kiwi text-black-600">© 2025 icetagram All rights reserved.</p>
     </div>
   </footer>
+
+  <
 </html>
