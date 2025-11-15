@@ -36,7 +36,7 @@
   </head>
 
   <body class="bg-yellow-100">
-    <header class="navbar bg-yellow-200 px-4 shadow-md flex justify-between items-center h-28">
+    <header class="navbar bg-yellow-200 px-4 shadow-md flex justify-between items-center h-28 fixed top-0 left-0 right-0 z-50">
     <div> <%= link_to "icetagram", root_path, class: "text-3xl font-poller text-black-600" %> </div>
     <div class="flex flex-col items-end gap-2">
       <% if user_signed_in? %>
@@ -89,6 +89,59 @@
       <% end %>
     </div>
     </header>
+
+    <!-- PC用 -->
+    <aside class="hidden lg:flex fixed left-0 top-28 bottom-0 w-40 bg-yellow-50 shadow-lg z-40 flex-col border-r border-yellow-300">
+      <div class="p-3">
+        <nav class="space-y-2">
+          <p class="font-kiwi text-md text-center mb-4 text-gray-700">🍧Menu🍦</p>
+          <%= link_to ice_creams_path, class: "flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <span class="text-xs leading-tight">みんなの推しあいす</span>
+          <% end %>
+          <%= link_to new_ice_cream_path, class: "flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <span class="text-xs leading-tight">推しあいすを追加</span>
+          <% end %>
+          <%= link_to new_ajigraf_path, class: "flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <span class="text-xs leading-tight">あじぐらふ</span>
+          <% end %>
+          <%= link_to favorites_ice_creams_path, class: "flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <span class="text-xs leading-tight">お気に入り</span>
+          <% end %>
+          <%= link_to todayice_index_path, class: "flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <span class="text-xs leading-tight">きょうのあいす</span>
+          <% end %>
+          <%= link_to gotouchi_ice_creams_path, class: "flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <span class="text-xs leading-tight">ご当地あいす</span>
+          <% end %>
+        </nav>
+      </div>
+    </aside>
+    <!-- スマホ用 -->
+    <aside class="lg:hidden fixed top-28 left-0 right-0 bg-yellow-50 shadow-inner z-50 border-t border-yellow-300 flex items-center justify-center">
+      <div class="p-3">
+        <p class="font-kiwi text-md text-center mb-4 text-gray-700">🍧Menu🍦</p>
+        <nav class="flex flex-wrap gap-2 justify-center">
+          <%= link_to ice_creams_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
+            <span class="text-xs leading-tight">みんなの推しあいす</span>
+          <% end %>
+          <%= link_to new_ice_cream_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
+            <span class="text-xs leading-tight">推しあいすを追加</span>
+          <% end %>
+          <%= link_to new_ajigraf_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
+            <span class="text-xs leading-tight">あじぐらふ</span><br>
+          <% end %>
+          <%= link_to favorites_ice_creams_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
+            <span class="text-xs leading-tight">お気に入り</span>
+          <% end %>
+          <%= link_to todayice_index_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
+            <span class="text-xs leading-tight">きょうのあいす</span>
+          <% end %>
+          <%= link_to gotouchi_ice_creams_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi text-xs rounded-3xl flex items-center justify-center w-32" do %>
+            <span class="text-xs leading-tight">ご当地あいす</span>
+          <% end %>
+        </nav>
+      </div>     
+    </aside>
     <% if notice %>
       <p class="bg-green-100 text-green-800 p-2 text-center font-kiwi"><%= notice %></p>
     <% end %>
@@ -96,10 +149,16 @@
     <% if alert %>
       <p class="bg-red-100 text-red-800 p-2 text-center font-kiwi"><%= alert %></p>
     <% end %>
-    <%= yield %>
+    <main class="lg:ml-40 min-h-screen pt-48 lg:pt-5 lg:mt-28">
+      <div class="p-6">
+        <%= yield %>
+      </div>
+    </main>
+
+    
   </body>
   <footer>
-    <div class="bg-yellow-200 text-center p-4 mt-10 shadow-inner">
+    <div class="bg-yellow-200 text-center p-4 mt-10 lg:ml-40 shadow-inner">
       <div class="flex justify-center grid grid-cols-1 ">
         <%= link_to "利用規約", "https://www.kiyac.app/termsOfService/ri6ZOLS05llljnE0Lqjp", class: "font-kiwi text-black-600 hover:underline text-center" %>
         <%= link_to "プライバシーポリシー", "https://www.kiyac.app/privacypolicy/DLDA7xVOvuaCKfLSyBLV", class: "font-kiwi text-black-600 hover:underline text-center" %>
