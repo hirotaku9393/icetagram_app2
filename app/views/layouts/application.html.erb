@@ -122,12 +122,18 @@
         <%= yield %>
       </div>
     </main>
-    <nav class="fixed bottom-0 left-0 right-0 bg-stone-100 border-t border-stone-300 z-50 
+    <!-- スマホ用 ナビゲーションバー -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-stone-100 border-t border-stone-300 z-50
                 flex justify-around items-center h-16 lg:hidden">
 
       <%= link_to ice_creams_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
         <iconify-icon icon="mdi:ice-cream" width="24" height="24"></iconify-icon>
         <span class="font-kiwi">あいす一覧</span>
+      <% end %>
+      
+      <%= link_to new_ice_cream_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="mdi:plus-box" width="24" height="24"></iconify-icon>
+        <span class="font-kiwi">あいすを追加</span>
       <% end %>
 
       <%= link_to new_ajigraf_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
@@ -154,7 +160,7 @@
 
   </body>
   <footer>
-    <div class="bg-yellow-200 text-center p-4 mt-10 lg:ml-40 shadow-inner">
+    <div class="bg-yellow-200 text-center  p-6 mt-10 mb-16 lg:mb-0 lg:ml-40 shadow-inner">
       <div class="flex justify-center grid grid-cols-1 ">
         <%= link_to "利用規約", "https://www.kiyac.app/termsOfService/ri6ZOLS05llljnE0Lqjp", class: "font-kiwi text-black-600 hover:underline text-center" %>
         <%= link_to "プライバシーポリシー", "https://www.kiyac.app/privacypolicy/DLDA7xVOvuaCKfLSyBLV", class: "font-kiwi text-black-600 hover:underline text-center" %>
@@ -162,6 +168,4 @@
       <p class="font-kiwi text-black-600">© 2025 icetagram All rights reserved.</p>
     </div>
   </footer>
-
-  <
 </html>
