@@ -75,14 +75,8 @@
               <span>▾</span>
             </button>
             <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-yellow-100 border border-yellow-300 rounded-md shadow-lg">
-              <div class="flex items-center gap- ml-4 mt-2">  
-                <iconify-icon icon="material-symbols:login" width="24" height="24"></iconify-icon>
-                <%= link_to "ログイン", new_user_session_path, class: "text-black-500 hover:underline font-kiwi" %>
-              </div>
-              <div class="flex items-center gap-2 ml-4 mt-2">  
-                <iconify-icon icon="mdi:account-plus" width="24" height="24 "></iconify-icon>
-                <%= link_to "新規登録", new_user_registration_path, class: "text-black-500 hover:underline font-kiwi" %>
-              </div>
+              <%= link_to "ログイン", new_user_session_path, class: "font-kiwi block px-4 py-2 hover:bg-yellow-200" %>
+              <%= link_to "新規登録", new_user_registration_path, data: { turbo_method: :delete }, class: "font-kiwi block px-4 py-2 hover:bg-yellow-200" %>
             </div>
           </div>
         </div>
