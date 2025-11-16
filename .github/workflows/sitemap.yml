@@ -34,6 +34,11 @@ jobs:
         with:
           ruby-version: .ruby-version
 
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
       - name: Set up database
         env:
           DATABASE_URL: postgres://postgres:password@localhost:5432/sitemap_db
@@ -41,10 +46,7 @@ jobs:
           bundle exec rails db:create
           bundle exec rails db:migrate
 
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
+
 
       - name: Generate sitemap
         run: bundle exec rake sitemap:refresh
