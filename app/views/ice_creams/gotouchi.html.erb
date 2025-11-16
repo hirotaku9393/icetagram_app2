@@ -4,7 +4,7 @@
 
 <div class="pt-10 flex justify-center  mt-4">
     <% @tags.each do |tag| %>
-        <%= link_to tag.name, ice_creams_path(tag_id: tag.id), class: 'bg-amber-200 hover:bg-amber-300 text-amber-800 text-xs sm:text-sm font-kiwi py-1 px-3 rounded-full mr-2' %>
+        <%= link_to tag.name, ice_creams_path(tag_id: tag.id), class: 'bg-amber-200 hover:bg-amber-300 text-amber-800 text-[10px] sm:text-sm font-kiwi py-1 px-3 rounded-full mr-2' %>
     <% end %>
 </div>
 
