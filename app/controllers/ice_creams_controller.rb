@@ -20,7 +20,6 @@ class IceCreamsController < ApplicationController
 
     @ice_creams = @ice_creams.order(created_at: :desc).page(params[:page]).per(10)
     @tags = Tag.order("RANDOM()").limit(5)
-
   end
 
 
