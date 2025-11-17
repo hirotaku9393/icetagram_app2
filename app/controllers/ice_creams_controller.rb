@@ -33,7 +33,11 @@ class IceCreamsController < ApplicationController
     # Ensure the current user is set before creating the ice cream
     @ice_cream = IceCream.new(ice_cream_params)
     @ice_cream.user = current_user
-    tag_list = params[:ice_cream][:tag_ids].split(",")
+    tag_list = params[:ice_cream][:tag_ids]
+              .split(/[,、\/]/)
+              .map(&:strip)
+              .reject(&:blank?)
+
     if @ice_cream.save
       Chart.create!(
         ice_cream: @ice_cream,
@@ -60,8 +64,10 @@ class IceCreamsController < ApplicationController
 
     if @ice_cream.update(ice_cream_params)
       if tag_names.present?
-        tag_list = tag_names.split(",|、/").map(&:strip) # カンマ、全角カンマも
-        tags = tag_list.map { |name| Tag.find_or_create_by(name: name) } # tag_namesを配列にし、タグを見つけるか作成
+        tag_list = tag_names.split(/[,、\/]/)
+        .map { |t| t.gsub(/[\s　]+/, "") }  # 半角スペース + 全角スペース
+        .reject(&:blank?) # カンマ、全角カンマ
+        tags = tag_list.map { |name| Tag.find_or_create_by(name: name) } # tag_namesを配列にし、タグを見つけるor作成
         @ice_cream.tags = tags
       end
       redirect_to @ice_cream, notice: "アイスを更新しました！"
