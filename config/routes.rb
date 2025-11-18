@@ -61,6 +61,12 @@ Rails.application.routes.draw do
     end
   end
 
+    resources :quizzes, only: [:index] do
+    collection do
+      post :result
+    end
+  end
+
   get "rakuten_search" => "ice_creams#search"
 
 
