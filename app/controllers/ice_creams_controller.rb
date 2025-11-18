@@ -34,7 +34,7 @@ class IceCreamsController < ApplicationController
     @ice_cream.user = current_user
     tag_list = params[:ice_cream][:tag_ids]
               .split(/[,、\/]/)
-              .map(&:strip)
+              .map { |t| t.gsub(/[\s　]+/, "") }
               .reject(&:blank?)
 
     if @ice_cream.save
