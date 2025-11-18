@@ -61,7 +61,7 @@ Rails.application.routes.draw do
     end
   end
 
-    resources :quizzes, only: [:index] do
+    resources :quizzes, only: [ :index ] do
     collection do
       post :result
     end
