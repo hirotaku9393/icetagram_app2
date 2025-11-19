@@ -11,7 +11,7 @@ class QuizzesController < ApplicationController
         answer: "井村屋"
     },
     {
-        question: "2024年もっとも売れたアイスは？",
+        question: "2024年もっとも売れたアイスは?",
         options: [
         "明治 エッセル スーパーカップ超バニラ",
         "パピコ チョココーヒー",
@@ -76,7 +76,7 @@ class QuizzesController < ApplicationController
         @score = score
 
         # スコア別メッセージ・画像・タイトル
-        @message, @og_image, title_message = case score
+        @message, og_image, title_message = case score
         when 0..3
             [ "残念！あいす初心者レベル…", "ochimusya.png", "まだまだこれから！" ]
         when 4..5
@@ -91,9 +91,27 @@ class QuizzesController < ApplicationController
             [ "結果取得エラー", "icecream.png", "エラー" ]
         end
 
-
+        @og_image = view_context.image_url(og_image)
         @og_title = "IQテスト結果：#{score}/10（#{title_message}）"
         @og_description = @message
-        @og_url = quizzes_path
+        @og_url = quizzes_url
+
+        prepare_meta_tags
+    end
+
+    def prepare_meta_tags
+        set_meta_tags og: {
+                        title: "#{@message}",
+                        description: "#{@og_title}",
+                        type: "website",
+                        url: request.original_url,#現在アクセスしているページの完全なURL
+                        image: "#{@og_image}"
+                    },
+                    twitter: {
+                        card: "summary_large_image", #横長の大きい画像指定
+                        title: "#{@message}",
+                        description: "#{@og_title}",
+                        image: "#{@og_image}"
+                    }
     end
 end
