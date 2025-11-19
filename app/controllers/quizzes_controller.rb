@@ -95,7 +95,7 @@ class QuizzesController < ApplicationController
         @og_title = "IQテスト結果：#{score}/10（#{title_message}）"
         @og_description = @message
         @og_url = quizzes_url
-
+        @comment = title_message
         prepare_meta_tags
     end
 
