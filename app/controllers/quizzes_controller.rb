@@ -80,18 +80,18 @@ class QuizzesController < ApplicationController
         when 0..3
             [ "残念！あいす初心者レベル…", "ochimusya.png", "まだまだこれから！" ]
         when 4..5
-            [ "おお、なかなかのアイス通！", "asigaru.png", "伸びしろですねえ！" ]
+            [ "おお、なかなかのあいす通！", "asigaru.png", "伸びしろですねえ！" ]
         when 6..7
-            [ "さすが！アイスマスター！", "samurai.png", "頑張っています！" ]
+            [ "かなりのあいす好き！", "samurai.png", "頑張っています！" ]
         when 8..9
-            [ "すごい！アイスキング！", "syogun.png", "あいすの達人！" ]
+            [ "すごい！あいす将軍！", "syogun.png", "あいすの達人！" ]
         when 10
-            [ "伝説のアイス神降臨！", "daisyogun.jpg", "あなたはアイスの神様！" ]
+            [ "伝説のあいす大将軍！", "daisyogun.jpg", "あなたはあいす界の覇者です！" ]
         else
             [ "結果取得エラー", "icecream.png", "エラー" ]
         end
 
-        @og_image = view_context.image_url(og_image)
+        @og_image = "#{request.base_url}/ogp/#{og_image}"
         @og_title = "IQテスト結果：#{score}/10（#{title_message}）"
         @og_description = @message
         @og_url = quizzes_url
