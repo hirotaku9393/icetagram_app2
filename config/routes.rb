@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     collection do
       post :check
       get :result
+      get :explanation 
     end
   end
 
