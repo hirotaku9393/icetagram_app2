@@ -104,11 +104,11 @@ class QuizzesController < ApplicationController
                         title: "#{@message}",
                         description: "#{@og_title}",
                         type: "website",
-                        url: request.original_url,#現在アクセスしているページの完全なURL
+                        url: request.original_url, # 現在アクセスしているページの完全なURL
                         image: "#{@og_image}"
                     },
                     twitter: {
-                        card: "summary_large_image", #横長の大きい画像指定
+                        card: "summary_large_image", # 横長の大きい画像指定
                         title: "#{@message}",
                         description: "#{@og_title}",
                         image: "#{@og_image}"
