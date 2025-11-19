@@ -2,7 +2,7 @@
     <h1 class="text-2xl font-kiwi mb-4 text-center">IQ(Icecream Question)テスト 10問チャレンジ!</h1>
     <h2 class="text-2xl font-kiwi mb-4 text-center">あなたのあいす愛は？</h2>
 
-    <%= form_with url: result_quizzes_path, method: :post, data: { turbo: false } do |f| %>
+    <%= form_with url: check_quizzes_path, method: :post, data: { turbo: false } do |f| %>
         <% @quizzes.each_with_index do |quiz, i| %>
             <div class="quiz mb-6 max-w-md text-left">
             <p><strong>Q<%= i+1 %>:</strong> <%= quiz[:question] %></p>
