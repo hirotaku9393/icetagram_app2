@@ -111,7 +111,7 @@ class QuizzesController < ApplicationController
         [
             "伝説降臨！おぬしこそ“あいす大将軍”。甘味のすべてを知り尽くした究極の存在よ…！その名、永遠に語り継がれん。",
             "daisyogun.png",
-            "あいす界の絶対王者！"
+            "あいすの覇者じゃ！"
         ]
         else
         [ "結果取得エラー", "icecream.png", "エラー" ]
@@ -119,7 +119,7 @@ class QuizzesController < ApplicationController
 
 
         @og_image = "#{request.base_url}/ogp/#{og_image}"
-        @og_title = "#{score}/10：#{title_message}"
+        @og_title = "IQてすと結果は...#{score}/10：#{title_message}"
         @og_description = @message
         @og_url = request.original_url
         @title_message =  title_message

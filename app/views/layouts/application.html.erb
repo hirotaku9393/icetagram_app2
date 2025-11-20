@@ -45,7 +45,11 @@
           <p class="text-1xl font-kiwi text-black-600">
           <div class="relative">
             <button id="user-menu-button" class="flex items-center gap-2">
-              <iconify-icon icon="line-md:account"></iconify-icon>
+              <% if current_user&.image_url.present? %>
+                <%= image_tag current_user.image_url, class: "w-10 h-10 rounded-full" %>
+              <% else %>
+                <iconify-icon icon="mdi:user" width="24" height="24"></iconify-icon>
+              <% end %>
               <%= current_user.name  %> さん
               <span>▾</span>
             </button>
@@ -116,7 +120,7 @@
           <% end %>
           <%= link_to quizzes_path, class: "flex flex-row items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
             <iconify-icon icon="mdi:brain" width="24" height="24"></iconify-icon>
-            <span class="text-sm leading-tight">IQテスト</span>
+            <span class="text-sm leading-tight">IQてすと</span>
           <% end %>
         </nav>
       </div>
@@ -164,7 +168,7 @@
 
       <%= link_to quizzes_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
         <iconify-icon icon="mdi:brain" width="24" height="24"></iconify-icon>
-        <span class="font-kiwi">IQテスト</span>
+        <span class="font-kiwi">IQてすと</span>
       <% end %>
       
 

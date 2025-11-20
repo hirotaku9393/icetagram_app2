@@ -32,12 +32,19 @@ class User < ApplicationRecord
     end
 
     def self.from_omniauth(auth)
-        where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-            user.name = auth.info.name
-            user.email = auth.info.email || "#{auth.uid}-#{auth.provider}@example.com"
-            user.password = Devise.friendly_token[0, 20]
-        end
+        user = User.find_or_initialize_by(provider: auth.provider, uid: auth.uid)
+
+        user.assign_attributes(
+            name: auth.info.name,
+            email: auth.info.email || "#{auth.uid}-#{auth.provider}@example.com",
+            image_url: auth.info.image
+        )
+
+        user.password ||= Devise.friendly_token[0, 20]
+        user.save!
+        user
     end
+
 
     # ユーザーが複数のsns連携を持っている場合("line")のようにすることで、そのサービスのプロフィールを返す
     def social_profile(provider)
