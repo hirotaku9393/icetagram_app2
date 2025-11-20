@@ -81,7 +81,7 @@ class QuizzesController < ApplicationController
         score = params[:score].to_i
 
         @score = score
-        
+
         @message, og_image, title_message = case score
         when 0..3
         [
@@ -110,7 +110,7 @@ class QuizzesController < ApplicationController
         when 10
         [
             "伝説降臨！おぬしこそ“あいす大将軍”。甘味のすべてを知り尽くした究極の存在よ…！その名、永遠に語り継がれん。",
-            "daisyogun.jpg",
+            "daisyogun.png",
             "あいす界の絶対王者！"
         ]
         else
