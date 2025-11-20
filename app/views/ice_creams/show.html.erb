@@ -39,6 +39,52 @@
     <%= render 'favorite_button', ice_cream: @ice_cream %>
 </div>
 
+<div class="flex justify-center mt-6 ">
+    <div class="pt-6 mx-auto bg-amber-50 shadow-md rounded-3xl w-full max-w-3xl p-6 mt-6 text-center">
+        <h3 class="text-2xl font-kiwi mb-4 text-center">みんなのひと口レポ</h3>
+
+        <% @ice_cream.reviews.each do |review| %>
+            <div class="justify-center review-box border p-3 mb-4 rounded-3xl  bg-yellow-200 w-64 sm:w-96 mx-auto">
+                
+                <% if review.user %>
+                    <div class="flex items-center justify-start space-x-2 text-sm text-gray-500">
+                        <% if review.user&.image_url.present? %>
+                            <%= image_tag current_user.image_url, class: "w-10 h-10 rounded-full" %>
+                        <% else %>
+                            <iconify-icon icon="mdi:user" width="24" height="24"></iconify-icon>
+                        <% end %>
+                        
+                        <p class="text-sm text-gray-500"><%= review.user.name %>さん</p>
+                    </div>
+                <% end %>
+
+                <p class="flex items-center font-kiwi justify-start text-sm lg:text-base"><%= review.content %></p>
+
+
+                <% if review.user == current_user %>
+                    <%= link_to "削除",
+                        ice_cream_review_path(@ice_cream, review),
+                        data: { turbo_method: :delete, turbo_confirm: "削除してよろしいですか？" },
+                        class: "text-red-500 text-sm" %>
+                <% end %>
+            </div>
+        <% end %>
+
+            <hr class="my-4">
+
+            <%= form_with model: [@ice_cream, Review.new], local: true do |f| %>
+            <div class="mb-3">
+                <%= f.text_area :content,
+                    rows: 3,
+                    placeholder: "あいすの感想を書いてね",
+                    class: "w-96 p-2 border rounded" %>
+            </div>
+
+            <%= f.submit "投稿", class: "px-4 py-2 bg-blue-500 text-grey rounded-3xl hover:-lg font-kiwi bg-yellow-200" %>
+        <% end %>
+    </div>
+</div>
+
 <div class="flex flex-col items-center mt-6 w-full">
     <h2 class="text-center text-2xl font-kiwi pt-5 py-4">楽天市場での検索結果</h2>
             <% if @goods.any? %>
@@ -66,4 +112,5 @@
         <% end %> 
     </div>
 </div>
+
 

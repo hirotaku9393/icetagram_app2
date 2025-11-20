@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_20_065240) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_20_103128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -106,6 +106,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_20_065240) do
     t.index ["user_id"], name: "index_ice_creams_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "ice_cream_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ice_cream_id"], name: "index_reviews_on_ice_cream_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -148,5 +158,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_20_065240) do
   add_foreign_key "ice_cream_relationships", "tags"
   add_foreign_key "ice_creams", "admins"
   add_foreign_key "ice_creams", "users"
+  add_foreign_key "reviews", "ice_creams"
+  add_foreign_key "reviews", "users"
   add_foreign_key "today_ices", "ice_creams"
 end
