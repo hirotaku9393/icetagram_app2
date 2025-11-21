@@ -7,7 +7,7 @@
                     <% if @ice_cream.user.present? %>
                         <div class="flex items-center justify-center gap-2 pt-5">
                             <% if @ice_cream.user.image_url.present? %>
-                                <%= image_tag @ice_cream.koruser.image_url, class: "w-10 h-10 rounded-full" %>
+                                <%= image_tag @ice_cream.user.image_url, class: "w-10 h-10 rounded-full" %>
                             <% else %>
                                 <iconify-icon icon="mdi:user" width="24" height="24"></iconify-icon>
                             <% end %>
