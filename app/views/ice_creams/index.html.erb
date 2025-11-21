@@ -24,7 +24,7 @@
                 <div class="pt-4 flex justify-end">
                     <%= render 'favorite_button', ice_cream: ice_cream%>
                 </div>
-                <%= link_to ice_cream.name, ice_cream_path(ice_cream), class: 'font-kiwi hover:text-gray-500 !text-base sm:!text-lg' %>
+                <%= link_to ice_cream.name, ice_cream_path(ice_cream), class: 'font-kiwi hover:text-gray-500 !text-base sm:!text-lg truncate' %>
                 <% if ice_cream.user.present? %>
                     <div class="flex items-center gap-2 pt-5">
                             <% if ice_cream.user.image_url.present? %>
