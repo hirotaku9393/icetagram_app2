@@ -16,6 +16,7 @@
             <span class="text-sm leading-tight">推しあいすを追加</span>
     <% end %>
 </div>
+
 <div class="mx-auto max-w-7xl px-4">
     <div class="grid grid-cols-1  lg:grid-cols-3  gap-2 mt-6 mt-4 pb-4 items-stretch">
         <% @ice_creams.each do |ice_cream| %>
@@ -26,16 +27,15 @@
                             <% if ice_cream.user.image_url.present? %>
                                 <%= image_tag ice_cream.user.image_url, class: "w-10 h-10 rounded-full" %>
                             <% else %>
-                                <iconify-icon icon="mdi:user" class="w-10 h-10"></iconify-icon>
+                                <iconify-icon icon="mdi:user" width="40" height="40"></iconify-icon>
                             <% end %>
                         <h2 class="text-md font-kiwi "> <%= ice_cream.user.name %> </h2>
                     </div>
                 <% end %>
                 <div class="mt-2">
-                    <p class="text-gray-500 font-kiwi mb-2 text-sm">タグ:</p>
                     <%= render 'tag', ice_cream: ice_cream %>
                 </div>
-                <div class="mt-2 flex justify-center">
+                <div class="mt-6 flex justify-center h-40">
                     <% if ice_cream.image.attached? %>
                         <div class="w-40 aspect-[16/9] flex items-center justify-center">
                             <%= image_tag ice_cream.image, loading: "lazy", class: 'max-h-full max-w-full object-contain' %>
