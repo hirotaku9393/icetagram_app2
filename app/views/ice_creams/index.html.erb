@@ -23,8 +23,8 @@
                 <%= link_to ice_cream.name, ice_cream_path(ice_cream), class: 'font-kiwi hover:text-gray-500' %>
                 <% if ice_cream.user.present? %>
                     <div class="flex items-center gap-2 pt-5">
-                            <% if current_user&.image_url.present? %>
-                                <%= image_tag current_user.image_url, class: "w-10 h-10 rounded-full" %>
+                            <% if ice_cream.user.image_url.present? %>
+                                <%= image_tag ice_cream.user.image_url, class: "w-10 h-10 rounded-full" %>
                             <% else %>
                                 <iconify-icon icon="mdi:user" width="24" height="24"></iconify-icon>
                             <% end %>

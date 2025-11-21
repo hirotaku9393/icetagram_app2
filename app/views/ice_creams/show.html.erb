@@ -4,14 +4,14 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <div class="pl-4">
                     <h1 class="text-4xl font-kiwi"> <%= @ice_cream.name %> </h1>
-                    <% if @user.present? %>
+                    <% if @ice_cream.user.present? %>
                         <div class="flex items-center justify-center gap-2 pt-5">
-                            <% if current_user&.image_url.present? %>
-                                <%= image_tag current_user.image_url, class: "w-10 h-10 rounded-full" %>
+                            <% if @ice_cream.user.image_url.present? %>
+                                <%= image_tag @user.image_url, class: "w-10 h-10 rounded-full" %>
                             <% else %>
                                 <iconify-icon icon="mdi:user" width="24" height="24"></iconify-icon>
                             <% end %>
-                            <h2 class="text-xl font-kiwi "> <%= @user.name %> </h2>
+                            <h2 class="text-xl font-kiwi "> <%= @ice_cream.user.name %> </h2>
                         </div>
                     <% end %>
                     <h2 class="text-xl font-kiwi pt-5"> <%= "コメント: " + @ice_cream.comment %> </h2>
