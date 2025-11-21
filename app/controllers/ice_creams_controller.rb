@@ -18,7 +18,7 @@ class IceCreamsController < ApplicationController
       @ice_creams = IceCream.all.includes(:tags)
     end
 
-    @ice_creams = @ice_creams.order(created_at: :desc).page(params[:page]).per(10)
+    @ice_creams = @ice_creams.order(created_at: :desc).page(params[:page]).per(9)
     @tags = Tag.order("RANDOM()").limit(5)
   end
 

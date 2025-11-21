@@ -17,16 +17,16 @@
     <% end %>
 </div>
 <div class="mx-auto max-w-7xl px-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 mt-6 mt-4 pb-4 items-stretch">
+    <div class="grid grid-cols-1  lg:grid-cols-3  gap-2 mt-6 mt-4 pb-4 items-stretch">
         <% @ice_creams.each do |ice_cream| %>
-            <div class="bg-white shadow-md rounded-3xl p-4 flex flex-col h-full min-h-0">
+            <div class="bg-white shadow-md rounded-3xl p-4 flex flex-col h-full min-h-[16rem]">
                 <%= link_to ice_cream.name, ice_cream_path(ice_cream), class: 'font-kiwi hover:text-gray-500' %>
                 <% if ice_cream.user.present? %>
                     <div class="flex items-center gap-2 pt-5">
                             <% if ice_cream.user.image_url.present? %>
                                 <%= image_tag ice_cream.user.image_url, class: "w-10 h-10 rounded-full" %>
                             <% else %>
-                                <iconify-icon icon="mdi:user" width="24" height="24"></iconify-icon>
+                                <iconify-icon icon="mdi:user" class="w-10 h-10"></iconify-icon>
                             <% end %>
                         <h2 class="text-md font-kiwi "> <%= ice_cream.user.name %> </h2>
                     </div>
