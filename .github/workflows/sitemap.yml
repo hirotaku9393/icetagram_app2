@@ -15,7 +15,7 @@ jobs:
         image: postgres:17  
         env:
           POSTGRES_PASSWORD: password
-          POSTGRES_USER: postgres:password@localhost:5432/sitemap_db
+          POSTGRES_USER: postgres
           POSTGRES_DB: sitemap_db
         options: >-
           --health-cmd pg_isready
