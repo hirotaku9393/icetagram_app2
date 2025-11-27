@@ -1,8 +1,8 @@
 
-<h1 class="pt-30 font-kiwi text-4xl text-black-600 text-center mt-6">あなたの推しあいすアイスを追加🍧🍦🍨</h1>
-<div class="pt-4 mx-auto bg-amber-50 shadow-md rounded-lg p-6 max-w-4xl mt-6 text-center">
-    <%= form_with model: @ice_cream, local: true, class: "mt-10" do |form| %>
-        <div class="grid grid-cols-2 gap-8">
+<h1 class="pt-30 font-kiwi text-xl sm:text-4xl text-black-600 text-center mt-6 py-4">あなたの推しあいすを追加🍧🍦🍨</h1>
+<div class="pt-4 mx-auto bg-amber-50 shadow-md rounded-3xl p-6 max-w-6xl mt-6 mb-12 text-center">
+    <%= form_with model: @ice_cream, local: true, data: { turbo: false }, class: "mt-10" do |form| %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div class="pl-4">
                 <div class="flex flex-col mt-4">
                     <%= form.label :name, "アイスの名前", class: "font-kiwi text-lg" %>
@@ -11,7 +11,8 @@
 
                 <div class="flex flex-col mt-4">
                     <%= form.label :image, "アイスの画像", class: "font-kiwi text-lg" %>
-                    <%= form.file_field :image, direct_upload: true, class: "ml-2 border rounded-lg p-2 w-100", rows: 4 %>     
+                    <%= form.file_field :image, id: "ice_cream_image",direct_upload: true, class: "ml-2 border rounded-lg p-2 w-100", rows: 4 %>  
+                    <div id="new-image" class="h-32 mx-auto" ></div>   
                 </div>  
 
                 <div class="flex flex-col mt-4">
@@ -24,9 +25,14 @@
                     <%= form.text_area :arrange, class: "ml-2 border rounded-lg p-2 w-100", rows: 1 %>
                 </div>
 
-                <div class="flex flex-col mt-4">
+                <div class="flex flex-col items-center justify-center mt-4">
                     <%= form.label :calorie_value, "カロリー値", class: "font-kiwi text-lg" %>
-                    <%= form.number_field :calorie_value, min:1, max: 1000, class: "ml-2 border rounded p-2 w-20" %>
+                    <%= form.number_field :calorie_value, min:1, max: 1000, class: "ml-2 border rounded p-2 " %>
+                </div>
+
+                <div class="flex flex-col mt-4">
+                    <%= form.label :tag_ids, "タグ (カンマ区切りで複数追加できます)", class: "font-kiwi text-lg" %>
+                    <%= form.text_field :tag_ids, placeholder: "例: 甘い, チョコ, 夏にぴったり", class: "ml-2 border rounded-lg p-2 w-100 " %>
                 </div>
             </div>
             <div class="pr-4  pt-10">
@@ -42,30 +48,33 @@
                     <span>5</span>
                 </div>
 
-                <div class="flex justify-center mt-4">
+                <div class="flex justify-between items-center mt-4 px-8 sm:px-24">
                     <%= form.label :sweetness, "甘さ", class: "font-kiwi text-lg" %>
                     <%= form.range_field :sweetness, in: 1..5, class: "ml-2 border rounded p-2 accent-orange-400" %>
                 </div>
-                <div class="flex justify-center mt-4">
+                <div class="flex justify-between items-center mt-4 px-8 sm:px-24">
                     <%= form.label :freshness, "爽やかさ", class: "font-kiwi text-lg" %>
                     <%= form.range_field :freshness, in: 1..5, class: "ml-2 border rounded p-2 accent-orange-400" %>
                 </div>
-                <div class="flex justify-center mt-4">
+                <div class="flex justify-between items-center mt-4 px-8 sm:px-24">
                     <%= form.label :richness, "濃厚さ", class: "font-kiwi text-lg" %>
                     <%= form.range_field :richness, in: 1..5, class: "ml-2 border rounded p-2 accent-orange-400" %>
                 </div>
                 <div class="flex justify-center mt-4">
+                    <p class="text-center text-gray-500 text-xs sm:text-lg pt-4">カロリーの基準 1: ~100, 2: ~150, 3: ~200,4: ~250, 5: それ以上</p>
+                </div>
+                <div class="flex justify-between items-center mt-4 px-8 sm:px-24">
                     <%= form.label :calorie, "カロリー", class: "font-kiwi text-lg" %>
                     <%= form.range_field :calorie, in: 1..5, class: "ml-2 border rounded p-2 accent-orange-400" %>
                 </div>
-                <div class="flex justify-center mt-4">
+                <div class="flex justify-between items-center mt-4 px-8 sm:px-24">
                     <%= form.label :ingredient_richness, "具材のリッチさ", class: "font-kiwi text-lg" %>
                     <%= form.range_field :ingredient_richness, in: 1..5, class: "ml-2 border rounded p-2 accent-orange-400" %>
                 </div>
-                <div class="flex justify-center mt-6 pt-4">
-                    <%= button_tag type: :submit, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-lg flex items-center gap-2" do %>
+                <div class="flex justify-center mt-6 ">
+                    <%= button_tag type: :submit, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 text-lg font-kiwi py-4 px-8 rounded-3xl flex items-center gap-2" do %>
                         <iconify-icon icon="mingcute:plus-fill" width="24" height="24"></iconify-icon>
-                        <%= @ice_cream.new_record? ? "アイスを登録" : "アイスを更新" %>
+                        <%= @ice_cream.new_record? ? "あいすを登録" : "あいすを更新" %>
                     <% end %>
                 </div>
             </div>

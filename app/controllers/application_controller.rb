@@ -1,26 +1,16 @@
 class ApplicationController < ActionController::Base
-  helper ApplicationHelper
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  allow_browser versions: :modern
-  before_action :configure_permitted_parameters, if: :devise_controller?
+    helper ApplicationHelper
+    # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
+    allow_browser versions: :modern
+    before_action :configure_permitted_parameters, if: :devise_controller?
 
-  protect_from_forgery with: :exception
-  # Configure additional parameters for Devise
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
-  end
+    protect_from_forgery with: :exception
 
-  def serve_ogp_image
-    file_path = Rails.root.join('tmp', 'ogp_ajigraf_images', params[:path])
-    
-    if File.exist?(file_path)
-      send_file file_path, type: 'image/png', disposition: 'inline'
-    else
-      head :not_found
+    # Configure additional parameters for Devise
+    def configure_permitted_parameters
+        devise_parameter_sanitizer.permit(:sign_up, keys: [ :name ])
+        devise_parameter_sanitizer.permit(:account_update, keys: [ :name ])
     end
-  end
-  
 
     def set_ogp_tags(title:, description:, image_url:)
         set_meta_tags(
@@ -29,12 +19,12 @@ class ApplicationController < ActionController::Base
             og: {
                 title: title,
                 description: description,
-                type: 'website',
+                type: "website",
                 url: request.original_url,
                 image: image_url
             },
             twitter: {
-                card: 'summary_large_image',
+                card: "summary_large_image",
                 title: title,
                 description: description,
                 image: image_url
