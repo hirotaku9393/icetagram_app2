@@ -3,10 +3,11 @@
 </h1>
 <div class="mx-auto bg-amber-50 shadow-md rounded-lg p-6 max-w-5xl mt-6 text-center">
     <%= turbo_frame_tag "ice_result" do %>
-        <div class="grid grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div class="pl-4">
                 <div class="flex flex-col items-center mt-6">
                     <h1 class="text-4xl font-kiwi"> <%= @today_ice.name %> </h1>
+                    <%= link_to '🔎このあいすの詳細', ice_cream_path(@today_ice), data: {turbo: false}, class: ' hover:underline mt-2 font-kiwi' %>
                     <h2 class="text-3xl font-kiwi"> <%= @today_ice.comment %> </h2>
                     <% if @today_ice.image.attached? %>
                         <h3 class="pt-10"><%= image_tag @today_ice.image, class: 'h-40 w-auto' %></h3>
@@ -17,26 +18,29 @@
             </div>
             <div class="pl-4">
                 <div data-controller="ice-cream-chart"
-                data-ice-cream-chart-chart-data-value="<%= @chart.to_vector.to_json %>"
-                data-ice-cream-chart-labels-value="<%= ['甘さ', '爽やかさ', '濃厚さ', 'カロリー', '具材の充実感'].to_json %>">
-                <canvas data-ice-cream-chart-target="canvas" width="400" height="200"></canvas>
+                    data-ice-cream-chart-chart-data-value="<%= @chart.to_vector.to_json %>"
+                    data-ice-cream-chart-labels-value="<%= ['甘さ', '爽やかさ', '濃厚さ', 'カロリー', '具材の充実感'].to_json %>">
+                    <canvas data-ice-cream-chart-target="canvas" width="400" height="200"></canvas>
+                </div>
             </div>
         </div>
     <% end %>
+    
+    <div class="pt-4 flex justify-center mt-auto">
+        <%= render 'favorite_button', ice_cream: @today_ice %>
+    </div>
+
+    <div class="pt-5 flex justify-center font-kiwi gap-4 mt-1">
+        <%= link_to  result_todayice_index_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-4 px-8 text-xl rounded-3xl flex items-center gap-2", data: { turbo: false} do %>
+            <iconify-icon icon="game-icons:perspective-dice-six-faces-random" width="24" height="24"></iconify-icon>
+            <span>もう一度</span>
+        <% end %>
+    </div>
+
+    <div class="twitter pt-5 flex justify-center font-kiwi gap-4 mt-1">
+        <%= link_to "https://twitter.com/intent/tweet?" + "text=きょうのあいすは#{@today_ice.name}!\n次はどのあいすが出るか試してみよう" + "&url=#{request.base_url}#{request.path}?uuid=#{@today_ice_uuid}", class: "bg-blue-400 hover:bg-blue-500 text-white font-kiwi py-4 px-8 text-xl rounded-3xl flex items-center gap-2 twitter-share-button", target: "_blank", rel: "noopener" do %>
+            <iconify-icon icon="simple-icons:x" width="24" height="24"></iconify-icon>
+            <span>結果をツイートする</span>
+        <% end %>
+    </div>
 </div>
-
-
-<div class="pt-5 flex justify-center font-kiwi gap-4 mt-1">
-    <%= link_to  result_todayice_index_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-4 px-8 text-xl rounded-lg flex items-center gap-2", data: { turbo: false} do %>
-        <iconify-icon icon="game-icons:perspective-dice-six-faces-random" width="24" height="24"></iconify-icon>
-        <span>🍧もう一度🍨</span>
-    <% end %>
-</div>
-
-<div class="twitter pt-5 flex justify-center font-kiwi gap-4 mt-1">
-    <%= link_to "https://twitter.com/intent/tweet?text=きょうのあいすは#{@today_ice.name}!%0a%0a次はどのあいすが出るか試してみよう%0a%0ahttps://icetagramapp2.herokuapp.com/todayice/result",  class: "bg-blue-400 hover:bg-blue-500 text-white font-kiwi py-4 px-8 text-xl rounded-lg flex items-center gap-2 twitter-share-button", target: "_blank", rel: "noopener" do %>
-        <iconify-icon icon="simple-icons:x" width="24" height="24"></iconify-icon>
-        <span>結果をツイートする</span>
-    <% end %>
-</div>
-

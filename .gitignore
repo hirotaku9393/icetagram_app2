@@ -9,7 +9,6 @@
 
 # Ignore all environment files.
 /.env*
-
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -30,6 +29,7 @@
 
 /public/assets
 
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
@@ -39,3 +39,5 @@
 /node_modules
 
 /public/ogp_images/
+
+/coverage/

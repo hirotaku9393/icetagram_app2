@@ -1,0 +1,3 @@
+<%= link_to favorite_path(current_user.favorites.find_by(ice_cream_id: ice_cream.id)), id: "js-favorite-button-for-ice_cream-#{ice_cream.id}",  data: { turbo_method: :delete} do %>
+    <iconify-icon icon="mdi:heart" width="24" height="24" class="text-red-500"></iconify-icon>
+<% end %>

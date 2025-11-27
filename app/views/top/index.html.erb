@@ -2,38 +2,72 @@
     icetagram
 </h1>
 
-<div class="flex justify-center space-x-4 mt-6 ">
-    <%= image_tag 'icetagram.png', class: 'h-40 w-auto' %>
+<div class="flex justify-center space-x-4 mt-4 sm:mt-6">
+    <%= image_tag 'icetagram.png', class: 'h-24 sm:h-40 w-auto' %>
 </div>
 
-<h2 class="text-center font-kiwi text-2xl mt-6">
-    あなたにピッタリなアイス見つけませんか？
+<h2 class="text-center font-kiwi text-lg lg:text-xl lg:text-2xl mt-4 sm:mt-6">
+    あなたにピッタリなあいす見つけませんか？
 </h2>
 
-<h3 class="text-center font-kiwi text-lg mt-4">
-    あじぐらふでピッタリなアイスを3秒診断🍧
+<h3 class="text-center font-kiwi text-md lg:text-lg mt-4">
+    あじぐらふでピッタリなあいすを3秒診断🍧
 </h3>
 
-<h3 class="text-center font-kiwi text-lg mt-4">
+<h3 class="text-center font-kiwi text-md lg:text-lg mt-4">
     みんなの推しあいすでみんなの推しを探してみよう🍦
 </h3>
 
-<h3 class="text-center font-kiwi text-lg mt-4">
-    きょうのあいすで新たなアイスに出会ってみよう🍨
+<h3 class="text-center font-kiwi text-md lg:text-lg mt-4">
+    きょうのあいすで新たなあいすに出会ってみよう🍨
 </h3>
 
-<div class="pt-4 flex justify-center font-kiwi gap-10 mt-6">
-        <%= link_to new_ajigraf_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-4 px-4 rounded-lg flex items-center gap-2  justify-center text-xl w-64 h-24" do %>
-            <iconify-icon icon="tdesign:chart-radar" width="24" height="24"></iconify-icon>
-            <span>あじぐらふ</span>
+<h3 class="text-center font-kiwi text-md lg:text-lg mt-4">
+    ご当地あいすで全国の珍しいあいすを楽しもう🍧
+</h3>
+
+
+<% if @recomend_ice.present? %>
+    <h1 class="pt-5 font-kiwi text-4xl text-black-600 text-center" >
+        あなたにおすすめのあいす
+    </h1>
+<% end %>
+<div class="flex justify-center w-full pt-6 pb-6 px-4 font-kiwi ">
+    <div class="grid grid-cols-1  lg:grid-cols-3 gap-4 lg:gap-6  max-w-4xl w-full">
+        <% if @recomend_ice.present? %>
+            <% @recomend_ice.each do |ice_cream| %>
+                <div class="bg-white shadow-md rounded-3xl p-4 w-full flex flex-col h-full">
+                    <div class="text-center">
+                        <%= link_to ice_cream.name, ice_cream_path(ice_cream), class: 'font-kiwi hover:text-gray-500' %>
+                    </div>
+                    <div class="mt-2 flex justify-center">
+                        <% if ice_cream.image.attached? %>
+                            <div class="w-40 aspect-[16/9] flex items-center justify-center">
+                                <%= image_tag ice_cream.image, class: 'max-h-full max-w-full object-contain' %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>   
         <% end %>
-        <%= link_to ice_creams_index_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-4 px-4 rounded-lg flex items-center gap-2  justify-center text-xl w-64 h-24" do %>
-            <iconify-icon icon="mdi:ice-cream" width="24" height="24"></iconify-icon>
-            <span>みんなの推しあいす</span>
-        <% end %>
-        <%= link_to todayice_index_path, class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-bold py-4 px-4 rounded-lg flex items-center gap-2 justify-center text-xl w-64 h-24" do %>
-            <iconify-icon icon="game-icons:perspective-dice-six-faces-random" width="24" height="24"></iconify-icon>
-            <span>きょうのあいす</span>
-        <% end %>
+    </div>
 </div>
+
+<% 
+    set_meta_tags(
+            title: "icetagram",
+            description: "あなたにぴったりなあいす見つけませんか？今まで食べたことのないあいすや、全国の珍しいあいすとの出会いを！🍧",
+            og: {
+                title: "icetagram",
+                description: "あなたにぴったりなあいす見つけませんか？今まで食べたことのないあいすや、全国の珍しいあいすとの出会いを！🍧",
+                type: 'website',
+                url: request.original_url,
+                image: asset_url('top_ogp.png')
+            }
+    )
+%>
+
+
+
+
 

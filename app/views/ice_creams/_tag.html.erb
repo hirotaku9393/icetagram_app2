@@ -1,0 +1,5 @@
+<div class="flex flex-wrap gap-2 ">   
+    <% ice_cream.tags.each do |tag| %>
+        <%= link_to tag.name, ice_creams_path(tag_id: tag.id), class: 'bg-amber-200 hover:bg-amber-300 text-amber-800 text-sm font-kiwi py-1 px-3 rounded-full  whitespace-nowrap' %>
+    <% end %>
+</div>
