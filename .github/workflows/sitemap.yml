@@ -1,9 +1,9 @@
 name: Generate & Deploy Sitemap
 
-on:
-  schedule:
-    - cron: '0 6 * * *'  # 毎朝6時（日本時間15時）に実行
-  workflow_dispatch:
+#on:
+  #schedule:
+    #- cron: '0 6 * * *'  # 毎朝6時（日本時間15時）に実行
+  #workflow_dispatch:
 
 jobs:
   sitemap:
