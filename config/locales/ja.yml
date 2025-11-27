@@ -8,6 +8,15 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "を入力してください"
+              invalid: "は不正な値です"
+              taken: "またはパスワードは無効です"
+
   views:
     pagination:
       first: 最初

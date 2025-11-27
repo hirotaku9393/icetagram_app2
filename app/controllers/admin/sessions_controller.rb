@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
-    layout 'admin'
+    layout "admin"
 
     def new
       super
-    end 
+    end
     def create
       self.resource = warden.authenticate!(auth_options)
     end
     def after_sign_out_path_for(resource)
-      admin_login_path
+      new_admin_session_path
     end
 end
