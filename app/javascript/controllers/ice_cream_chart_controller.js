@@ -1,5 +1,23 @@
 import {Controller} from "@hotwired/stimulus"
-import Chart from 'chart.js/auto';  
+import {
+    Chart as ChartJS,
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend,
+} from "chart.js";
+
+
+ChartJS.register(
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend
+);
 
 export default class extends Controller {
     static values = { 
@@ -9,19 +27,31 @@ export default class extends Controller {
     static targets = ["canvas"]
 
     connect() {
+        console.log('=== Ice Cream Chart Controller Debug ===')
+        console.log('Ice cream chart controller connected')
+        console.log('Chart.js available:', typeof Chart !== 'undefined')
+        console.log('Controller element:', this.element)
+        console.log('Canvas target available:', this.hasCanvasTarget)
+        console.log('Canvas target element:', this.canvasTarget)
+        console.log('Chart data value:', this.chartDataValue)
+        console.log('Labels value:', this.labelsValue)
         this.drawChart()
     }
 
     chartDataValueChanged() {
+        console.log('Chart data value changed:', this.chartDataValue)
         this.drawChart()
     }
 
     drawChart() {
+        console.log('=== Drawing Chart ===')
+        console.log('Has canvas target:', this.hasCanvasTarget)
+        console.log('Chart data length:', this.chartDataValue?.length)       
         if (!this.hasCanvasTarget || !this.chartDataValue?.length) return
 
         this.destroyChart()
         
-        const labels = this.labelsValue || ["甘さ", "爽やかさ", "濃厚さ", "カロリー", "具材の充実感"]
+        const labels = this.labelsValue || ["甘さ", "爽やかさ", "濃厚さ", "カロリー", "具材のリッチさ"]
         
         this.chart = new Chart(this.canvasTarget, {
         type: "radar",

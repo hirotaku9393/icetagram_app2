@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_07_020515) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_20_103128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -64,7 +64,28 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_020515) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "chart_type", default: "official", null: false
+    t.bigint "user_id"
     t.index ["ice_cream_id"], name: "index_charts_on_ice_cream_id"
+    t.index ["user_id"], name: "index_charts_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "ice_cream_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ice_cream_id"], name: "index_favorites_on_ice_cream_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "ice_cream_relationships", force: :cascade do |t|
+    t.bigint "ice_cream_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ice_cream_id", "tag_id"], name: "index_ice_cream_relationships_on_ice_cream_id_and_tag_id", unique: true
+    t.index ["ice_cream_id"], name: "index_ice_cream_relationships_on_ice_cream_id"
+    t.index ["tag_id"], name: "index_ice_cream_relationships_on_tag_id"
   end
 
   create_table "ice_creams", force: :cascade do |t|
@@ -85,6 +106,32 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_020515) do
     t.index ["user_id"], name: "index_ice_creams_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "ice_cream_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ice_cream_id"], name: "index_reviews_on_ice_cream_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name"
+  end
+
+  create_table "today_ices", force: :cascade do |t|
+    t.bigint "ice_cream_id", null: false
+    t.string "uuid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ice_cream_id"], name: "index_today_ices_on_ice_cream_id"
+    t.index ["uuid"], name: "index_today_ices_on_uuid", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -94,12 +141,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_020515) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "provider"
+    t.string "uid"
+    t.string "image_url"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "charts", "ice_creams", on_delete: :cascade
+  add_foreign_key "charts", "users"
+  add_foreign_key "favorites", "ice_creams"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "ice_cream_relationships", "ice_creams"
+  add_foreign_key "ice_cream_relationships", "tags"
   add_foreign_key "ice_creams", "admins"
   add_foreign_key "ice_creams", "users"
+  add_foreign_key "reviews", "ice_creams"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "today_ices", "ice_creams"
 end

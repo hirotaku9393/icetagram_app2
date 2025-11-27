@@ -1,20 +1,32 @@
 <div class="w-full flex flex-col items-center space-y-4">
-<%- if controller_name != 'sessions' %>
-  <%= link_to "ログイン", new_session_path(resource_name), class: "block text-center bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi py-2 px-4 rounded w-64 mx-auto" %>
-<% end %>
 
-
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "w-64 text-center font-kiwi text-gray-700" %>
-<% end %>
-
-<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: "w-64 text-center font-kiwi text-gray-700" %>
-<% end %>
-
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %>
+  <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+    <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "w-64 text-center font-kiwi text-gray-700" %>
   <% end %>
-<% end %>
+
+  <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+    <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: "w-64 text-center font-kiwi text-gray-700" %>
+  <% end %>
+
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+
+      <% if provider == :google_oauth2 %>
+        <%= button_to omniauth_authorize_path(resource_name, provider), 
+                      data: { turbo: false },
+                      method: :post,
+                      class: "bg-blue-500 hover:bg-blue-600 text-white font-kiwi py-2 px-20 rounded-3xl text-xs lg:text-md flex items-center justify-center gap-2 border-none cursor-pointer w-80 lg:w-96" do %>
+          <iconify-icon icon="material-icon-theme:google" width="24" height="24"></iconify-icon>
+          <span>Googleでログイン</span>
+        <% end %>
+      <% else %>
+        <%= button_to omniauth_authorize_path(resource_name, provider), 
+                      data: { turbo: false },
+                      class: "bg-green-500 hover:bg-green-600 text-white font-kiwi py-2 px-20 rounded-3xl text-xs lg:text-md flex items-center justify-center gap-2 border-none cursor-pointer w-80 lg:w-96" do %>
+          <iconify-icon icon="simple-icons:line" width="24" height="24"></iconify-icon>
+          <span>LINEでログイン</span>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>

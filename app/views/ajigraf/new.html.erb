@@ -1,20 +1,20 @@
-<h1 class="pt-10 font-kiwi text-6xl text-black-600 text-center">
+<h1 class="pt-10 font-kiwi text-4xl text-black-600 text-center ">
     あじぐらふ
 </h1>
-<h3 class="text-center font-kiwi text-lg mt-4">
+<h3 class="text-center font-kiwi text-md sm:text-lg mt-4 px-4">
     5段階のレーダーチャートであなたにピッタリなあいすを診断します🍧
 </h3>
-<h3 class="text-center font-kiwi text-lg mt-2">
+<h3 class="text-center font-kiwi text-md sm:text-lg mt-2 px-4">
     味の好みやあいすの特徴を５段階で入力してください🍨
 </h3>
-<div class="mx-auto bg-amber-50 shadow-md rounded-lg p-6 max-w-xl mt-6 mb-6">
-    <div class="flex justify-center">
+<div class="mx-auto bg-amber-50 shadow-md rounded-3xl mt-6 mb-6 px-4 pt-4 max-w-5xl">
+    <div class="flex justify-center md:justify-end md:pr-72">
         <div class="flex justify-between text-sm text-gray-500 px-2 w-60 font-kiwi">
             <span>←低い</span>
             <span>高い→</span> 
         </div>
     </div>
-    <div class="flex justify-center">
+    <div class="flex justify-center md:justify-end md:pr-72">
         <div class="flex justify-between text-sm text-gray-500 px-2 w-60 font-kiwi">
             <span>1</span>
             <span>2</span>
@@ -24,28 +24,28 @@
         </div>
     </div>
     <%= form_with model: @chart,url: ajigraf_index_path, local: true, class: "mt-10" do |form| %>
-        <div class="flex justify-center mt-4">
-            <%= form.label :sweetness, "甘さ", class: "font-kiwi text-lg" %>
+        <div class="flex justify-between items-center mt-4 px-4 sm:px-80">
+            <%= form.label :sweetness, "甘さ", class: "font-kiwi text-lg " %>
             <%= form.range_field :sweetness, in: 1..5, class: "ml-2 border rounded p-2 accent-orange-400" %>
         </div>
-        <div class="flex justify-center mt-4">
+        <div class="flex justify-between items-center mt-4 px-4 sm:px-80">
             <%= form.label :freshness, "爽やかさ", class: "font-kiwi text-lg" %>
             <%= form.range_field :freshness, in: 1..5, class: "ml-2 border rounded p-2 accent-orange-400" %>
         </div>
-        <div class="flex justify-center mt-4">
+        <div class="flex justify-between items-center mt-4 px-4 sm:px-80">
             <%= form.label :richness, "濃厚さ", class: "font-kiwi text-lg" %>
             <%= form.range_field :richness, in: 1..5, class: "ml-2 border rounded p-2 accent-orange-400" %>
         </div>
-        <div class="flex justify-center mt-4">
+        <div class="flex justify-between items-center mt-4 px-4 sm:px-80">
             <%= form.label :calorie, "カロリー", class: "font-kiwi text-lg" %>
             <%= form.range_field :calorie, in: 1..5, class: "ml-2 border rounded p-2 accent-orange-400" %>
         </div>
-        <div class="flex justify-center mt-4">
+        <div class="flex justify-between items-center mt-4 px-4 sm:px-80">
             <%= form.label :ingredient_richness, "具材のリッチさ", class: "font-kiwi text-lg" %>
             <%= form.range_field :ingredient_richness, in: 1..5, class: "ml-2 border rounded p-2 accent-orange-400" %>
         </div>
-        <div class="flex justify-center mt-6">
-            <%= form.submit "🔎 あなたにピッタリなあいすを探す", class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi py-4 px-8 text-lg rounded" %>
+        <div class="flex justify-center mt-6 pb-6">
+            <%= form.submit "あなたにぴったりなあいすを探す", class: "bg-stone-300 hover:bg-stone-400 text-stone-800 font-kiwi py-2 sm:py-4 px-4 sm:px-8 text-xs sm:text-lg rounded-3xl w-56 md:w-96 " %>
         </div>
     <% end %>
 </div>

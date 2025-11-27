@@ -10,8 +10,8 @@
 
             <div class="flex flex-col mt-4">
                 <%= form.label :image, "アイスの画像", class: "font-kiwi text-lg" %>
-                <%= form.file_field :image, direct_upload: true, class: "ml-2 border rounded-lg p-2 w-100", rows: 4 %>     
-            </div>  
+                <%= form.file_field :image, direct_upload: true, class: "ml-2 border rounded-lg p-2 w-100", rows: 4 %>    
+            </div>
 
             <div class="flex flex-col mt-4">
                 <%= form.label :comment, "コメント", class: "font-kiwi  text-lg" %> 
@@ -26,6 +26,10 @@
             <div class="flex flex-col mt-4">
                 <%= form.label :calorie_value, "カロリー値", class: "font-kiwi text-lg" %>
                 <%= form.number_field :calorie_value, min:1, max: 1000, class: "ml-2 border rounded p-2 w-20" %>    
+            </div>
+            <div class="flex flex-col mt-4">
+                <%= form.label :tag_ids, "タグ (カンマ区切りで複数追加できます)", class: "font-kiwi text-lg" %>
+                <%= form.text_field :tag_names, value: @tag_names, placeholder: "例: 甘い, チョコ, 夏にぴったり", class: "ml-2 border rounded-lg p-2 w-100 " %>
             </div>
         </div>
         <div class="pr-4  pt-10">
