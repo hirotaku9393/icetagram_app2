@@ -11,4 +11,3 @@ class ChangeIceCreamIdNullableWithForeignKey < ActiveRecord::Migration[8.0]
     add_foreign_key :charts, :ice_creams
   end
 end
-

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Myapp" %></title>
+    <title><%= content_for(:title) || "icetagram" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -9,6 +9,7 @@
     <%= csp_meta_tag %>
     <%= include_gon %>
     <%= yield :head %>
+    <%= show_meta_tags %>
 
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
@@ -20,29 +21,44 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Poller+One&display=swap" rel="stylesheet">
+    <%= favicon_link_tag('favicon.png') %>
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :application, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-    <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M2WZMB0V2Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-M2WZMB0V2Q');
+    </script>
   </head>
 
   <body class="bg-yellow-100">
-    <header class="navbar bg-yellow-200 px-4 shadow-md flex justify-between items-center h-16">
+    <header class="navbar bg-yellow-200 px-4 shadow-md flex justify-between items-center h-28 fixed top-0 left-0 right-0 z-50">
     <div> <%= link_to "icetagram", root_path, class: "text-3xl font-poller text-black-600" %> </div>
     <div class="flex flex-col items-end gap-2">
       <% if user_signed_in? %>
         <div class="flex items-center gap-2">
           <p class="text-1xl font-kiwi text-black-600">
-            <iconify-icon icon="line-md:account"></iconify-icon>
-            <%= current_user.name  %> さん
-          </p>
+          <div class="relative">
+            <button id="user-menu-button" class="flex items-center gap-2">
+              <% if current_user&.image_url.present? %>
+                <%= image_tag current_user.image_url, class: "w-10 h-10 rounded-full" %>
+              <% else %>
+                <iconify-icon icon="mdi:user" width="24" height="24"></iconify-icon>
+              <% end %>
+              <p class="font-kiwi"><%= current_user.name %></p> さん
+              <span>▾</span>
+            </button>
+            <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-yellow-100 border border-yellow-300 rounded-md shadow-lg">
+              <%= link_to "アカウント編集", edit_user_registration_path, class: "font-kiwi block px-4 py-2 hover:bg-yellow-200" %>
+              <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "font-kiwi block px-4 py-2 hover:bg-yellow-200" %>
+            </div>
         </div>
-        <div class="flex items-center gap-2">
-          <iconify-icon icon="material-symbols:logout" width="20" height="20"></iconify-icon>
-          <%= link_to "ログアウト", destroy_user_session_path, data:{"turbo-method": :delete}, class: "text-black-500 hover:underline font-kiwi" if user_signed_in? %>
-        </div>
-      
+
       <% elsif admin_signed_in? %>
         <div class="flex items-center gap-2">
           <p class="text-1xl font-kiwi text-black-600">
@@ -56,17 +72,59 @@
         </div>
     
       <% else %>
-        <div class="flex items-center gap-2">  
-          <iconify-icon icon="material-symbols:login" width="24" height="24"></iconify-icon>
-          <%= link_to "ログイン", new_user_session_path, class: "text-black-500 hover:underline font-kiwi" %>
-        </div>
-        <div class="flex items-center gap-2">  
-          <iconify-icon icon="mdi:account-plus" width="24" height="24 "></iconify-icon>
-          <%= link_to "新規登録", new_user_registration_path, class: "text-black-500 hover:underline font-kiwi" %>
+        <div class="flex items-center gap-2">
+          <p class="text-1xl font-kiwi text-black-600">
+          <div class="relative">
+            <button id="user-menu-button" class="flex items-center gap-2">
+              <p class="text-1xl font-kiwi text-black-600">ログインはこちら</p>
+              <span>▾</span>
+            </button>
+            <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-yellow-100 border border-yellow-300 rounded-md shadow-lg">
+              <%= link_to "ログイン", new_user_session_path, class: "font-kiwi block px-4 py-2 hover:bg-yellow-200" %>
+              <%= link_to "新規登録", new_user_registration_path, data: { turbo_method: :delete }, class: "font-kiwi block px-4 py-2 hover:bg-yellow-200" %>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>
     </header>
+
+    <!-- PC用 -->
+    <aside class="hidden lg:flex fixed left-0 top-28 bottom-0 w-48 bg-yellow-50 shadow-lg z-40 flex-col border-r border-yellow-300">
+      <div class="p-3">
+        <nav class="space-y-2">
+          <p class="font-kiwi text-md text-center mb-4 text-gray-700">🍧Menu🍦</p>
+          <%= link_to ice_creams_path, class: "flex flex-row items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <iconify-icon icon="mdi:ice-cream" width="20" height="20"></iconify-icon>
+            <span class="text-sm leading-tight">あいす一覧</span>
+          <% end %>
+          <%= link_to new_ice_cream_path, class: "flex flex-row items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <iconify-icon icon="mdi:plus-box" width="24" height="24"></iconify-icon>
+            <span class="text-sm leading-tight">推しあいすを追加</span>
+          <% end %>
+          <%= link_to new_ajigraf_path, class: "flex flex-row items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <iconify-icon icon="tdesign:chart-radar" width="24" height="24"></iconify-icon>
+            <span class="text-sm leading-tight">あじぐらふ</span>
+          <% end %>
+          <%= link_to favorites_ice_creams_path, class: "flex flex-row items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <iconify-icon icon="mdi:heart" width="24" height="24"></iconify-icon>
+            <span class="text-sm leading-tight">お気に入り</span>
+          <% end %>
+          <%= link_to todayice_index_path, class: "flex flex-row items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <iconify-icon icon="game-icons:perspective-dice-six-faces-random" width="24" height="24"></iconify-icon>
+            <span class="text-sm leading-tight">きょうのあいす</span>
+          <% end %>
+          <%= link_to gotouchi_ice_creams_path, class: "flex flex-row items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <iconify-icon icon="mdi:map-marker-radius" width="24" height="24"></iconify-icon>
+            <span class="text-sm leading-tight">ご当地あいす</span>
+          <% end %>
+          <%= link_to quizzes_path, class: "flex flex-row items-center gap-1 p-2 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-kiwi text-center" do %>
+            <iconify-icon icon="mdi:brain" width="24" height="24"></iconify-icon>
+            <span class="text-sm leading-tight">IQてすと</span>
+          <% end %>
+        </nav>
+      </div>
+    </aside>
     <% if notice %>
       <p class="bg-green-100 text-green-800 p-2 text-center font-kiwi"><%= notice %></p>
     <% end %>
@@ -74,6 +132,56 @@
     <% if alert %>
       <p class="bg-red-100 text-red-800 p-2 text-center font-kiwi"><%= alert %></p>
     <% end %>
-    <%= yield %>
+    <main class="lg:ml-48 min-h-screen  mt-20 lg:pt-5 lg:mt-28">
+      <div class="p-6">
+        <%= yield %>
+      </div>
+    </main>
+    <!-- スマホ用 ナビゲーションバー -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-stone-100 border-t border-stone-300 z-50
+                flex justify-around items-center h-16 lg:hidden">
+
+      <%= link_to ice_creams_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="mdi:ice-cream" width="24" height="24"></iconify-icon>
+        <span class="font-kiwi">あいす一覧</span>
+      <% end %>
+
+      <%= link_to new_ajigraf_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="tdesign:chart-radar" width="24" height="24"></iconify-icon>
+        <span  class="font-kiwi">あじぐらふ</span>
+      <% end %>
+
+      <%= link_to favorites_ice_creams_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="mdi:heart" width="24" height="24"></iconify-icon>
+        <span  class="font-kiwi">お気に入り</span>
+      <% end %>
+
+      <%= link_to todayice_index_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="game-icons:perspective-dice-six-faces-random" width="24" height="24"></iconify-icon>
+        <span  class="font-kiwi">きょうのあいす</span>
+      <% end %>
+
+      <%= link_to gotouchi_ice_creams_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="mdi:map-marker-radius" width="24" height="24"></iconify-icon>
+        <span  class="font-kiwi">ご当地あいす</span>
+      <% end %>
+
+      <%= link_to quizzes_path, class: "flex flex-col items-center text-[10px] text-stone-700" do %>
+        <iconify-icon icon="mdi:brain" width="24" height="24"></iconify-icon>
+        <span class="font-kiwi">IQてすと</span>
+      <% end %>
+      
+
+    </nav>
+
   </body>
+  <footer>
+    <div class="bg-yellow-200 text-center  p-6 mt-10 mb-16 lg:mb-0 lg:ml-48 shadow-inner">
+      <div class="flex justify-center grid grid-cols-1 ">
+        <%= link_to "利用規約", "https://www.kiyac.app/termsOfService/ri6ZOLS05llljnE0Lqjp", class: "font-kiwi text-black-600 hover:underline text-center" %>
+        <%= link_to "プライバシーポリシー", "https://www.kiyac.app/privacypolicy/DLDA7xVOvuaCKfLSyBLV", class: "font-kiwi text-black-600 hover:underline text-center" %>
+      </div>
+      <p class="font-kiwi text-black-600">© 2025 icetagram All rights reserved.</p>
+    </div>
+  </footer>
 </html>
