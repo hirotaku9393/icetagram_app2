@@ -68,34 +68,34 @@
 
 複数の外部認証に対応することで、ユーザーがより簡単にアカウント作成・ログインできるようにしています。
 
-
 ## 使用技術
-🔽 認証
-・　devise
-・　OmniAuth
-・　LINE　Developers
-・  Google OAuth　2.0
 
-🔽 バックエンド
-・　ruby 3.3.6 
-・　Rails 8.0.2
+### 🔽 認証
+- devise  
+- OmniAuth  
+- LINE Developers  
+- Google OAuth 2.0  
 
-🔽 データベース
-・ PostgreSQL
+### 🔽 バックエンド
+- Ruby 3.3.6  
+- Rails 8.0.2  
 
-🔽　環境構築
-・ Docker 
+### 🔽 データベース
+- PostgreSQL  
 
-🔽 フロントエンド
-・ TailwindCSS
-・ JavaScript
-・ Turbo
-・ Stimulus
+### 🔽 環境構築
+- Docker  
 
-🔽 ファイルサーバー
-・ Cloudinary
+### 🔽 フロントエンド
+- TailwindCSS  
+- JavaScript  
+- Turbo
+- Stimulus
 
-🔽 API
-・ Google API
-・ LINE Developers API
-・ 楽天市場API 
+### 🔽 ファイルサーバー
+- Cloudinary  
+
+### 🔽 API
+- Google API  
+- LINE Developers API  
+- 楽天市場API  
