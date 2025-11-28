@@ -1,24 +1,60 @@
-# README
+# icetagram
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##🍧サービス概要
+～まだ味わったことのない、あなたにぴったりなあいすとの出会いを、あなたにぴったりなあいすをお届けするサービス～
 
-Things you may want to cover:
+「icetagram」はユーザーのアイスに対する味や好みにぴったりなアイスをおすすめしたり、まだ味わったことのないアイスとの出会いを提供するサービスです。
+主要機能として以下の５つを実装しています。
+①他ユーザーの投稿を見たり、お気に入りアイスを投稿できる「あいす一覧」
+②味やカロリーなどアイスの特徴を入力してユーザーにぴったりなアイスをおすすめする「あじぐらふ」
+③ユーザーがコンビニやスーパーでなにを買おうかな？と悩んだときにランダムにアイスをおすすめする「きょうのあいす」
+④全国の珍しいアイスを紹介する「ご当地あいす」
+⑤アイスに対する知識を楽しみながら深められる「IQてすと」
 
-* Ruby version
+## 開発動機
+私はこれまでの仕事を通して潜在的な需要はあるけれど、具体的な依頼まで結びつかないという事を多く経験し何かできないかと思ってきました。こんなものが欲しい！こういうサービスを受けたい！というニーズがあったとしてもそもそもの依頼方法が分からない、分かったとしても具体性に欠けていて依頼するのに億劫になってしまうというのを多々目にしてきました。
+私がエンジニアになりたいと思ったのは、そのような本来生まれるはずの需要をクライアントに結びつける仕事をしたい！という思いからです。
+卒業制作のテーマを考えるにあたって私は先のような思いから「潜在的な需要と供給を結びつける」をテーマにできないかと考えました。 
+ そんな私は夏に限らず冬でもアイスを食べるアイス好きです。人並み以上にはアイスを食べ、いろいろな種類を食べてきました。そこで開発を始める時期が夏だったこともあり、ユーザーにまだ口にしたことのないアイスや珍しいご当地アイスに出会って欲しい！という思いから「icetagram」を制作しました。
 
-* System dependencies
+ ##🔎機能紹介
+###①あいす一覧
+他のユーザーが投稿したアイスの一覧を見れます。名前によって検索する機能やタグに紐づいているアイスの一覧に遷移ができ、好みのアイスを探すことが出来ます。自分の好みのアイスを投稿する機能や、一覧からお気に入りに登録する機能もあります。
+<img width="952" height="456" alt="あいす一覧" src="https://github.com/user-attachments/assets/5359484d-9f8f-4600-96b3-da36c44fb2b3" />
 
-* Configuration
 
-* Database creation
+###あいすの詳細画面
+あいす一覧からアイスの名前をクリックすることでそのあいすの詳細に遷移します。
+より詳細なアイスの情報を見ることができ、「みんなのひと口レポ」としてとして感想を書く事も出来ます。
+また、楽天市場でのそのアイスの検索結果も表示しアイスの名前をクリックすると楽天市場の対象ページに遷移します。
+これによりユーザーが「このアイスを食べたい！」と思った時にそれがご当地アイスなど手に入りにくい場合でも、より簡単に購入することが出来ます。
+<img width="950" height="454" alt="あいす詳細１" src="https://github.com/user-attachments/assets/7507c1da-c46b-4de1-935b-6974ebd943ad" />
+<img width="950" height="450" alt="あいす詳細２" src="https://github.com/user-attachments/assets/a7bac1df-e90a-4bf0-a28f-15a1fc211b55" />
 
-* Database initialization
 
-* How to run the test suite
+###②あじぐらふ
+ユーザーが５段階の味や特徴の好みを入力し、それにぴったりなアイスをおすすめする機能です。
+一度診断すると結果に基づき、ユーザーが好きそうな他のアイスをトップページでおすすめします。
+結果はxで投稿することができます。
+<img width="951" height="454" alt="あじぐらふ入力" src="https://github.com/user-attachments/assets/866cf088-f7f6-455f-8f12-e90220afda14" />
+<img width="950" height="455" alt="あじぐらふ結果" src="https://github.com/user-attachments/assets/5fef1372-5a57-402c-9fb6-ee7aa346cfc5" />
+<img width="951" height="454" alt="トップページ" src="https://github.com/user-attachments/assets/f4bf94b2-0df9-4c7b-82e6-3a783dca2066" />
 
-* Services (job queues, cache servers, search engines, etc.)
+###③きょうのあいす
+ユーザーが食べたいアイスや購入するアイスに迷ってしまったときにランダムにアイスをレコメンドする機能です。
+結果はxで投稿することができます。
+<img width="949" height="454" alt="きょうのあいす入力" src="https://github.com/user-attachments/assets/a9d129b7-d8a0-4ffa-b397-73a69aad4d0e" />
+<img width="949" height="455" alt="きょうのあいす結果" src="https://github.com/user-attachments/assets/e37de896-4b6d-4e52-aa28-ec6e6b4691ab" />
 
-* Deployment instructions
 
-* ...
+###④ご当地あいす
+全国の珍しいフレーバーのアイスや、ご当地の有名なお菓子のアイスバージョン等を紹介しています。
+普段スーパーやコンビニでは目にすることのないアイスを紹介し、ユーザーに新しいアイスとの出会いを提供します。
+<img width="951" height="454" alt="ご当地あいす" src="https://github.com/user-attachments/assets/5dc4ee9c-853e-4113-ba30-96e85cf89f0c" />
+
+###⑤IQてすと
+10問のIQ(Icecream Question)に答えながらアイスの歴史や知識を楽しく学ぶことが出来ます。
+結果はxで投稿することができ、他のユーザーと競うことが出来ます。
+<img width="950" height="455" alt="IQてすと入力" src="https://github.com/user-attachments/assets/0e395cf5-52c3-448b-b0c2-9d16bce7acda" />
+<img width="950" height="455" alt="IQてすと結果" src="https://github.com/user-attachments/assets/84e46d1e-e53d-45b7-b6c9-83cf024cd3c2" />
+
