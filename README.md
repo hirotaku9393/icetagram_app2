@@ -35,14 +35,14 @@
 ### あじぐらふ
 ユーザーが５段階の味や特徴の好みを入力し、それにぴったりなアイスをおすすめする機能です。
 一度診断すると結果に基づき、ユーザーが好きそうな他のアイスをトップページでおすすめします。
-結果はxで投稿することができます。
+結果はx（旧Twitter）で投稿することができます。
 <img width="951" height="454" alt="あじぐらふ入力" src="https://github.com/user-attachments/assets/866cf088-f7f6-455f-8f12-e90220afda14" />
 <img width="950" height="455" alt="あじぐらふ結果" src="https://github.com/user-attachments/assets/5fef1372-5a57-402c-9fb6-ee7aa346cfc5" />
 <img width="951" height="454" alt="トップページ" src="https://github.com/user-attachments/assets/f4bf94b2-0df9-4c7b-82e6-3a783dca2066" />
 
 ### ③きょうのあいす
 ユーザーが食べたいアイスや購入するアイスに迷ってしまったときにランダムにアイスをレコメンドする機能です。
-結果はxで投稿することができます。
+結果はx（旧Twitter）で投稿することができます。
 <img width="949" height="454" alt="きょうのあいす入力" src="https://github.com/user-attachments/assets/a9d129b7-d8a0-4ffa-b397-73a69aad4d0e" />
 <img width="949" height="455" alt="きょうのあいす結果" src="https://github.com/user-attachments/assets/e37de896-4b6d-4e52-aa28-ec6e6b4691ab" />
 
@@ -54,13 +54,13 @@
 
 ### IQてすと
 10問のIQ(Icecream Question)に答えながらアイスの歴史や知識を楽しく学ぶことが出来ます。
-結果はxで投稿することができ、他のユーザーと競うことが出来ます。
+結果はx（旧Twitter）で投稿することができ、他のユーザーと競うことが出来ます。
 <img width="950" height="455" alt="IQてすと入力" src="https://github.com/user-attachments/assets/0e395cf5-52c3-448b-b0c2-9d16bce7acda" />
 <img width="950" height="455" alt="IQてすと結果" src="https://github.com/user-attachments/assets/84e46d1e-e53d-45b7-b6c9-83cf024cd3c2" />
 
 ### 🔐 認証機能
 
-「icetagram」では DeviseとOmuniAuthを用いて以下の認証機能を実装しています
+「icetagram」では DeviseとOmniAuthを用いて以下の認証機能を実装しています
 
 ・メールアドレスによる新規登録 / ログイン（Devise）
 ・LINEログイン（LINE Login API）
