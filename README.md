@@ -98,4 +98,7 @@
 ### 🔽 API
 - Google API  
 - LINE Developers API  
-- 楽天市場API  
+- 楽天市場API
+
+  <img width="1161" height="757" alt="image" src="https://github.com/user-attachments/assets/8ff2652f-aaaa-46f5-831c-3412b6d066d6" />
+
