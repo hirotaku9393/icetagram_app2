@@ -69,6 +69,15 @@ class IceCreamsController < ApplicationController
         tags = tag_list.map { |name| Tag.find_or_create_by(name: name) } # tag_namesを配列にし、タグを見つけるor作成
         @ice_cream.tags = tags
       end
+      if @ice_cream.chart.present?
+        @ice_cream.chart.update(
+          sweetness: @ice_cream.sweetness,
+          freshness: @ice_cream.freshness,
+          richness: @ice_cream.richness,
+          calorie: @ice_cream.calorie,
+          ingredient_richness: @ice_cream.ingredient_richness
+        )
+      end
       redirect_to @ice_cream, notice: "アイスを更新しました！"
     else
       render :edit, status: :unprocessable_entity
