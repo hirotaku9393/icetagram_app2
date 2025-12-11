@@ -12,6 +12,14 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true             # JavaScriptのalertで通知
+    Bullet.bullet_logger = true     # log/bullet.logに記録
+    Bullet.console = true           # コンソールに表示
+    Bullet.rails_logger = true      # Railsログに出力
+    Bullet.add_footer = true        # ページ下部に通知を表示
+  end
   # Enable server timing.
   config.server_timing = true
   config.action_mailer.delivery_method = :letter_opener_web

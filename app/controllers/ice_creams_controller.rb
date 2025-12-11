@@ -4,24 +4,28 @@ class IceCreamsController < ApplicationController
   before_action :set_ice_cream, only: %i[show edit update destroy]
   before_action :authorize_user!, only: %i[edit update destroy]
 
+
   def index
     @q = IceCream.ransack(params[:q])
 
+    preload_relations = [
+      :tags,
+      :user,
+      :image_attachment
+    ]
+
     if params[:q].present?
-      # 検索時はタグ絞り込みをなし
-      @ice_creams = @q.result(distinct: true).includes(:tags)
+      @ice_creams = @q.result(distinct: true).includes(preload_relations)
     elsif params[:tag_id].present?
-      # タグでの絞り込み
       tag = Tag.find_by(id: params[:tag_id])
-      @ice_creams = tag.ice_creams.includes(:tags)
+      @ice_creams = tag.ice_creams.includes(preload_relations)
     else
-      @ice_creams = IceCream.all.includes(:tags)
+      @ice_creams = IceCream.all.includes(preload_relations)
     end
 
     @ice_creams = @ice_creams.order(created_at: :desc).page(params[:page]).per(9)
     @tags = Tag.order("RANDOM()").limit(5)
   end
-
 
 
   def new
@@ -108,7 +112,7 @@ class IceCreamsController < ApplicationController
   end
 
   def favorites
-    @favorite_ice_creams = current_user.favorite_ice_creams.page(params[:page]).per(10).includes(:chart, :user).order(created_at: :desc)
+    @favorite_ice_creams = current_user.favorite_ice_creams.page(params[:page]).per(10).includes(:image_attachment).order(created_at: :desc)
   end
 
 
@@ -118,7 +122,7 @@ class IceCreamsController < ApplicationController
   end
 
   def gotouchi
-    @ice_creams = IceCream.joins(:tags).where(tags: { name: "ご当地" }).includes(:tags).page(params[:page]).per(10).order(created_at: :desc)
+    @ice_creams = IceCream.joins(:tags).where(tags: { name: "ご当地" }).includes(:tags, :image_attachment).page(params[:page]).per(10).order(created_at: :desc)
     @tags = Tag.limit(5)
     render :gotouchi
   end
