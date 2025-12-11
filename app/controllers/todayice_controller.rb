@@ -15,6 +15,7 @@ class TodayiceController < ApplicationController
       @today_ice_uuid = today_ice.uuid
     end
     @chart = @today_ice.chart
+    @image = @today_ice.image
     prepare_meta_tags
   end
 
