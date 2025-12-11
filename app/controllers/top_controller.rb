@@ -7,7 +7,8 @@ class TopController < ApplicationController
         charts_for_ice = Chart.where(chart_type: [ :official, :user_post ]).includes(:ice_cream).where.not(ice_cream_id: nil)
         sorted_charts = charts_for_ice.sort_by { |c| euclidean_distance(user_vec, c.to_vector) }
         @top_3_charts = sorted_charts.uniq { |c| c.ice_cream_id }.drop(1).first(3)
-        @recomend_ice   = @top_3_charts.map(&:ice_cream)
+        @recomend  = @top_3_charts.map(&:ice_cream)
+        @recomend_ice = IceCream.where(id: @recomend.map(&:id)).includes(:image_attachment)
       end
     end
   end

@@ -21,7 +21,7 @@ class AjigrafController < ApplicationController
     @chart = Chart.find(params[:chart_id])
     user_vec = @chart.to_vector
 
-    charts_for_ice = Chart.where(chart_type: [ :official, :user_post ]).includes(:ice_cream, :image_attachment).where.not(ice_cream_id: nil)
+    charts_for_ice = Chart.where(chart_type: [ :official, :user_post ]).includes(ice_cream: [:image_attachment]).where.not(ice_cream_id: nil)
 
     closest_chart = charts_for_ice.min_by { |c| euclidean_distance(user_vec, c.to_vector) }
     @closest_chart = closest_chart
