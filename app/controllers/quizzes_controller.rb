@@ -119,8 +119,8 @@ class QuizzesController < ApplicationController
 
 
         @og_image = "#{request.base_url}/ogp/#{og_image}"
-        @og_title = "IQてすと結果は...#{score}/10：#{title_message}"
-        @og_description = @message
+        @og_title = @message
+        @og_description = "IQてすと結果は...#{score}/10点：#{title_message}"
         @og_url = request.original_url
         @title_message =  title_message
 
