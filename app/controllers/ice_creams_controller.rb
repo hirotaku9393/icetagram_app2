@@ -52,7 +52,7 @@ class IceCreamsController < ApplicationController
         chart_type: "user_post"
         )
       @ice_cream.save_tags(tag_list) if tag_list.present?
-      redirect_to ice_creams_index_path, notice: "アイスクリームを登録しました。"
+      redirect_to ice_creams_path, notice: "アイスクリームを登録しました。"
     else
       render :new
     end
@@ -90,7 +90,7 @@ class IceCreamsController < ApplicationController
 
   def destroy
     @ice_cream.destroy
-    redirect_to ice_creams_index_path, notice: "アイスクリームを削除しました。"
+    redirect_to ice_creams_path, notice: "アイスクリームを削除しました。"
   end
 
   def show
@@ -137,7 +137,7 @@ class IceCreamsController < ApplicationController
 
   def authorize_user!
     unless @ice_cream.user == current_user
-      redirect_to ice_creams_index_path, alert: "他のユーザーのアイスクリームは編集できません。"
+      redirect_to ice_creams_path, alert: "他のユーザーのアイスクリームは編集できません。"
     end
   end
 

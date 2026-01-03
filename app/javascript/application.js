@@ -4,6 +4,7 @@ import "./controllers"
 import Chart from 'chart.js/auto';  
 import "./user_dropdown.js";
 import "./preview.js";
+import "./entrypoints/calorie_selector";
 window.Chart = Chart; 
 import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "images/ogp"
 
 
-  get "ice_creams/index"
+  
   root "top#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       get :favorites
       get :tags
       get :gotouchi
+      get :calorie
     end
   end
 
@@ -62,7 +63,7 @@ Rails.application.routes.draw do
     end
   end
 
-    resources :quizzes, only: [ :index ] do
+  resources :quizzes, only: [ :index ] do
     collection do
       post :check
       get :result
@@ -79,6 +80,11 @@ Rails.application.routes.draw do
     skip: [ :registrations, :passwords ]
 
   post "/callback" => "linebot#callback"
+
+  namespace :api do
+    resources :ice_creams, only: [:index]
+  end
+
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

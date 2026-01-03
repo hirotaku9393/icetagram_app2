@@ -68,7 +68,7 @@ RSpec.describe "ice_creamsコントローラーのテスト", type: :request do
                         ingredient_richness: 4,
                         tag_ids: "",
                         user_id: user.id } } }.to change(IceCream, :count).by(1)
-            expect(response).to redirect_to ice_creams_index_path
+            expect(response).to redirect_to ice_creams_path
         end
         it "投稿時、アイスの名前がないと登録ができないこと" do
             expect {
@@ -121,20 +121,20 @@ RSpec.describe "ice_creamsコントローラーのテスト", type: :request do
         end
         it "削除を実行するとアイスクリーム一覧ページにリダイレクトされること" do
             delete ice_cream_path(ice_cream)
-            expect(response).to redirect_to ice_creams_index_path
+            expect(response).to redirect_to ice_creams_path
         end
 
         it "他人のアイス編集ページにアクセスすると一覧ページにリダイレクトされること" do
             other_user = FactoryBot.create(:user)
             other_ice_cream = FactoryBot.create(:ice_cream, user: other_user)
             get edit_ice_cream_path(other_ice_cream)
-            expect(response).to redirect_to ice_creams_index_path
+            expect(response).to redirect_to ice_creams_path
         end
         it "他人のアイスを削除実行すると一覧ページにリダイレクトされること" do
             other_user = FactoryBot.create(:user)
             other_ice_cream = FactoryBot.create(:ice_cream, user: other_user)
             delete ice_cream_path(other_ice_cream)
-            expect(response).to redirect_to ice_creams_index_path
+            expect(response).to redirect_to ice_creams_path
         end
         it "タグでの絞り込みができること" do
             tag = FactoryBot.create(:tag)
