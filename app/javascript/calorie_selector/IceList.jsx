@@ -22,7 +22,9 @@ return (
                     {ice.calorie_value} kcal
                 </p>
                 {ice.image_url && (
-                    <img src={ice.image_url} alt={ice.name} className="mt-2 w-full h-40 object-cover rounded-lg" />
+                    <div className="flex justify-center items-center h-24">
+                        <img src={ice.image_url} alt={ice.name} className="max-h-full max-w-full object-cover rounded-lg" />
+                    </div>
                 )}
             </li>
         ))}
