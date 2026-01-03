@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "images/ogp"
 
 
-  
+
   root "top#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   post "/callback" => "linebot#callback"
 
   namespace :api do
-    resources :ice_creams, only: [:index]
+    resources :ice_creams, only: [ :index ]
   end
 
 
