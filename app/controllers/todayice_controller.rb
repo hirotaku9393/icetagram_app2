@@ -1,13 +1,13 @@
 class TodayiceController < ApplicationController
-  #ログイン不要でアクセス可能にする
+  # ログイン不要でアクセス可能にする
   skip_before_action :authenticate_user!, raise: false
   def index
   end
 
   def result
-    #model側のset_uuidメソッドを使用してrecordの作成前にUUIDを割り振っている
+    # model側のset_uuidメソッドを使用してrecordの作成前にUUIDを割り振っている
     if params[:uuid].present?
-      #if文の内容はsnsシェアからアクセスされた場合の処理
+      # if文の内容はsnsシェアからアクセスされた場合の処理
       today_ice_record = TodayIce.find_by(uuid: params[:uuid])
       @today_ice = today_ice_record&.ice_cream
       @today_ice_uuid = today_ice_record.uuid

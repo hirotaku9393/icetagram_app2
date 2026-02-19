@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get "favorites/create"
   get "favorites/destroy"
   get "images/ogp"
-  
+
   root "top#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     end
   end
 
-  #ネストされたルーティング(reviewsはice_creamsの子リソース)
+  # ネストされたルーティング(reviewsはice_creamsの子リソース)
   resources :ice_creams,  only: [ :index, :show, :new, :create, :edit, :update, :destroy ] do
     resources :reviews, only: [ :create, :destroy ]
     collection do

@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  #deviseが提供するauthenticate_user!を使用して、ユーザーがログインしていることを確認
+  # deviseが提供するauthenticate_user!を使用して、ユーザーがログインしていることを確認
   before_action :authenticate_user!
   def create
     ice_cream = IceCream.find(params[:ice_cream_id])

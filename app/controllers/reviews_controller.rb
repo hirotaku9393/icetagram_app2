@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-        #contentカラムのみ許可
+        # contentカラムのみ許可
         params.require(:review).permit(:content)
     end
 end

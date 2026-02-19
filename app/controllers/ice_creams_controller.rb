@@ -1,5 +1,5 @@
 class IceCreamsController < ApplicationController
-  #deviseのauthenticate_user!を使用して、ユーザーがログインしていることを確認
+  # deviseのauthenticate_user!を使用して、ユーザーがログインしていることを確認
   before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [ :index, :show, :gotouchi ]
   before_action :set_ice_cream, only: %i[show edit update destroy]
@@ -64,9 +64,9 @@ class IceCreamsController < ApplicationController
   end
 
   def update
-  #ネストされたparametersを扱い、タグ名を取得, tag_names はフォームで定義された名前
+  # ネストされたparametersを扱い、タグ名を取得, tag_names はフォームで定義された名前
   tag_names = params[:ice_cream][:tag_names]
-    #アイスクリームの情報を更新
+    # アイスクリームの情報を更新
     if @ice_cream.update(ice_cream_params)
       if tag_names.present?
         tag_list = tag_names.split(/[,、\/]/)
@@ -143,7 +143,7 @@ class IceCreamsController < ApplicationController
     end
   end
 
-    #正規表現1行目^以外の文字を削除、2行目は特殊文字削除、3行目は複数スペースを1スペースに、4行目は前後のスペース削除
+  # 正規表現1行目^以外の文字を削除、2行目は特殊文字削除、3行目は複数スペースを1スペースに、4行目は前後のスペース削除
   def fix_word(word)
     return "" if word.nil?
       word.to_s
