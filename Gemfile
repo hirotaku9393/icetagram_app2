@@ -82,9 +82,6 @@ group :development, :test do
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
-
-  gem "dotenv-rails"
-
   gem "factory_bot_rails"
   gem "rspec-rails"
   gem "simplecov", require: false
