@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
     before_action :set_ice_cream
+    before_action :authenticate_user!
 
     def create
         @review = @ice_cream.reviews.new(review_params)
@@ -14,8 +15,12 @@ class ReviewsController < ApplicationController
 
     def destroy
         @review = @ice_cream.reviews.find(params[:id])
-        @review.destroy
-        redirect_to @ice_cream, notice: "感想を削除しました"
+        if @review.user != current_user
+            @review.destroy
+            redirect_to @ice_cream, notice: "感想を削除しました"
+        else
+            redirect_to @ice_cream, alert: "他のユーザーの感想は削除できません"
+        end
     end
 
     private
