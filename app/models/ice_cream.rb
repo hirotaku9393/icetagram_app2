@@ -10,7 +10,7 @@ class IceCream < ApplicationRecord
     has_many :reviews, dependent: :destroy
     validates :name, presence: true
     def to_vector
-        [ sweetness, freshness, richness, texture, ingredient_richness ].map(&:to_i)
+        [ sweetness, freshness, richness, calorie, ingredient_richness ].map(&:to_i)
     end
 
     def save_tags(saveice_cream_tags)
