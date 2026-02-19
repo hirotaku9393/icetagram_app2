@@ -14,9 +14,9 @@
                             <h2 class="text-xl font-kiwi "> <%= @ice_cream.user.name %> </h2>
                         </div>
                     <% end %>
-                    <h2 class="text-xl font-kiwi pt-5"> <%= "コメント: " + @ice_cream.comment %> </h2>
-                    <h2 class="text-2 pt-3"xl font-kiwi pt-5"> <%= "アレンジ: " + @ice_cream.arrange %> </h2>
-                    <h2 class="text-2 pt-3"xl font-kiwi pt-5"> <%= "カロリー値: " + @ice_cream.calorie_value.to_s + "kcal" %> </h2>
+                    <h2 class="text-xl font-kiwi pt-5"> <%= "コメント:  #{@ice_cream.comment}" %> </h2>
+                    <h2 class="text-xl font-kiwi pt-5"> <%= "アレンジ: #{@ice_cream.arrange}" %> </h2>
+                    <h2 class="text-xl font-kiwi pt-5"> <%= "カロリー値: " + @ice_cream.calorie_value.to_s + "kcal" %> </h2>
                     <h2 class="text-xl font-kiwi pt-5" data-turbo="false"> タグ: <%= render 'tag', ice_cream: @ice_cream %></h2>
                     <% if @ice_cream.image.attached? %>
                         <h3 class="pt-10  flex justify-center"><%= image_tag @ice_cream.image, class: 'h-40 w-auto' %></h3>
