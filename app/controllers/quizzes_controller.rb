@@ -66,6 +66,8 @@ class QuizzesController < ApplicationController
 
 
     def check
+        #{}を使用して、paramsハッシュからanswersパラメータを取得。nilの場合は空のハッシュを代入
+        #valuesメソッドを使用して、answersハッシュの値のみを配列として取得(rubyの標準メソッド)キーは使用しない
         answers = (params[:answers] || {}).values
         score = 0
 

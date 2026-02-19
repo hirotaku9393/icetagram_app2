@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  skip_before_action :autheticate_user!, raise: false
+  skip_before_action :authenticate_user!, raise: false
   def ajigraf
     text = ogp_params[:text]
     image = AjigrafCreator.build(text).tempfile.open.read
@@ -15,6 +15,7 @@ class ImagesController < ApplicationController
   private
 
   def ogp_params
+    # Strong Parametersを使用して、urlパラメータから:textを許可
     params.permit(:text)
   end
 end

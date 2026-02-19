@@ -10,6 +10,7 @@ class AjigrafCreator
 
     def self.build(text)
         text = prepare_text(text) + "!"
+        #gem 'mini_magick'を使用して合成元画像を開く
         image = MiniMagick::Image.open(BASE_IMAGE_PATH)
         image.combine_options do |config|
         config.font FONT

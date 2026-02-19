@@ -1,4 +1,6 @@
+// stimulus がchart.jsを使ってレーダーチャートを描画するコントローラー
 import {Controller} from "@hotwired/stimulus"
+// chart.jsの必要なコンポーネント(機能）をインポート
 import {
     Chart as ChartJS,
     RadialLinearScale,
@@ -9,7 +11,7 @@ import {
     Legend,
 } from "chart.js";
 
-
+// インポートしたコンポーネントをChartJSに登録
 ChartJS.register(
     RadialLinearScale,
     PointElement,
@@ -19,6 +21,7 @@ ChartJS.register(
     Legend
 );
 
+//このexportで、html側からこのコントローラーを使用できるようにする
 export default class extends Controller {
     static values = { 
         chartData: Array,
