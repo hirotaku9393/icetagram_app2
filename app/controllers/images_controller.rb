@@ -8,7 +8,7 @@ class ImagesController < ApplicationController
 
   def todayice
     text = ogp_params[:text]
-    image = TodayIcefCreator.build(text).tempfile.open.read
+    image = TodayIceCreator.build(text).tempfile.open.read
     send_data image, type: "image/png", disposition: "inline"
   end
 
