@@ -30,6 +30,11 @@ class AjigrafController < ApplicationController
     @closest_chart = closest_chart
     @closest_ice   = closest_chart&.ice_cream
 
+    if @closest_ice.nil?
+      redirect_to new_ajigraf_path, alert: "おすすめのアイスが見つかりませんでした。もう一度試してください。"
+      return
+    end
+    
     prepare_meta_tags
   end
 

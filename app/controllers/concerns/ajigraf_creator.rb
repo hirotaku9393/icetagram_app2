@@ -17,7 +17,8 @@ class AjigrafCreator
         config.fill "black"
         config.gravity GRAVITY
         config.pointsize FONT_SIZE
-        config.draw "text #{TEXT_POSITION} '#{text}'"
+        safe_text = text.gsub("'", "") # シングルクォートをエスケープ
+        config.draw "text #{TEXT_POSITION} '#{safe_text}'"
         end
     end
 
