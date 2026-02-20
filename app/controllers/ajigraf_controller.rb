@@ -34,7 +34,7 @@ class AjigrafController < ApplicationController
       redirect_to new_ajigraf_path, alert: "おすすめのアイスが見つかりませんでした。もう一度試してください。"
       return
     end
-    
+
     prepare_meta_tags
   end
 
