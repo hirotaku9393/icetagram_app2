@@ -9,8 +9,12 @@ class TodayiceController < ApplicationController
     if params[:uuid].present?
       # if文の内容はsnsシェアからアクセスされた場合の処理
       today_ice_record = TodayIce.find_by(uuid: params[:uuid])
+        if today_ice_record.nil?
+          redirect_to todayice_index_path, alert: "指定されたアイスが見つかりませんでした。"
+          return
+        end
       @today_ice = today_ice_record&.ice_cream
-      @today_ice_uuid = today_ice_record.uuid
+      @today_ice_uuid = today_ice_record&.uuid
     else
       ice = IceCream.order("RANDOM()").first
       today_ice = TodayIce.create(ice_cream: ice)
