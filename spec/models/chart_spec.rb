@@ -54,7 +54,7 @@ RSpec.describe Chart, type: :model do
     it 'richnessが1~5以外の場合バリデーションが通らない' do
       chart = FactoryBot.build(:chart, richness: 10)
       expect(chart).to be_invalid
-    end 
+    end
 
     it 'calorieが0未満の場合バリデーションが通らない' do
       chart = FactoryBot.build(:chart, calorie: -100)
