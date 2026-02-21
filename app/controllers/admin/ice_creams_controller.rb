@@ -63,7 +63,6 @@ class Admin::IceCreamsController < Admin::BaseController
                 end
                 redirect_to admin_ice_cream_path(@ice_cream), notice: "アイスクリームを更新しました"
             else
-            puts @ice_cream.errors.full_messages
                 render :edit, status: :unprocessable_entity
             end
     end
