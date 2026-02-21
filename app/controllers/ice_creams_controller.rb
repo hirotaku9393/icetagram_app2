@@ -86,7 +86,7 @@ class IceCreamsController < ApplicationController
       end
       redirect_to @ice_cream, notice: "アイスを更新しました！"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

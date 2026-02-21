@@ -114,7 +114,7 @@ RSpec.describe "ice_creamsコントローラーのテスト", type: :request do
                     calorie: ice_cream.calorie,
                     ingredient_richness: ice_cream.ingredient_richness,
                     user_id: user.id } }
-            expect(response).to have_http_status(:unprocessable_entity)
+            expect(response).to have_http_status(:unprocessable_content)
         end
         it "削除時、アイスの削除ができ、アイスの件数がへること" do
             expect { delete ice_cream_path(ice_cream) }.to change(IceCream, :count).by(-1)
