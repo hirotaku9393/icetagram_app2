@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "ajigrafコントローラーのテスト", type: :request do
     let!(:ice_cream) { FactoryBot.create(:ice_cream) }
     let!(:user) { FactoryBot.create(:user) }
-    let!(:chart) { FactoryBot.create(:chart, ice_cream: ice_cream, chart_type: "official") }
-    let!(:chart) { FactoryBot.create(:chart, ice_cream: ice_cream, user: user, chart_type: "user_post") }
+    let!(:official_chart) { FactoryBot.create(:chart, ice_cream: ice_cream, chart_type: "official") }
+    let!(:user_chart)     { FactoryBot.create(:chart, ice_cream: ice_cream, user: user, chart_type: "user_post") }
 
     describe "ajigrafにアクセス時" do
         it "ajigrafのトップページにアクセスできること" do
@@ -24,7 +24,7 @@ RSpec.describe "ajigrafコントローラーのテスト", type: :request do
 
     describe "ajigrafの結果表示" do
         it "ajigrafの結果ページにアクセスできること" do
-            get result_ajigraf_index_path(chart_id: chart.id)
+            get result_ajigraf_index_path(chart_id: user_chart.id)
             expect(response).to have_http_status(:ok)
         end
     end
