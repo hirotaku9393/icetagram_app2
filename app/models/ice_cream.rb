@@ -9,6 +9,7 @@ class IceCream < ApplicationRecord
     has_many :today_ices, dependent: :destroy
     has_many :reviews, dependent: :destroy
     validates :name, presence: true
+    validates :calorie_value, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
     def to_vector
         [ sweetness, freshness, richness, calorie, ingredient_richness ].map(&:to_i)
     end

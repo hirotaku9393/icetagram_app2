@@ -11,5 +11,10 @@ RSpec.describe IceCream, type: :model do
       ice_cream = FactoryBot.build(:ice_cream, name: nil)
       expect(ice_cream).to be_invalid
     end
+
+    it 'calorieが0未満の場合にバリデーションエラー' do
+      ice_cream = FactoryBot.build(:ice_cream, calorie_value: -100)
+      expect(ice_cream).to be_invalid
+    end
   end
 end
