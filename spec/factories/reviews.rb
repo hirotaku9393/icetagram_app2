@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :review do
     content { "MyText" }
-    user { nil }
-    ice_cream { nil }
+    association :user
+    association :ice_cream
   end
 end
