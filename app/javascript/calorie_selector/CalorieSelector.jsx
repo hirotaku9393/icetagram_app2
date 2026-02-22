@@ -22,6 +22,7 @@ export default function CalorieSelector() {
     );
 
     // コンポーネントのレンダリング
+    // IceListコンポーネントにフィルタリングされたアイスクリームリストを渡す
     return (
         <div>
             <CalorieSlider
@@ -31,7 +32,6 @@ export default function CalorieSelector() {
             />
         
             <IceList ices={filteredIces} />
-            // IceListコンポーネントにフィルタリングされたアイスクリームリストを渡す
         </div>
     );
 }
