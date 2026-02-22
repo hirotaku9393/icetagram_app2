@@ -49,7 +49,7 @@ class Admin::IceCreamsController < Admin::BaseController
         @ice_cream.save_tags(tag_list) if tag_list.present?
         redirect_to admin_ice_cream_path(@ice_cream), notice: "アイスクリームを作成しました"
         else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
         end
     end
 
@@ -63,7 +63,7 @@ class Admin::IceCreamsController < Admin::BaseController
                 end
                 redirect_to admin_ice_cream_path(@ice_cream), notice: "アイスクリームを更新しました"
             else
-                render :edit, status: :unprocessable_entity
+                render :edit, status: :unprocessable_content
             end
     end
 
