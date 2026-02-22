@@ -55,7 +55,7 @@ class IceCreamsController < ApplicationController
       @ice_cream.save_tags(tag_list) if tag_list.present?
       redirect_to ice_creams_path, notice: "アイスクリームを登録しました。"
     else
-      render :new
+      render :new, status: :unprocessable_content
     end
   end
 
