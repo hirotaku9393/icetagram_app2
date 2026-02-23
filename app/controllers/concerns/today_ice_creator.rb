@@ -16,7 +16,7 @@ class TodayIceCreator
         config.fill "black"
         config.gravity GRAVITY
         config.pointsize FONT_SIZE
-        safe_text = text.gsub("'", "") # シングルクォートをエスケープ
+        safe_text = text.to_s.gsub(/[^ぁ-んァ-ヶー一-龯a-zA-Z0-9\s、。！？・ー〜]/u, "")
         config.draw "text #{TEXT_POSITION} '#{safe_text}'"
         end
     end
