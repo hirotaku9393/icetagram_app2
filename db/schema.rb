@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_20_103128) do
+ActiveRecord::Schema[8.0].define(version: 2026_02_23_101028) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -55,11 +55,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_20_103128) do
   end
 
   create_table "charts", force: :cascade do |t|
-    t.integer "sweetness"
-    t.integer "freshness"
-    t.integer "richness"
-    t.integer "calorie"
-    t.integer "ingredient_richness"
+    t.integer "sweetness", null: false
+    t.integer "freshness", null: false
+    t.integer "richness", null: false
+    t.integer "calorie", null: false
+    t.integer "ingredient_richness", null: false
     t.bigint "ice_cream_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -75,6 +75,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_20_103128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ice_cream_id"], name: "index_favorites_on_ice_cream_id"
+    t.index ["user_id", "ice_cream_id"], name: "index_favorites_on_user_id_and_ice_cream_id", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
@@ -89,7 +90,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_20_103128) do
   end
 
   create_table "ice_creams", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -107,7 +108,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_20_103128) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.text "content"
+    t.text "content", null: false
     t.bigint "user_id", null: false
     t.bigint "ice_cream_id", null: false
     t.datetime "created_at", null: false
@@ -117,10 +118,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_20_103128) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_tags_on_name"
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "today_ices", force: :cascade do |t|
