@@ -34,7 +34,6 @@ class IceCreamsController < ApplicationController
   end
 
   def create
-    # Ensure the current user is set before creating the ice cream
     @ice_cream = IceCream.new(ice_cream_params)
     @ice_cream.user = current_user
     tag_list = params[:ice_cream][:tag_ids]
