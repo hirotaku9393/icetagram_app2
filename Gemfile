@@ -38,7 +38,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "devise", "~> 4.9"
 
 gem "devise-i18n"
-gem "rails-i18n", "~> 8.0.0"
+gem "rails-i18n", "~> 8.1.0"
 
 gem "cloudinary"
 
