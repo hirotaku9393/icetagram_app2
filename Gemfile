@@ -81,7 +81,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
-  gem "brakeman", require: false
+  gem "brakeman", "~> 8.0", require: false
   gem "factory_bot_rails"
   gem "rspec-rails"
   gem "simplecov", require: false
